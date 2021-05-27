@@ -1,9 +1,17 @@
 import React from 'react';
 import Routes from './routes';
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./assets/styles/global";
+import theme from "./assets/styles/theme/theme";
 
-const App = () => {
+const App: React.FC = () => {
 	return (
-		<Routes />
+		<ThemeProvider theme={theme}>
+
+			<GlobalStyle />
+			<Routes />
+
+		</ThemeProvider>		
 	);
 }
 
