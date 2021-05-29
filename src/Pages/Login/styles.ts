@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button, Checkbox } from '@material-ui/core';
 import banner from '../../assets/images/banner.png';
 
 export const Container = styled.div`
@@ -37,7 +38,7 @@ export const Container = styled.div`
             transform: translate(-50%, -55%);
             line-height: 0.95;
 
-            & > text {
+            & > span {
                 color: transparent;
                 -webkit-text-stroke: 1px ${({ theme }) => theme.colors.white};
             }
@@ -69,4 +70,52 @@ export const Container = styled.div`
 
 export const LoginForm = styled.form`
     width: 20rem;
+
+    & > .actions {
+        margin-top: 3rem;
+        & > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.875rem;
+        }
+    }
+`;
+
+export const RememberMeCheckbox = styled(Checkbox)`
+    && {
+        color: ${({ theme}) => theme.colors.blue};
+        padding-right: 0.25rem;
+    }
+`;
+
+export const RememberMeText = styled.span`
+    font-size: 0.875rem;
+    color: ${({ theme}) => theme.colors.gray5};
+`;
+
+export const ForgotPasswordLink = styled.a`
+    text-decoration: none;
+    color: ${({ theme}) => theme.colors.gray5};
+
+    &:hover {
+        color: ${({ theme}) => theme.colors.blue};
+    }
+`;
+
+export const LoginButton = styled(Button)`
+    && {
+        width: 100%;
+        background-color: ${({ theme }) => theme.colors.blue};
+        color: ${({ theme }) => theme.colors.white};
+
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.blue};
+            opacity: 0.9;
+        }
+
+        & > span {
+            font-weight: 700;
+        }
+    }
 `;
