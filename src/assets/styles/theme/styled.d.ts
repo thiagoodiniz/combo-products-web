@@ -12,6 +12,9 @@ declare module "styled-components" {
             gray5: string;
             blue: string;
             blueDark: string;
+        },
+        fonts: {
+            openSansFontFamily: string;
         }
     }
 }
