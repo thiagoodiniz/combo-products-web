@@ -10,6 +10,7 @@ const theme: DefaultTheme = {
         gray2: '#F5F5F5',
         gray3: '#FCFCFC',
         gray4: '#A8A8B1',
+        gray5: '#727583',
     }    
 }
 

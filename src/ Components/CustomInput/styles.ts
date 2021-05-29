@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputContainer = styled.div`
     width: 100%;
-    border-bottom: 1px solid #727583;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.gray5};
     margin-bottom: 1rem;
     position: relative;
 
