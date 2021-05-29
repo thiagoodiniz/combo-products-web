@@ -17,6 +17,11 @@ const Login: React.FC = () => {
             </div>
 
             <div className="form-content">
+                <div className="login-title">
+                    <h2>FAÇA SEU <b>LOGIN</b></h2>
+                    <hr />
+                </div>
+
                 <LoginForm>
                     <CustomInput 
                         icon={<img src={userIcon} alt="user"/>}

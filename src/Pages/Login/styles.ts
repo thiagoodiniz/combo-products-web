@@ -47,8 +47,23 @@ export const Container = styled.div`
     & > .form-content {
         width: 40%;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: flex-start;
         align-items: center;
+
+        & > div.login-title {
+            opacity: 0.8;
+            margin: 5rem 0 12rem 0;
+            & > h2 {
+                font-size: 1.75rem;
+                font-weight: 400;
+            }
+            & > hr {
+                border-bottom: 1px solid ${({ theme }) => theme.colors.gray5};
+                width: 42%;
+                margin: 0.5rem auto;
+            }
+        }
     }
 `;
 
