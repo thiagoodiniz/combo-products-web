@@ -44,8 +44,14 @@ export const Container = styled.div`
         }
     }
 
-    & > .login-form {
+    & > .form-content {
         width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-  
+`;
+
+export const LoginForm = styled.form`
+    width: 20rem;
 `;
