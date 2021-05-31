@@ -7,24 +7,33 @@ import CustomInput from '../../ Components/CustomInput';
 import { FormControlLabel } from '@material-ui/core';
 import theme from '../../assets/styles/theme/theme';
 import { UserService } from '../../services/User';
+import { useHistory } from 'react-router-dom';
+import { ERoutes } from '../../routes';
 
 const Login: React.FC = () => {
+    const history = useHistory();
+
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
 
-    const doLogin = () => {
+    const doLogin = (e: any) => {
+        e.preventDefault();
         setLoading(true);
         setError(false);
 
         setTimeout(() => {
             const userSvc = new UserService();
             const isLogged = userSvc.login(login, password);
-            
             setLoading(false);
             setError(!isLogged);
+
+            if(isLogged){
+                history.push(ERoutes.HOME);
+            }
+
         }, 2500);
     }
 
@@ -41,7 +50,7 @@ const Login: React.FC = () => {
                     <hr />
                 </div>
 
-                <LoginForm>
+                <LoginForm onSubmit={doLogin}>
                     <CustomInput 
                         icon={<img src={userIcon} alt="user"/>}
                         value={login}
@@ -83,7 +92,7 @@ const Login: React.FC = () => {
                         </div>
 
                         <LoginButton
-                            onClick={doLogin}
+                            type="submit"
                             variant="contained"
                             disabled={loading}
                         >
