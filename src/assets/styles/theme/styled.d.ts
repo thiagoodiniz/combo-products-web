@@ -11,11 +11,25 @@ declare module "styled-components" {
             gray4: string;
             gray5: string;
             blue: string;
+            blue2: string;
             blueDark: string;
             red: string;
         },
         fonts: {
             openSansFontFamily: string;
-        }
+        },
+        commoms: {
+            boxShadow: string;
+        },
+        breakpoints: {
+            mobileS: string;
+            mobileM: string;
+            mobileL: string;
+            tablet: string;
+            laptop: string;
+            laptopM: string;
+            laptopL: string;
+            desktop: string;
+        };
     }
 }
