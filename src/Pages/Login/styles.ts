@@ -103,6 +103,13 @@ export const ForgotPasswordLink = styled.a`
     }
 `;
 
+export const InvalidUserOrPasswordMessage = styled.div`
+    font-size: 0.875rem;
+    color: ${({ theme }) => theme.colors.red};
+    text-align: center;
+    margin-top: 1rem;
+`;
+
 export const LoginButton = styled(Button)`
     && {
         width: 100%;
