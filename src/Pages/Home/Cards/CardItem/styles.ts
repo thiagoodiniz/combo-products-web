@@ -7,9 +7,21 @@ export const Container = styled.div`
     box-shadow: ${({ theme }) => theme.commoms.boxShadow};
     overflow: hidden;
     border-radius: 0.5rem;
-
+    
     &:not(:last-child) {
-        margin-right: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    @media(min-width: ${({ theme }) => theme.breakpoints.laptopM}) {
+        padding: unset;
+        &:not(:last-child) {
+            margin-right: 1rem;
+            margin-bottom: unset;
+        }
+    }
+
+    @media(min-width: ${({ theme }) => theme.breakpoints.laptopL}) {
+        padding: unset;
     }
 
     & > .icon-box {

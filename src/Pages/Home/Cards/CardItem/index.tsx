@@ -1,14 +1,23 @@
 import React from 'react';
 import { Container } from './styles';
 
-const CardItem: React.FC = () => {
+interface ICardItemProps {
+    contentTitle: string;
+    icon: JSX.Element;
+    onClickIconAction?(): void
+}
+
+const CardItem: React.FC<ICardItemProps> = ({ contentTitle, icon, onClickIconAction }) => {
     return (
-        <Container>
+        <Container 
+            style={{cursor: onClickIconAction ? 'pointer' : 'unset'}}
+            onClick={onClickIconAction}
+        >
             <div className="icon-box">
-                ícone
+                <>{ icon }</>
             </div>
             <div className="card-content">
-                conteúdo
+                { contentTitle }
             </div>
         </Container>
     );
