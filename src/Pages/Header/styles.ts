@@ -6,6 +6,8 @@ export const HeaderContainer = styled.nav`
     width: 100%;
     background-color: ${({ theme }) => theme.colors.blue2};
     box-shadow: ${props => props.theme.commoms.boxShadow};
+    display: flex;
+    padding: 0 1.5rem;
 `;
 
 export const HeaderContent = styled.div`

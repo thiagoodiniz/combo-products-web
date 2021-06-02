@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HeaderContainer, HeaderContent } from './styles';
 import gerdauHeaderIcon from '../../assets/images/icons/gerdau_header.svg';
 import { Tab } from '@material-ui/core';
+import LoggedUser from './LoggedUser';
 
 enum EHeaderTabs {
     HOME="home",
@@ -25,7 +26,7 @@ const Header: React.FC = () => {
     return (
         <HeaderContainer>
             <HeaderContent>
-                <img src={gerdauHeaderIcon} alt="user"/>
+                <img src={gerdauHeaderIcon} alt="Gerdau"/>
 
                 <div className="tabs">
                     {   myTabs.map((tab, idx) => 
@@ -38,10 +39,8 @@ const Header: React.FC = () => {
                         />
                     )}
                 </div>
-
-                <div>
-                    Thiago
-                </div>
+                
+                <LoggedUser />
 
             </HeaderContent>
         </HeaderContainer>    

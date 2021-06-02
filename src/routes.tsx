@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect, useLocation, matchPath } from 'react-router-dom';
+import { Route, Switch, Redirect, useLocation, matchPath } from 'react-router-dom';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
 import Header from './Pages/Header';
