@@ -31,7 +31,7 @@ const LoggedUser: React.FC = () => {
                     onClose={handleClose}
                     TransitionComponent={Fade}
                     PaperProps={{
-                        style:{ marginLeft: '-0.5rem', marginTop: '2.5  rem', width: '6rem' },
+                        style:{ marginLeft: '-0.5rem', marginTop: '2.5rem', width: '6rem' },
                     }}
                 >
                     <MenuItem onClick={handleClose}>Perfil</MenuItem>

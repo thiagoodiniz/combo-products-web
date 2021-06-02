@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.nav`
-    position: fixed;
     height: 4rem;
     width: 100%;
     background-color: ${({ theme }) => theme.colors.blue2};

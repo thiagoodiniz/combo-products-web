@@ -3,6 +3,8 @@ import { HeaderContainer, HeaderContent } from './styles';
 import gerdauHeaderIcon from '../../assets/images/icons/gerdau_header.svg';
 import { Tab } from '@material-ui/core';
 import LoggedUser from './LoggedUser';
+import { useHistory } from 'react-router-dom';
+import { ERoutes } from '../../routes';
 
 enum EHeaderTabs {
     HOME="home",
@@ -12,16 +14,22 @@ enum EHeaderTabs {
 interface IHeaderTab {
     tab: EHeaderTabs;
     label: string;
+    route: ERoutes;
 }
 
 const Header: React.FC = () => {
-
     const [selectedTab, setSelectedTab] = useState(EHeaderTabs.HOME);
+    const history = useHistory();
 
     const myTabs: IHeaderTab[] = [
-        { tab: EHeaderTabs.HOME, label: 'Home' },
-        { tab: EHeaderTabs.NEW_COMBO, label: 'Novo combo' }
+        { tab: EHeaderTabs.HOME, label: 'Home', route: ERoutes.HOME },
+        { tab: EHeaderTabs.NEW_COMBO, label: 'Novo combo', route: ERoutes.NEW_COMBO }
     ];
+
+    const onChangeTab = (tab: IHeaderTab) => {
+        setSelectedTab(tab.tab);
+        history.push(tab.route);
+    }
 
     return (
         <HeaderContainer>
@@ -35,7 +43,7 @@ const Header: React.FC = () => {
                             className="tab-button"
                             label={tab.label} 
                             selected={selectedTab === tab.tab}
-                            onChange={() => setSelectedTab(tab.tab)}
+                            onChange={() => onChangeTab(tab)}
                         />
                     )}
                 </div>
