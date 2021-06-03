@@ -3,7 +3,7 @@ import { Container, LoginForm, LoginButton, RememberMeCheckbox, RememberMeText, 
 import gerdauBrand from '../../assets/images/gerdau_brand.png';
 import userIcon from '../../assets/images/icons/user.svg';
 import unlockIcon from '../../assets/images/icons/unlock.svg';
-import CustomInput from '../../ Components/CustomInput';
+import CustomInput from '../../ components/CustomInput';
 import { FormControlLabel } from '@material-ui/core';
 import theme from '../../assets/styles/theme/theme';
 import { UserService } from '../../services/User';

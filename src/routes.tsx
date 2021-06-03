@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch, Redirect, useLocation, matchPath } from 'react-router-dom';
-import Login from './Pages/Login';
-import Home from './Pages/Home';
-import Header from './Pages/Header';
-import NewCombo from './Pages/NewCombo';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import Header from './pages/Header';
+import NewCombo from './pages/NewCombo';
 
 export enum ERoutes {
     LOGIN = '/login',
