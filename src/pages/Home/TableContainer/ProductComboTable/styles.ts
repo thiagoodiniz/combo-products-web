@@ -17,5 +17,13 @@ export const StyledTableCell = styled(TableCell)`
         color: ${({ theme }) => theme.colors.blueGray};
         font-size: 0.875rem;
         border: unset;
+
+        &.expand {
+            border-right: 1px solid ${({ theme }) => theme.colors.gray6};
+        }
+
+        &.actions {
+            border-left: 1px solid ${({ theme }) => theme.colors.gray6};
+        }
     }    
 `;
