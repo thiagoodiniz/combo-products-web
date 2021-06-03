@@ -20,9 +20,7 @@ const rows: IProductComboData[] = [
     {active: false, name: 'Venda x', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo / 60 dias'},
     {active: false, name: 'São Paulo Rio', salesOffice: 111224, uf: 'SP', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Desconto / 20%'},
     {active: false, name: 'Combo pregos 01', salesOffice: 132569, uf: 'SP', segmentation: 'Loja de material', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo / 50 dias'},
-    {active: false, name: 'Vários produtos', salesOffice: 111224, uf: 'RJ', segmentation: 'Loja de materiaç', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Preço fixo'},
-    {active: false, name: '114566', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo 60 dias'},
-    {active: false, name: '114566', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo 60 dias'},
+    {active: false, name: 'Vários produtos', salesOffice: 111224, uf: 'RJ', segmentation: 'Loja de material', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Preço fixo'},
     {active: false, name: '114566', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo 60 dias'},
 ];
 

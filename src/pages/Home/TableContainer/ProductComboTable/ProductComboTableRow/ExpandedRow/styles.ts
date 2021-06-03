@@ -9,6 +9,17 @@ export const ExpandedTableRow = styled(TableRow)`
         &.even {
             background-color: ${({ theme }) => theme.colors.gray2};
         }
+
+        animation: opacity 0.75s ease;
+
+        @keyframes opacity {
+            0% {
+                opacity: 0.25;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
     }
 `;
 
