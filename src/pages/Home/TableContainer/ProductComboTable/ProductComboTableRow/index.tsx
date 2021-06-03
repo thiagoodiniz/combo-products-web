@@ -12,7 +12,7 @@ interface IProductComboTableRowProps {
 
 const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData }) => {
     return (
-        <StyledTableRow key={rowData.name}>
+        <StyledTableRow>
             <StyledTableCell className="body expand" align="center">
                 <ActionButton>
                     <img src={expandTableRowIcon} alt="Expand row" />

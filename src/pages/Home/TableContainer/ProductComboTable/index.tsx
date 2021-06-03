@@ -47,12 +47,13 @@ const ProductComboTable: React.FC = () => {
                         <StyledTableCell className="head" align="left">Segmentação</StyledTableCell>
                         <StyledTableCell className="head" align="left">Data</StyledTableCell>
                         <StyledTableCell className="head" align="left">Desconto / Prazo / Preço fixo</StyledTableCell>
-                        <StyledTableCell className="head actions" align="left"></StyledTableCell> {/* Actions */}
+                        <StyledTableCell className="head actions" align="left"></StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows.map((row, idx) => (
                         <ProductComboTableRow
+                            key={idx}
                             rowData={row}
                         />
                     ))}
