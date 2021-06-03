@@ -14,6 +14,7 @@ declare module "styled-components" {
             blue: string;
             blue2: string;
             blueDark: string;
+            blueGray: string;
             red: string;
         },
         fonts: {

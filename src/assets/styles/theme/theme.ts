@@ -7,6 +7,7 @@ const theme: DefaultTheme = {
         blue: '#143D75',
         blue2: '#0F2D56',
         blueDark: '#000034',
+        blueGray: '#5c5c7d',
         gray: '#F5F8FF',
         gray2: '#F5F5F5',
         gray3: '#FCFCFC',
