@@ -38,6 +38,12 @@ export const ExpandedItemContent = styled.div`
     & > span {
         color: ${({ theme }) => theme.colors.blueGray};
     }
+
+    & > img {
+        height: 4.5rem;
+        width: 4.5rem;
+        border: 1px solid ${({ theme }) => theme.colors.gray6};
+    }
 `;
 
 export const SkuQtdContainer = styled.div`

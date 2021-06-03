@@ -18,6 +18,10 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
                     <ExpandedItemContainer>
                         <ExpandedItemTitle>Imagem</ExpandedItemTitle>
                         <ExpandedItemContent>
+                            <img 
+                                src="https://coresvivashomecenter.fbitsstatic.net/img/p/prego-com-cabeca-19x30-1kg-gerdau-90275/276841.jpg" 
+                                alt="product"
+                            />
                         </ExpandedItemContent>
 
                         <VerticalDivisor />
