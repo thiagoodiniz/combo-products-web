@@ -55,6 +55,7 @@ const ProductComboTable: React.FC = () => {
                         <ProductComboTableRow
                             key={idx}
                             rowData={row}
+                            isOddRow={(idx % 2 === 1)}
                         />
                     ))}
                 </TableBody>

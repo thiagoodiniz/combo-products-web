@@ -9,14 +9,17 @@ import ExpandedRow from './ExpandedRow';
 
 interface IProductComboTableRowProps {
     rowData: IProductComboData;
+    isOddRow: boolean;
 }
 
-const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData }) => {
+const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
         <>
-            <StyledTableRow>
+            <StyledTableRow
+                className={isOddRow ? 'odd' : 'even'}
+            >
                 <StyledTableCell className="body expand" align="center">
                     <ActionButton
                         onClick={() => setIsExpanded(!isExpanded)}
@@ -52,7 +55,9 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData })
             </StyledTableRow>
 
             {isExpanded &&
-                <ExpandedRow />
+                <ExpandedRow 
+                    isOddRow={isOddRow}
+                />
             }
         </>
     );

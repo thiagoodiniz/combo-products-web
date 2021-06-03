@@ -2,11 +2,18 @@ import { TableCell } from '@material-ui/core';
 import React from 'react';
 import { ExpandedTableRow } from './styles';
 
-const ExpandedRow: React.FC = () => {
+interface IExpandedRowProps {
+    isOddRow: boolean;
+}
+
+const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
     return (
-        <ExpandedTableRow>
-            <TableCell colSpan={9}>
-                Expanded content 
+        <ExpandedTableRow 
+            className={isOddRow ? 'odd' : 'even'}
+        >
+            <TableCell />
+            <TableCell colSpan={8}>
+                Expanded content
             </TableCell>
         </ExpandedTableRow>
     );

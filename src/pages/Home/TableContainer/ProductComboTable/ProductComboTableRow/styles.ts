@@ -9,7 +9,7 @@ import removeIconFilled from '../../../../../assets/images/icons/remove-filled.s
 
 export const StyledTableRow = styled(TableRow)`
     && {
-        &:nth-of-type(odd) {
+        &.even {
             background-color: ${({ theme }) => theme.colors.gray2};
         }
 
