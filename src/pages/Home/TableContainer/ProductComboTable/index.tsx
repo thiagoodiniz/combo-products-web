@@ -1,10 +1,9 @@
 import React from 'react';
 import { makeStyles, Table, TableBody, TableHead, TableRow } from '@material-ui/core';
-import { Container, StyledTableRow, StyledTableCell } from './styles';
-import activeCombo from '../../../../assets/images/icons/active-combo.svg';
-import inactiveCombo from '../../../../assets/images/icons/inactive-combo.svg';
+import { Container, StyledTableCell } from './styles';
+import ProductComboTableRow from './ProductComboTableRow';
 
-interface IProductComboData {
+export interface IProductComboData {
     active: boolean;
     name: string;
     salesOffice: number;
@@ -51,20 +50,9 @@ const ProductComboTable: React.FC = () => {
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
-                        <StyledTableRow key={row.name}>
-                            <StyledTableCell className="body" component="th" scope="row" align="center">
-                                {   row.active 
-                                    ? <img src={activeCombo} alt="Active" />
-                                    : <img src={inactiveCombo} alt="Inactive" />
-                                }
-                            </StyledTableCell>
-                            <StyledTableCell className="body" align="left">{row.name}</StyledTableCell>
-                            <StyledTableCell className="body" align="left">{row.salesOffice}</StyledTableCell>
-                            <StyledTableCell className="body" align="left">{row.uf}</StyledTableCell>
-                            <StyledTableCell className="body" align="left">{row.segmentation}</StyledTableCell>
-                            <StyledTableCell className="body" align="left">{row.dateRange}</StyledTableCell>
-                            <StyledTableCell className="body" align="left">{row.discountDeadlinePrice}</StyledTableCell>
-                        </StyledTableRow>
+                        <ProductComboTableRow
+                            rowData={row}
+                        />
                     ))}
                 </TableBody>
             </Table>

@@ -1,21 +1,9 @@
 import styled from 'styled-components';
-import { TableCell, TableRow } from '@material-ui/core';
+import { TableCell } from '@material-ui/core';
 
 export const Container = styled.div`
     background-color: ${({ theme }) => theme.colors.white};
     padding: 0 2rem 1rem 2rem;
-`;
-
-export const StyledTableRow = styled(TableRow)`
-    && {
-        &:nth-of-type(odd) {
-            background-color: ${({ theme }) => theme.colors.gray2};
-        }
-
-        &:last-child {
-            border-bottom: 1px solid ${({ theme }) => theme.colors.gray6};
-        }
-    }
 `;
 
 export const StyledTableCell = styled(TableCell)` 
