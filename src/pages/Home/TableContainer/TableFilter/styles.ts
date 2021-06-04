@@ -27,6 +27,7 @@ export const Container = styled.div`
             color: ${({ theme }) => theme.colors.blueDark};
             outline: none;
             border-radius: 0.25rem;
+            font-size: 0.75rem;
 
             &.date {
                 max-width: 5rem;
@@ -37,6 +38,10 @@ export const Container = styled.div`
                     margin-right: 0;
                 }
             }
+        }
+
+        & > span.divisor {
+            margin: 0 0.5rem;
         }
     }
 `;

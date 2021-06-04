@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, SearchButton } from './styles';
+import DatePicker from '../../../../ components/DatePicker';
+import moment from 'moment';
 
 const TableFilter: React.FC = () => {
+    const [startDate, setStartDate] = useState<moment.Moment | null>(null);
+    const [endDate, setEndDate] = useState<moment.Moment | null>(null);
+    
     return (
         <Container>
             <div>
@@ -11,11 +16,16 @@ const TableFilter: React.FC = () => {
 
             <div>
                 <span>Data:</span>
-                <input className="date" placeholder="de" />
-                /
-                <input className="date" placeholder="até" />
+                <DatePicker 
+                    selectedDate={startDate}
+                    setDate={setStartDate}
+                />
+                <span className="divisor">/</span>
+                <DatePicker 
+                    selectedDate={endDate}
+                    setDate={setEndDate}
+                />
             </div>
-
             <SearchButton />
 
         </Container>
