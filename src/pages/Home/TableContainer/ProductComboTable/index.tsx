@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, Table, TableBody, TableHead, TableRow } from '@material-ui/core';
 import { Container, StyledTableCell } from './styles';
 import ProductComboTableRow from './ProductComboTableRow';
+import ProductTableFooter from './ProductTableFooter';
 
 export interface IProductComboData {
     active: boolean;
@@ -57,7 +58,12 @@ const ProductComboTable: React.FC = () => {
                         />
                     ))}
                 </TableBody>
+                
+
             </Table>
+            <ProductTableFooter 
+                rowsCount={24}
+            />
         </Container>
     );
 }
