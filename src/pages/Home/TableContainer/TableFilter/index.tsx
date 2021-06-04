@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
-import { Container, SearchButton } from './styles';
+import { Container, SearchButton, CleanSearchButton } from './styles';
 import DatePicker from '../../../../ components/DatePicker';
 import moment from 'moment';
 
 const TableFilter: React.FC = () => {
+    const [searchValue, setSearchValue] = useState('');
     const [startDate, setStartDate] = useState<moment.Moment | null>(null);
     const [endDate, setEndDate] = useState<moment.Moment | null>(null);
     
+    const cleanSearch = () => {
+        setSearchValue('');
+        setStartDate(null);
+        setEndDate(null);
+    }
+
     return (
         <Container>
             <div>
                 <span>Busca:</span>
-                <input />
+                <input 
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                />
             </div>
 
             <div>
@@ -28,6 +38,15 @@ const TableFilter: React.FC = () => {
                     placeholder="até"
                 />
             </div>
+
+            {   (searchValue || startDate || endDate) &&
+                <CleanSearchButton
+                    onClick={cleanSearch}
+                >
+                    Limpar busca
+                </CleanSearchButton>
+            }
+
             <SearchButton />
 
         </Container>

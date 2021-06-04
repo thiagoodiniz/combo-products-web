@@ -61,3 +61,31 @@ export const SearchButton = styled(Button)`
         }
     }
 `;
+
+export const CleanSearchButton = styled(Button)`
+    && {
+        background-color: ${({ theme }) => theme.colors.red};
+        color: ${({ theme }) => theme.colors.white};
+        width: 7.5rem;
+        height: 1.5rem;
+        text-transform: none;
+        font-weight: 600;
+        margin-right: 0.5rem;
+
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.red};
+            opacity: 0.75;
+        }
+
+        animation: opacity 0.75s ease;
+
+        @keyframes opacity {
+            0% {
+                opacity: 0.25;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+`;
