@@ -19,11 +19,13 @@ const TableFilter: React.FC = () => {
                 <DatePicker 
                     selectedDate={startDate}
                     setDate={setStartDate}
+                    placeholder="de"
                 />
                 <span className="divisor">/</span>
                 <DatePicker 
                     selectedDate={endDate}
                     setDate={setEndDate}
+                    placeholder="até"
                 />
             </div>
             <SearchButton />

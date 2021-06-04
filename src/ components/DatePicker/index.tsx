@@ -10,9 +10,10 @@ const ptBR = moment.locale('pt-br');
 interface DatePickerProps {
     selectedDate: moment.Moment | null;
     setDate(date: moment.Moment | null): void;
+    placeholder?: string;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setDate }) => {
+const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setDate, placeholder='' }) => {
 
     return (
         <MuiPickersUtilsProvider
@@ -27,6 +28,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setDate }) => {
                 format="DD/MM/YY"
                 value={selectedDate}
                 onChange={setDate}
+                placeholder={placeholder}
             />
         </MuiPickersUtilsProvider>
     );
