@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, Table, TableBody, TableHead, TableRow } from '@material-ui/core';
 import { Container, StyledTableCell } from './styles';
 import ProductComboTableRow from './ProductComboTableRow';
@@ -23,6 +23,28 @@ const rows: IProductComboData[] = [
     {active: false, name: 'Combo pregos 01', salesOffice: 132569, uf: 'SP', segmentation: 'Loja de material', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo / 50 dias'},
     {active: false, name: 'Vários produtos', salesOffice: 111224, uf: 'RJ', segmentation: 'Loja de material', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Preço fixo'},
     {active: false, name: '114566', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo 60 dias'},
+
+    {active: false, name: '114566', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo 60 dias'},
+    {active: true, name: 'Combo pregos 01', salesOffice: 111224, uf: 'SP', segmentation: 'Construtora', dateRange: '01/04/2021 - 01/09/2021', discountDeadlinePrice: 'Desconto / 30%'},
+    {active: false, name: 'Venda x', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo / 60 dias'},
+    {active: true, name: 'Combo São João', salesOffice: 132569, uf: 'SP', segmentation: 'Loja de material', dateRange: '01/05/2021 - 01/08/2021', discountDeadlinePrice: 'Prazo / 30 dias'},
+    {active: false, name: 'São Paulo Rio', salesOffice: 111224, uf: 'SP', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Desconto / 20%'},
+    {active: false, name: 'Combo pregos 01', salesOffice: 132569, uf: 'SP', segmentation: 'Loja de material', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo / 50 dias'},
+    {active: false, name: 'Vários produtos', salesOffice: 111224, uf: 'RJ', segmentation: 'Loja de material', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Preço fixo'},
+    {active: true, name: 'Combo 1456', salesOffice: 111224, uf: 'RJ', segmentation: 'Construtora', dateRange: '01/05/2021 - 01/06/2021', discountDeadlinePrice: 'Preço fixo'},
+
+    {active: false, name: 'Vários produtos', salesOffice: 111224, uf: 'RJ', segmentation: 'Loja de material', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Preço fixo'},
+    {active: true, name: 'Combo São João', salesOffice: 132569, uf: 'SP', segmentation: 'Loja de material', dateRange: '01/05/2021 - 01/08/2021', discountDeadlinePrice: 'Prazo / 30 dias'},
+    {active: false, name: 'Venda x', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo / 60 dias'},
+    {active: true, name: 'Combo pregos 01', salesOffice: 111224, uf: 'SP', segmentation: 'Construtora', dateRange: '01/04/2021 - 01/09/2021', discountDeadlinePrice: 'Desconto / 30%'},
+    {active: false, name: 'São Paulo Rio', salesOffice: 111224, uf: 'SP', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Desconto / 20%'},
+    {active: false, name: '114566', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo 60 dias'},
+    {active: true, name: 'Combo 1456', salesOffice: 111224, uf: 'RJ', segmentation: 'Construtora', dateRange: '01/05/2021 - 01/06/2021', discountDeadlinePrice: 'Preço fixo'},
+    {active: false, name: 'Combo pregos 01', salesOffice: 132569, uf: 'SP', segmentation: 'Loja de material', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo / 50 dias'},
+
+    {active: false, name: '114566', salesOffice: 132569, uf: 'MG', segmentation: 'Construtora', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo 60 dias'},
+    {active: true, name: 'Combo 1456', salesOffice: 111224, uf: 'RJ', segmentation: 'Construtora', dateRange: '01/05/2021 - 01/06/2021', discountDeadlinePrice: 'Preço fixo'},
+    {active: false, name: 'Combo pregos 01', salesOffice: 132569, uf: 'SP', segmentation: 'Loja de material', dateRange: '01/02/2021 - 01/03/2021', discountDeadlinePrice: 'Prazo / 50 dias'},
 ];
 
 const useStyles = makeStyles({
@@ -33,6 +55,9 @@ const useStyles = makeStyles({
 
 const ProductComboTable: React.FC = () => {
     const classes = useStyles();
+    const [selectedPage, setSelectedPage] = useState(1);
+    const [rowsPerPage] = React.useState(8);
+
     return (
         <Container>
             <Table className={classes.table} aria-label="customized table">
@@ -50,7 +75,9 @@ const ProductComboTable: React.FC = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row, idx) => (
+                    {rows
+                        .filter((_, idx) => (idx+1) <= (rowsPerPage*selectedPage) && (idx+1) > (rowsPerPage*(selectedPage-1)))
+                        .map((row, idx) => (
                         <ProductComboTableRow
                             key={idx}
                             rowData={row}
@@ -61,9 +88,15 @@ const ProductComboTable: React.FC = () => {
                 
 
             </Table>
-            <ProductTableFooter 
-                rowsCount={24}
-            />
+            
+            {   rows.length > rowsPerPage &&
+                <ProductTableFooter 
+                    totalRows={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    setSelectedPage={setSelectedPage}
+                />
+            }
+            
         </Container>
     );
 }

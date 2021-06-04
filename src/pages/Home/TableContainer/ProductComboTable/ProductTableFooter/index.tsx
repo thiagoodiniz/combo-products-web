@@ -28,12 +28,13 @@ const PaginationButton: React.FC<IPaginationButtonProps> = ({ handleActionClick,
 }
 
 interface IProductTableFooterProps {
-    rowsCount: number;
+    rowsPerPage: number;
+    totalRows: number;
+    setSelectedPage(page: number): void
 }
 
-const ProductTableFooter: React.FC<IProductTableFooterProps> = ({ rowsCount }) => {
-    const [rowsPerPage] = React.useState(8);
-    const [pagesCount] = useState((rowsCount % rowsPerPage === 0 ? rowsCount/rowsPerPage : (Math.floor(rowsCount / rowsPerPage) + 1) ));
+const ProductTableFooter: React.FC<IProductTableFooterProps> = ({ totalRows, rowsPerPage, setSelectedPage }) => {
+    const [pagesCount] = useState((totalRows % rowsPerPage === 0 ? totalRows/rowsPerPage : (Math.floor(totalRows / rowsPerPage) + 1) ));
 
     return (
         <Container>
@@ -47,15 +48,15 @@ const ProductTableFooter: React.FC<IProductTableFooterProps> = ({ rowsCount }) =
                     switch(params.type){
                         case 'first':
                             console.log(params.type, params.page, params.selected);
-                            return <PaginationButton handleActionClick={params.onClick} disabled={params.disabled} icon={<img src={params.disabled ? firstPage : firstPageFilled} alt="first page"/>} />;
+                            return <PaginationButton handleActionClick={(e: any) => { setSelectedPage(params.page); params.onClick(e); }} disabled={params.disabled} icon={<img src={params.disabled ? firstPage : firstPageFilled} alt="first page"/>} />;
                         case 'previous':
-                            return <PaginationButton handleActionClick={params.onClick} disabled={params.disabled} icon={<img src={params.disabled ? previousPage : previousPageFilled} alt="previous page"/>} />;
+                            return <PaginationButton handleActionClick={(e: any) => { setSelectedPage(params.page); params.onClick(e); }} disabled={params.disabled} icon={<img src={params.disabled ? previousPage : previousPageFilled} alt="previous page"/>} />;
                         case 'next':
-                            return <PaginationButton handleActionClick={params.onClick} disabled={params.disabled} icon={<img src={params.disabled ? nextPage : nextPageFilled } alt="next page"/>} />;
+                            return <PaginationButton handleActionClick={(e: any) => { setSelectedPage(params.page); params.onClick(e); }} disabled={params.disabled} icon={<img src={params.disabled ? nextPage : nextPageFilled } alt="next page"/>} />;
                         case 'last':
-                            return <PaginationButton handleActionClick={params.onClick} disabled={params.disabled} icon={<img src={params.disabled ? lastPage : lastPageFilled} alt="last page"/>} />;
+                            return <PaginationButton handleActionClick={(e: any) => { setSelectedPage(params.page); params.onClick(e); }} disabled={params.disabled} icon={<img src={params.disabled ? lastPage : lastPageFilled} alt="last page"/>} />;
                         case 'page':
-                            return <PaginationNumberButton className={params.selected ? 'selected' : ''} onClick={params.onClick}><span>{params.page}</span></PaginationNumberButton>;
+                            return <PaginationNumberButton className={params.selected ? 'selected' : ''} onClick={(e) => { setSelectedPage(params.page); return params.onClick(e); }}><span>{params.page}</span></PaginationNumberButton>;
                         case 'start-ellipsis':
                         case 'end-ellipsis':
                             return <>...</>;
