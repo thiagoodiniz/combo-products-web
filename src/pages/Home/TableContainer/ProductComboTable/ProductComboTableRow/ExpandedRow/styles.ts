@@ -31,8 +31,13 @@ export const TableCellContainer = styled.div`
 export const ExpandedItemContainer = styled.div`
     display: flex;
     flex-direction: column;
-    height: 6rem;
+    min-height: 6rem;
     position: relative;
+    margin: 0 0.25rem;
+
+    &.sku-item {
+        margin: 0 0.75rem;
+    }
 `;
 
 export const ExpandedItemTitle = styled.h5`
@@ -62,7 +67,7 @@ export const SkuQtdContainer = styled.div`
     justify-content: space-between;
 
     & > div {
-        margin-right: 3rem;
+        margin-right: 1rem;
     }
 `;
 

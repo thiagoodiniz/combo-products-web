@@ -23,6 +23,10 @@ export const StyledTableCell = styled(TableCell)`
         line-height: 1.2;
         padding: 1rem 0.5rem;
 
+
+        &.actions {
+            min-width: 6.5rem;
+        }
     }  
     &.body {
         color: ${({ theme }) => theme.colors.blueGray};

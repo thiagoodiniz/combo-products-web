@@ -24,7 +24,7 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
                             />
                         </ExpandedItemContent>
 
-                        <VerticalDivisor />
+                        {/* <VerticalDivisor /> */}
                     </ExpandedItemContainer>
 
                     <ExpandedItemContainer>
@@ -34,11 +34,11 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
                             <span>- VERGALHÃO</span>
                         </ExpandedItemContent>
 
-                        <VerticalDivisor />
+                        {/* <VerticalDivisor /> */}
                     </ExpandedItemContainer>
 
                     <SkuQtdContainer>
-                        <ExpandedItemContainer>
+                        <ExpandedItemContainer className="sku-item">
                             <ExpandedItemTitle>SKU / Quant</ExpandedItemTitle>
                             <ExpandedItemContent>
                                 <span>- 3263215 / 180un.</span>
@@ -46,10 +46,10 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
                                 <span>- 998989 / 20un.</span>
                             </ExpandedItemContent>
 
-                            <HalfVerticalDivisor />
+                            {/* <HalfVerticalDivisor /> */}
                         </ExpandedItemContainer>
 
-                        <ExpandedItemContainer>
+                        <ExpandedItemContainer className="sku-item">
                             <ExpandedItemTitle>&nbsp;</ExpandedItemTitle>
                             <ExpandedItemContent>
                                 <span>- 669224 / 10un.</span>
@@ -57,10 +57,10 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
                                 <span>- 36674 / 260un.</span>
                             </ExpandedItemContent>
 
-                            <HalfVerticalDivisor />
+                            {/* <HalfVerticalDivisor /> */}
                         </ExpandedItemContainer>
 
-                        <ExpandedItemContainer>
+                        <ExpandedItemContainer className="sku-item">
                             <ExpandedItemTitle>&nbsp;</ExpandedItemTitle>
                             <ExpandedItemContent>
                                 <span>- 326315 / 180un.</span>
@@ -68,10 +68,10 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
                                 <span>- 998989 / 20 un.</span>
                             </ExpandedItemContent>
                             
-                            <HalfVerticalDivisor />
+                            {/* <HalfVerticalDivisor /> */}
                         </ExpandedItemContainer>
 
-                        <ExpandedItemContainer>
+                        <ExpandedItemContainer className="sku-item">
                             <ExpandedItemTitle>&nbsp;</ExpandedItemTitle>
                             <ExpandedItemContent>
                                 <span>- 669224 / 10un.</span>
@@ -79,7 +79,7 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
                                 <span>- 366974 / 260un.</span>
                             </ExpandedItemContent>
 
-                            <VerticalDivisor />
+                            {/* <VerticalDivisor /> */}
                         </ExpandedItemContainer>
                     </SkuQtdContainer>
 
