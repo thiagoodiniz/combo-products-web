@@ -39,15 +39,18 @@ const TableFilter: React.FC = () => {
                 />
             </div>
 
-            <SearchButton />
+            <div className="actions">
+                <SearchButton />
 
-            {   (searchValue || startDate || endDate) &&
-                <CleanSearchButton
-                    onClick={cleanSearch}
-                >
-                    Limpar busca
-                </CleanSearchButton>
-            }
+                {   (searchValue || startDate || endDate) &&
+                    <CleanSearchButton
+                        onClick={cleanSearch}
+                    >
+                        Limpar busca
+                    </CleanSearchButton>
+                }
+            </div>
+
 
         </Container>
     );

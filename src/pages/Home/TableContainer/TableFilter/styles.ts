@@ -3,15 +3,20 @@ import styled from 'styled-components';
 import searchIcon from '../../../../assets/images/icons/search.svg';
 
 export const Container = styled.div`
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     background-color: ${({ theme }) => theme.colors.gray3};
     border-bottom: 2px solid ${({ theme }) => theme.colors.gray6};
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+
+    @media(min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+        padding: 1rem 2rem;
+    }
 
     & > div {
         display: flex;
-        margin-right: 2rem;
+        margin: 0.5rem;
 
         & > span {
             font-size: 1rem;

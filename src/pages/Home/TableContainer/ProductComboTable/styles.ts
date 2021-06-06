@@ -3,7 +3,11 @@ import { TableCell } from '@material-ui/core';
 
 export const Container = styled.div`
     background-color: ${({ theme }) => theme.colors.white};
-    padding: 0 2rem 1rem 2rem;
+    padding: 0 1rem 0.5rem 1rem;
+
+    @media(min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+        padding: 0 2rem 1rem 2rem;
+    }
 `;
 
 export const TableContainer = styled.div`
