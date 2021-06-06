@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.nav`
+    position: fixed;
     height: 4rem;
+    z-index: 9;
+    top: 0;
     width: 100%;
     background-color: ${({ theme }) => theme.colors.blue2};
     box-shadow: ${props => props.theme.commoms.boxShadow};

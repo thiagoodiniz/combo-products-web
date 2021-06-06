@@ -10,7 +10,6 @@ export default createGlobalStyle`
 
     html, body, #root {
         background-color: ${props => props.theme.colors.gray };
-        height: 100vh;
         font-size: 16px;
     }
 `;

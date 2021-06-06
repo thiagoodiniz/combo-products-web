@@ -5,7 +5,7 @@ import banner from '../../assets/images/banner.png';
 export const Container = styled.div`
     display: flex;
     padding: 2rem 2rem 0 2rem;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     overflow: hidden;
 
