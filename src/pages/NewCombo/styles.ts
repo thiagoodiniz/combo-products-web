@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    margin: 1rem auto;
+    margin: 5rem auto 1rem auto;
     max-width: ${({ theme }) => theme.breakpoints.laptopL};
 
     padding: 0 1.5rem;

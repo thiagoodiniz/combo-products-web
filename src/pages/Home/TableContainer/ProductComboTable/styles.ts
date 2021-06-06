@@ -25,14 +25,14 @@ export const StyledTableCell = styled(TableCell)`
 
 
         &.actions {
-            min-width: 6.5rem;
+            min-width: 7.25rem;
         }
     }  
     &.body {
         color: ${({ theme }) => theme.colors.blueGray};
         font-size: 0.875rem;
         border: unset;
-        padding: 1rem 0.25rem;
+        padding: 1rem 0.5rem;
 
         &.expand {
             border-right: 1px solid ${({ theme }) => theme.colors.gray6};

@@ -49,7 +49,7 @@ const rows: IProductComboData[] = [
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 'calc(1200px - 2rem)',
+        minWidth: 1000,
     },
 });
 
