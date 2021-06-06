@@ -40,11 +40,14 @@ const Login: React.FC = () => {
     return (
         <Container>
             <div className="img-content">
-                <img className="brand" src={gerdauBrand} alt="Banner Gerdau" />                
+                <img className="brand" src={gerdauBrand} alt="Banner Gerdau" />            
                 <h1>COMBO DE <span>PRODUTOS</span></h1>
             </div>
 
             <div className="form-content">
+                
+                <h1>COMBO DE <span>PRODUTOS</span></h1>
+
                 <div className="login-title">
                     <h2>FAÇA SEU <b>LOGIN</b></h2>
                     <hr />

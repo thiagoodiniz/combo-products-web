@@ -17,6 +17,11 @@ export const Container = styled.div`
         background-position: right;
         background-size: cover;
         border-radius: 1rem 1rem 0 0;
+        display: none;
+
+        @media(min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+            display: unset; 
+        }
 
         & > img.brand {
             width: 13rem;
@@ -46,11 +51,33 @@ export const Container = styled.div`
     }
 
     & > .form-content {
-        width: 40%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
+
+        & > h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: ${({ theme }) => theme.colors.blue};
+            line-height: 0.95;
+            
+            & > span {
+                color: transparent;
+                display: block;
+                -webkit-text-stroke: 1px ${({ theme }) => theme.colors.blue};
+            }
+        }
+
+        @media(min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+            width: 40%;
+
+            & > h1 {
+                display: none;
+            }
+        }
 
         & > div.login-title {
             opacity: 0.8;
