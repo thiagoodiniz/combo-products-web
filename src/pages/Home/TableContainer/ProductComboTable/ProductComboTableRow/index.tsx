@@ -27,7 +27,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                         <img src={expandTableRowIcon} alt="Expand row" />
                     </ActionButton>
                 </StyledTableCell>
-                <StyledTableCell className="body" component="th" scope="row" align="center">
+                <StyledTableCell className="body" scope="row" align="center">
                     {   rowData.active 
                         ? <img src={activeCombo} alt="Active" />
                         : <img src={inactiveCombo} alt="Inactive" />
@@ -35,7 +35,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                 </StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.name}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.salesOffice}</StyledTableCell>
-                <StyledTableCell className="body" align="left">{rowData.uf}</StyledTableCell>
+                <StyledTableCell className="body" align="center">{rowData.uf}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.segmentation}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.dateRange}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.discountDeadlinePrice}</StyledTableCell>

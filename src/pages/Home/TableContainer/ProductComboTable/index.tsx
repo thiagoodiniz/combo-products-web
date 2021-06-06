@@ -68,7 +68,7 @@ const ProductComboTable: React.FC = () => {
                             <StyledTableCell className="head" align="center">Combo</StyledTableCell>
                             <StyledTableCell className="head" align="left">Nome combo</StyledTableCell>
                             <StyledTableCell className="head" align="left">Escrit. de vendas</StyledTableCell>
-                            <StyledTableCell className="head" align="left">Região</StyledTableCell>
+                            <StyledTableCell className="head" align="center">Região</StyledTableCell>
                             <StyledTableCell className="head" align="left">Segmentação</StyledTableCell>
                             <StyledTableCell className="head" align="left">Data</StyledTableCell>
                             <StyledTableCell className="head" align="left">Desconto / Prazo / Preço fixo</StyledTableCell>
