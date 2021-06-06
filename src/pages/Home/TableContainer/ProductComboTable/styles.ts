@@ -6,6 +6,10 @@ export const Container = styled.div`
     padding: 0 2rem 1rem 2rem;
 `;
 
+export const TableContainer = styled.div`
+    overflow-x: auto;
+`;
+
 export const StyledTableCell = styled(TableCell)` 
     &.head {
         background-color: ${({ theme }) => theme.colors.white};

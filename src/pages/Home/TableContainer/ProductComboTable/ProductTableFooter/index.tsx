@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { IconButton } from '@material-ui/core';
-import Pagination from '@material-ui/lab/Pagination';
 import firstPage from '../../../../../assets/images/icons/table-pagination/first-page.svg';
 import previousPage from '../../../../../assets/images/icons/table-pagination/previous-page.svg';
 import firstPageFilled from '../../../../../assets/images/icons/table-pagination/first-page-filled.svg';
@@ -9,7 +8,7 @@ import nextPage from '../../../../../assets/images/icons/table-pagination/next-p
 import lastPage from '../../../../../assets/images/icons/table-pagination/last-page.svg';
 import nextPageFilled from '../../../../../assets/images/icons/table-pagination/next-page-filled.svg';
 import lastPageFilled from '../../../../../assets/images/icons/table-pagination/last-page-filled.svg';
-import { Container, PaginationNumberButton } from './styles';
+import { Container, TablePagination, PaginationNumberButton } from './styles';
 
 interface IPaginationButtonProps {
     disabled: boolean;
@@ -38,10 +37,10 @@ const ProductTableFooter: React.FC<IProductTableFooterProps> = ({ totalRows, row
 
     return (
         <Container>
-            <Pagination 
+            <TablePagination 
                 showFirstButton 
                 showLastButton
-                style={{ marginLeft: '50%', transform: 'translateX(-50%)' }}
+                // style={{ marginLeft: '50%', transform: 'translateX(-50%)' }}
                 count={pagesCount}
                 renderItem={(params) => {
                     console.log(params);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles, Table, TableBody, TableHead, TableRow } from '@material-ui/core';
-import { Container, StyledTableCell } from './styles';
+import { Container, TableContainer, StyledTableCell } from './styles';
 import ProductComboTableRow from './ProductComboTableRow';
 import ProductTableFooter from './ProductTableFooter';
 
@@ -49,7 +49,7 @@ const rows: IProductComboData[] = [
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 700,
+        minWidth: 'calc(1400px - 2rem)',
     },
 });
 
@@ -60,34 +60,34 @@ const ProductComboTable: React.FC = () => {
 
     return (
         <Container>
-            <Table className={classes.table} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell className="head expand" align="center">Expandir</StyledTableCell>
-                        <StyledTableCell className="head" align="center">Combo</StyledTableCell>
-                        <StyledTableCell className="head" align="left">Nome combo</StyledTableCell>
-                        <StyledTableCell className="head" align="left">Escrit. de vendas</StyledTableCell>
-                        <StyledTableCell className="head" align="left">Região</StyledTableCell>
-                        <StyledTableCell className="head" align="left">Segmentação</StyledTableCell>
-                        <StyledTableCell className="head" align="left">Data</StyledTableCell>
-                        <StyledTableCell className="head" align="left">Desconto / Prazo / Preço fixo</StyledTableCell>
-                        <StyledTableCell className="head actions" align="left"></StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows
-                        .filter((_, idx) => (idx+1) <= (rowsPerPage*selectedPage) && (idx+1) > (rowsPerPage*(selectedPage-1)))
-                        .map((row, idx) => (
-                        <ProductComboTableRow
-                            key={idx}
-                            rowData={row}
-                            isOddRow={(idx % 2 === 1)}
-                        />
-                    ))}
-                </TableBody>
-                
-
-            </Table>
+            <TableContainer>
+                <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell className="head expand" align="center">Expandir</StyledTableCell>
+                            <StyledTableCell className="head" align="center">Combo</StyledTableCell>
+                            <StyledTableCell className="head" align="left">Nome combo</StyledTableCell>
+                            <StyledTableCell className="head" align="left">Escrit. de vendas</StyledTableCell>
+                            <StyledTableCell className="head" align="left">Região</StyledTableCell>
+                            <StyledTableCell className="head" align="left">Segmentação</StyledTableCell>
+                            <StyledTableCell className="head" align="left">Data</StyledTableCell>
+                            <StyledTableCell className="head" align="left">Desconto / Prazo / Preço fixo</StyledTableCell>
+                            <StyledTableCell className="head actions" align="left"></StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows
+                            .filter((_, idx) => (idx+1) <= (rowsPerPage*selectedPage) && (idx+1) > (rowsPerPage*(selectedPage-1)))
+                            .map((row, idx) => (
+                            <ProductComboTableRow
+                                key={idx}
+                                rowData={row}
+                                isOddRow={(idx % 2 === 1)}
+                            />
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
             
             {   rows.length > rowsPerPage &&
                 <ProductTableFooter 

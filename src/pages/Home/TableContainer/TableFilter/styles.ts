@@ -70,7 +70,7 @@ export const CleanSearchButton = styled(Button)`
         height: 1.5rem;
         text-transform: none;
         font-weight: 600;
-        margin-right: 0.5rem;
+        margin-left: 1rem;
 
         &:hover {
             background-color: ${({ theme }) => theme.colors.red};

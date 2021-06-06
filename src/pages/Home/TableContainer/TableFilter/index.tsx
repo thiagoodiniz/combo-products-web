@@ -39,6 +39,8 @@ const TableFilter: React.FC = () => {
                 />
             </div>
 
+            <SearchButton />
+
             {   (searchValue || startDate || endDate) &&
                 <CleanSearchButton
                     onClick={cleanSearch}
@@ -46,8 +48,6 @@ const TableFilter: React.FC = () => {
                     Limpar busca
                 </CleanSearchButton>
             }
-
-            <SearchButton />
 
         </Container>
     );
