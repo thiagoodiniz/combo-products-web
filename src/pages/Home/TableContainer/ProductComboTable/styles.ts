@@ -20,11 +20,15 @@ export const StyledTableCell = styled(TableCell)`
         color: ${({ theme }) => theme.colors.blueDark};
         font-weight: 600;
         font-size: 0.875rem;
+        line-height: 1.2;
+        padding: 1rem 0.5rem;
+
     }  
     &.body {
         color: ${({ theme }) => theme.colors.blueGray};
         font-size: 0.875rem;
         border: unset;
+        padding: 1rem 0.25rem;
 
         &.expand {
             border-right: 1px solid ${({ theme }) => theme.colors.gray6};
