@@ -1,6 +1,6 @@
 import { TableCell } from '@material-ui/core';
 import React from 'react';
-import { ExpandedTableRow, TableCellContainer, ExpandedItemContainer, ExpandedItemTitle, ExpandedItemContent, SkuQtdContainer, VerticalDivisor, HalfVerticalDivisor } from './styles';
+import { ExpandedTableRow, TableCellContainer, ExpandedItemContainer, ExpandedItemTitle, ExpandedItemContent, SkuQtdContainer } from './styles';
 
 interface IExpandedRowProps {
     isOddRow: boolean;

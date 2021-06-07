@@ -71,18 +71,18 @@ export const SkuQtdContainer = styled.div`
     }
 `;
 
-export const VerticalDivisor = styled.hr`
-    position: absolute;
-    right: -2.125rem;
-    height: 95%;  
-    top: 50%;
-    transform: translateY(-50%);
-    border-right: 1px solid ${({ theme }) => theme.colors.gray6};
-    opacity: 0.4;
-`;
+// export const VerticalDivisor = styled.hr`
+//     position: absolute;
+//     right: -2.125rem;
+//     height: 95%;  
+//     top: 50%;
+//     transform: translateY(-50%);
+//     border-right: 1px solid ${({ theme }) => theme.colors.gray6};
+//     opacity: 0.4;
+// `;
 
-export const HalfVerticalDivisor = styled(VerticalDivisor)`
-    height: 40%;
-    top: 60%;
-    margin: 0 0.5rem;
-`;
+// export const HalfVerticalDivisor = styled(VerticalDivisor)`
+//     height: 40%;
+//     top: 60%;
+//     margin: 0 0.5rem;
+// `;
