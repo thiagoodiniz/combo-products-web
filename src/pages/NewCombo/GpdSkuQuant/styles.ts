@@ -36,3 +36,34 @@ export const AddGPDButton = styled(Button)`
         }
     }
 `;
+
+export const TagsContainer = styled.div`
+    padding: 0.5rem 0.75rem;
+    border: 1px solid ${({ theme }) => theme.colors.gray6};
+    border-radius: 0.5rem;
+
+    & > div.tag {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 12rem;
+        background-color: ${({ theme }) => theme.colors.gray7};
+        border: 1px solid;
+        padding: 0.25rem 0.25rem 0.25rem 0.75rem;
+        border-radius: 1rem;
+
+        & > span {
+            font-size: 0.75rem;
+            color: ${({ theme }) => theme.colors.blue};
+            font-weight: 600;
+        }
+
+        & > button {
+            background: none;
+            min-width: 0.25rem;
+            height: 0.25rem;
+            font-size: 0.675rem;
+            font-weight: 700;
+        }
+    }
+`;
