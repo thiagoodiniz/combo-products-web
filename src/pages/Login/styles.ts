@@ -4,7 +4,7 @@ import banner from '../../assets/images/banner.png';
 
 export const Container = styled.div`
     display: flex;
-    padding: 2rem 2rem 0 2rem;
+    padding: 2rem;
     height: 100vh;
     width: 100%;
     overflow: hidden;
@@ -12,11 +12,10 @@ export const Container = styled.div`
     & > .img-content {
         width: 60%;
         position: relative;
-        top: 0.5rem;
         background-image: url(${banner});
         background-position: right;
         background-size: cover;
-        border-radius: 1rem 1rem 0 0;
+        border-radius: 1rem;
         display: none;
 
         @media(min-width: ${({ theme }) => theme.breakpoints.laptop}) {
