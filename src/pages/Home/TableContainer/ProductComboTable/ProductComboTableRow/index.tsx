@@ -5,6 +5,7 @@ import { StyledTableRow, ActionButton, EditButton, DuplicateButton, RemoveButton
 import activeCombo from '../../../../../assets/images/icons/active-combo.svg';
 import inactiveCombo from '../../../../../assets/images/icons/inactive-combo.svg';
 import expandTableRowIcon from '../../../../../assets/images/icons/expand-table-row.svg';
+import retractTableRowIcon from '../../../../../assets/images/icons/retract-table-row.svg';
 import ExpandedRow from './ExpandedRow';
 
 interface IProductComboTableRowProps {
@@ -24,7 +25,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                     <ActionButton
                         onClick={() => setIsExpanded(!isExpanded)}
                     >
-                        <img src={expandTableRowIcon} alt="Expand row" />
+                        <img src={isExpanded ? retractTableRowIcon : expandTableRowIcon} alt="Expand row" />
                     </ActionButton>
                 </StyledTableCell>
                 <StyledTableCell className="body" scope="row" align="center">
