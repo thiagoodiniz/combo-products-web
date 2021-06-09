@@ -24,7 +24,8 @@ export const AddGPDButton = styled(Button)`
     && {
         background-color: ${({ theme }) => theme.colors.blue};
         border-radius: 50%;
-        min-width: 0.5rem;
+        min-width: 2rem;
+        min-height: 2rem;
 
         &:hover {
             background-color: ${({ theme }) => theme.colors.blue};
