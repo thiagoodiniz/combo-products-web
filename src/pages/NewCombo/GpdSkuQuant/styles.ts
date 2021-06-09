@@ -49,7 +49,7 @@ export const TagsContainer = styled.div`
         justify-content: space-between;
         width: 12rem;
         background-color: ${({ theme }) => theme.colors.gray7};
-        border: 1px solid;
+        border: 1px solid ${({ theme }) => theme.colors.blue};
         padding: 0.25rem 0.25rem 0.25rem 0.75rem;
         border-radius: 1rem;
 
@@ -62,9 +62,11 @@ export const TagsContainer = styled.div`
         & > button {
             background: none;
             min-width: 0.25rem;
+            color: ${({ theme }) => theme.colors.blue};
             height: 0.25rem;
             font-size: 0.675rem;
             font-weight: 700;
+            text-transform: none;
         }
     }
 `;
