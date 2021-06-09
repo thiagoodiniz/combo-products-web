@@ -33,5 +33,18 @@ export const CustomDatePicker = styled(MaterialDatePicker)`
                 }
             }
         }
+
+        &.hideBorder {
+            & > div {
+                border: none;
+
+                & input {
+                    padding: 0 0 0 0.5rem;
+                }
+                & .MuiInputAdornment-positionEnd {
+                    margin: 0 0.5rem 0 0;
+                }
+            }
+        }
     }
 `;

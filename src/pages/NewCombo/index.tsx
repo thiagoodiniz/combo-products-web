@@ -1,7 +1,8 @@
 import React from 'react';
-import { MenuItem, TextField } from '@material-ui/core';
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, MenuItem, TextField } from '@material-ui/core';
 import { Container, NewComboForm } from './styles';
 import GpdSkuQuant from './GpdSkuQuant';
+import Dates from './Dates';
 
 interface IState {
     name: string;
@@ -72,6 +73,19 @@ const NewCombo: React.FC = () => {
                         </MenuItem>
                     )}
                 </TextField>
+
+                <FormControl component="fieldset" className="form-input channel">
+                    <FormLabel component="legend">Canal</FormLabel>
+                    <FormGroup aria-label="position" row>
+                        <FormControlLabel
+                            control={<Checkbox color="primary" />}
+                            label="Varejo"
+                            labelPlacement="end"
+                        />
+                    </FormGroup>
+                </FormControl>
+
+                <Dates />
 
             </NewComboForm>
         </Container>
