@@ -3,6 +3,7 @@ import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, MenuItem
 import { Container, NewComboForm } from './styles';
 import GpdSkuQuant from './GpdSkuQuant';
 import Dates from './Dates';
+import DiscountDeadlinePrice from './DiscountDeadlinePrice';
 
 interface IState {
     name: string;
@@ -86,6 +87,8 @@ const NewCombo: React.FC = () => {
                 </FormControl>
 
                 <Dates />
+
+                <DiscountDeadlinePrice />
 
             </NewComboForm>
         </Container>

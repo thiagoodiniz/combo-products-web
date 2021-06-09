@@ -42,7 +42,7 @@ export const TagsContainer = styled.div`
     padding: 0.5rem 0.75rem;
     border: 1px solid ${({ theme }) => theme.colors.gray6};
     border-radius: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 
     & > div.tag {
         display: flex;
