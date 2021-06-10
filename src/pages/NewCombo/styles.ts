@@ -24,7 +24,7 @@ export const NewComboForm = styled.form`
 
     & > .form-input {
         margin: 0.5rem 0;
-        max-width: 20rem;
+        max-width: 22rem;
 
         & input {
             font-size: 1rem;

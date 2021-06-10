@@ -24,6 +24,8 @@ const MultipleCheckboxSelect: React.FC<IMultipleCheckboxSelectProps> = ({ title,
                     )}
                 </FormGroup>
             </FormControl>
+
+            <hr />
         </Container>
     );
 }
