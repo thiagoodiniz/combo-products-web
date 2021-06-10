@@ -41,7 +41,7 @@ const GpdSkuQuant: React.FC = () => {
                 />
 
                 <AddGPDButton>
-                    <img src={plusIcon} className="plus"/>
+                    <img src={plusIcon} className="plus" alt="plus button"/>
                 </AddGPDButton>
             </Container>
 
