@@ -1,9 +1,10 @@
 import React from 'react';
-import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, MenuItem, TextField } from '@material-ui/core';
+import { MenuItem, TextField } from '@material-ui/core';
 import { Container, NewComboForm } from './styles';
 import GpdSkuQuant from './GpdSkuQuant';
 import Dates from './Dates';
 import DiscountDeadlinePrice from './DiscountDeadlinePrice';
+import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
 
 interface IState {
     name: string;
@@ -75,20 +76,24 @@ const NewCombo: React.FC = () => {
                     )}
                 </TextField>
 
-                <FormControl component="fieldset" className="form-input channel">
-                    <FormLabel component="legend">Canal</FormLabel>
-                    <FormGroup aria-label="position" row>
-                        <FormControlLabel
-                            control={<Checkbox color="primary" />}
-                            label="Varejo"
-                            labelPlacement="end"
-                        />
-                    </FormGroup>
-                </FormControl>
+
+                <MultipleCheckboxSelect
+                    title="Canal"
+                    options={['Varejo']}
+                    selectedValues={[]}
+                    setSelectedValues={() => undefined}
+                />
 
                 <Dates />
 
                 <DiscountDeadlinePrice />
+
+                <MultipleCheckboxSelect
+                    title="Plataformas de vendas"
+                    options={['Juntos somos mais', 'MC1', 'Smartchain']}
+                    selectedValues={[]}
+                    setSelectedValues={() => undefined}
+                />
 
             </NewComboForm>
         </Container>

@@ -25,7 +25,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                     <ActionButton
                         onClick={() => setIsExpanded(!isExpanded)}
                     >
-                        <img src={isExpanded ? retractTableRowIcon : expandTableRowIcon} alt="Expand row" />
+                        <img src={isExpanded ? retractTableRowIcon : expandTableRowIcon} alt="Expand Retract" />
                     </ActionButton>
                 </StyledTableCell>
                 <StyledTableCell className="body" scope="row" align="center">
