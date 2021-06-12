@@ -42,7 +42,12 @@ const states: IState[] = [
 ];
 
 const NewCombo: React.FC = () => {
+    const [comboName, setComboName] = useState('');
+    const [salesOffice, setSalesOffice] = useState('');
     const [tagList, setTagList] = useState<IGpdSkuQuantTag[]>([]);
+    const [selectedState, setSelectedState] = useState('');
+    const [selectedChannels, setSelectedChannels] = useState<string[]>([]);
+    const [salesPlatform, setsalesPlatform] = useState<string[]>([]);
 
     return (
         <Container>
@@ -52,8 +57,9 @@ const NewCombo: React.FC = () => {
                 <TextField
                     className="form-input name"
                     error={false}
-                    required
                     label="Nome do combo"
+                    value={comboName}
+                    onChange={(e: any) => setComboName(e.target.value)}
                     // helperText="Incorrect entry."
                 />
 
@@ -62,6 +68,8 @@ const NewCombo: React.FC = () => {
                     error={false}
                     required
                     label="Escritório de vendas"
+                    value={salesOffice}
+                    onChange={(e: any) => setSalesOffice(e.target.value)}
                 />
 
                 <GpdSkuQuant 
@@ -73,6 +81,8 @@ const NewCombo: React.FC = () => {
                     select
                     className="form-input states"
                     label="Estado"
+                    value={selectedState}
+                    onChange={(e) => setSelectedState(e.target.value)}
                 >
                     {states.map((state, idx) =>
                         <MenuItem key={idx} value={state.uf}>
@@ -85,8 +95,8 @@ const NewCombo: React.FC = () => {
                 <MultipleCheckboxSelect
                     title="Canal"
                     options={['Varejo']}
-                    selectedValues={[]}
-                    setSelectedValues={() => undefined}
+                    selectedValues={selectedChannels}
+                    setSelectedValues={setSelectedChannels}
                 />
 
                 <Dates />
@@ -96,8 +106,8 @@ const NewCombo: React.FC = () => {
                 <MultipleCheckboxSelect
                     title="Plataformas de vendas"
                     options={['Juntos somos mais', 'MC1', 'Smartchain']}
-                    selectedValues={[]}
-                    setSelectedValues={() => undefined}
+                    selectedValues={salesPlatform}
+                    setSelectedValues={setsalesPlatform}
                 />
 
             </NewComboForm>
