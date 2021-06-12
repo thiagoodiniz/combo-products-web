@@ -52,6 +52,20 @@ const NewCombo: React.FC = () => {
     const [salesPlatform, setsalesPlatform] = useState<string[]>([]);
     const [discountDeadlinePrice, setDiscountDeadlinePrice] = useState<IDiscountDeadlinePrice>({ selectedOption: EDiscountDeadlinePrice.DISCOUNT, description: '' });
 
+    const onSave = () => {
+        console.log({
+            comboName,
+            salesOffice,
+            tagList,
+            selectedState,
+            selectedChannels,
+            startDate,
+            endDate,
+            salesPlatform,
+            discountDeadlinePrice,
+        });
+    }
+
     return (
         <Container>
             <h2>Criar novo combo</h2>
@@ -119,10 +133,9 @@ const NewCombo: React.FC = () => {
                     selectedValues={salesPlatform}
                     setSelectedValues={setsalesPlatform}
                 />
-
             </NewComboForm>
 
-            <SaveFormButton>
+            <SaveFormButton onClick={onSave}>
                 Salvar
             </SaveFormButton>
         </Container>
