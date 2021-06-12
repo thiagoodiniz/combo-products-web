@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MenuItem, TextField } from '@material-ui/core';
 import { Container, NewComboForm } from './styles';
-import GpdSkuQuant from './GpdSkuQuant';
+import GpdSkuQuant, { IGpdSkuQuantTag } from './GpdSkuQuant';
 import Dates from './Dates';
 import DiscountDeadlinePrice from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
@@ -42,6 +42,8 @@ const states: IState[] = [
 ];
 
 const NewCombo: React.FC = () => {
+    const [tagList, setTagList] = useState<IGpdSkuQuantTag[]>([]);
+
     return (
         <Container>
             <h2>Criar novo combo</h2>
@@ -62,7 +64,10 @@ const NewCombo: React.FC = () => {
                     label="Escritório de vendas"
                 />
 
-                <GpdSkuQuant />
+                <GpdSkuQuant 
+                    tagList={tagList}
+                    updateTagList={setTagList}
+                />
 
                 <TextField
                     select

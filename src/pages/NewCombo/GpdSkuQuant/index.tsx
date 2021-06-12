@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, MenuItem, TextField } from '@material-ui/core';
 import { Container, AddGPDButton, TagsContainer } from './styles';
 import plusIcon from '../../../assets/images/icons/plus-small.svg';
@@ -13,7 +13,41 @@ const gpds: IGpd[] = [
     { id: '2', label: 'Vergalhão'},
 ];
 
-const GpdSkuQuant: React.FC = () => {
+export interface IGpdSkuQuantTag {
+    gpd: IGpd;
+    sku: string;
+    quantity: string;
+}
+
+interface IGpdSkuQuantProps {
+    tagList: IGpdSkuQuantTag[];
+    updateTagList(newTagList: IGpdSkuQuantTag[]): void;
+}
+
+const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList }) => {
+
+    const [gpd, setGpd] = useState<IGpd>();
+    const [sku, setSku] = useState('');
+    const [quantity, setQuantity] = useState('');
+
+    const onAddTag = () => {
+        if(gpd && sku && quantity){
+            const newTag: IGpdSkuQuantTag = { gpd, sku, quantity };
+            updateTagList([...tagList, newTag]);
+            setGpd(undefined);
+            setSku('');
+            setQuantity('');
+        }
+    }
+
+    const onRemoveTag = (idx: number) => {
+        document.getElementsByClassName(`tag-${idx}`)[0].classList.add('remove-tag');
+        setTimeout(() => {
+            document.getElementsByClassName(`tag-${idx}`)[0].classList.remove('remove-tag');
+            updateTagList(tagList.filter((_, i) => i !== idx));
+        }, 400);
+    }
+
     return (
         <>
             <Container>
@@ -21,6 +55,11 @@ const GpdSkuQuant: React.FC = () => {
                     select
                     className="gpd-item-field"
                     label="GPD"
+                    value={gpd ? gpd.id : ''}
+                    onChange={(e: any) => {
+                        const selectedGPD = gpds.find(item => item.id === e.target.value) as IGpd;
+                        setGpd(selectedGPD)
+                    }}
                 >
                     {gpds.map((gpd, idx) =>
                         <MenuItem key={idx} value={gpd.id}>
@@ -31,26 +70,32 @@ const GpdSkuQuant: React.FC = () => {
 
                 <TextField
                     className="gpd-item-field"
-                    error={false}
                     label="SKU"
+                    value={sku}
+                    onChange={(e: any) => setSku(e.target.value)}
                 />
                 <TextField
                     className="gpd-item-field"
-                    error={false}
                     label="Quantidade"
+                    value={quantity}
+                    onChange={(e: any) => setQuantity(e.target.value)}
                 />
 
-                <AddGPDButton>
+                <AddGPDButton onClick={onAddTag} disabled={!gpd || !sku || !quantity}>
                     <img src={plusIcon} className="plus" alt="plus button"/>
                 </AddGPDButton>
             </Container>
 
-            <TagsContainer>
-                <div className="tag">
-                    <span>GPD - SKU - Quantidade</span>
-                    <Button>x</Button>    
-                </div>
-            </TagsContainer>
+            {   tagList.length > 0 &&
+                <TagsContainer>
+                    {   tagList.map((tag, idx) => 
+                        <div className={`tag tag-${idx}`} key={idx}>
+                            <span>{ `${tag.gpd.label} - ${tag.sku} - ${tag.quantity}` }</span>
+                            <Button title="remover" onClick={() => onRemoveTag(idx)}>x</Button>    
+                        </div>
+                    )}
+                </TagsContainer>
+            }
         </>
     );
 }
