@@ -15,8 +15,9 @@ const MultipleCheckboxSelect: React.FC<IMultipleCheckboxSelectProps> = ({ title,
             <FormControl component="fieldset" className="form-input channel">
                 <FormLabel component="legend">{ title }</FormLabel>
                 <FormGroup aria-label="position" row>
-                    {   options.map((option) => 
+                    {   options.map((option, idx) => 
                         <FormControlLabel
+                            key={idx}
                             control={<Checkbox color="primary" />}
                             label={option}
                             labelPlacement="end"
