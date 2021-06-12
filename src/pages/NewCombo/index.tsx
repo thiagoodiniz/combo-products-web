@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { MenuItem, TextField } from '@material-ui/core';
-import { Container, NewComboForm } from './styles';
+import { Container, NewComboForm, SaveFormButton } from './styles';
 import GpdSkuQuant, { IGpdSkuQuantTag } from './GpdSkuQuant';
 import Dates from './Dates';
-import DiscountDeadlinePrice from './DiscountDeadlinePrice';
+import DiscountDeadlinePrice, { EDiscountDeadlinePrice, IDiscountDeadlinePrice } from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
 
 interface IState {
@@ -47,7 +47,10 @@ const NewCombo: React.FC = () => {
     const [tagList, setTagList] = useState<IGpdSkuQuantTag[]>([]);
     const [selectedState, setSelectedState] = useState('');
     const [selectedChannels, setSelectedChannels] = useState<string[]>([]);
+    const [startDate, setStartDate] = useState<moment.Moment | null>(null);
+    const [endDate, setEndDate] = useState<moment.Moment | null>(null);
     const [salesPlatform, setsalesPlatform] = useState<string[]>([]);
+    const [discountDeadlinePrice, setDiscountDeadlinePrice] = useState<IDiscountDeadlinePrice>({ selectedOption: EDiscountDeadlinePrice.DISCOUNT, description: '' });
 
     return (
         <Container>
@@ -66,7 +69,6 @@ const NewCombo: React.FC = () => {
                 <TextField
                     className="form-input salesOffice"
                     error={false}
-                    required
                     label="Escritório de vendas"
                     value={salesOffice}
                     onChange={(e: any) => setSalesOffice(e.target.value)}
@@ -99,9 +101,17 @@ const NewCombo: React.FC = () => {
                     setSelectedValues={setSelectedChannels}
                 />
 
-                <Dates />
+                <Dates 
+                    startDate={startDate}
+                    setStartDate={setStartDate}
+                    endDate={endDate}
+                    setEndDate={setEndDate}
+                />
 
-                <DiscountDeadlinePrice />
+                <DiscountDeadlinePrice 
+                    discountDeadlinePrice={discountDeadlinePrice}
+                    updateDiscountDeadlinePrice={setDiscountDeadlinePrice}
+                />
 
                 <MultipleCheckboxSelect
                     title="Plataformas de vendas"
@@ -111,6 +121,10 @@ const NewCombo: React.FC = () => {
                 />
 
             </NewComboForm>
+
+            <SaveFormButton>
+                Salvar
+            </SaveFormButton>
         </Container>
     );
 }

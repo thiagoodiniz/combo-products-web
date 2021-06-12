@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MenuItem, TextField } from '@material-ui/core';
 import { Container } from './styles';
 
-enum EDiscountDeadlinePrice {
+export enum EDiscountDeadlinePrice {
     DISCOUNT = "DISCOUNT",
     DEADLINE = "DEADLINE",
     FIXPRICE = "FIXPRICE"
@@ -19,19 +19,24 @@ const options: IOption[] = [
     { option: EDiscountDeadlinePrice.FIXPRICE, label: 'Preço fixo' },
 ];
 
-const DiscountDeadlinePrice: React.FC = () => {
-    const [selectedOption, setSelectedOption] = useState(EDiscountDeadlinePrice.DISCOUNT);
-    const [description, setDescription] = useState('');
+export interface IDiscountDeadlinePrice {
+    selectedOption: EDiscountDeadlinePrice;
+    description: string;
+}
+interface IDiscountDeadlinePriceProps {
+    discountDeadlinePrice: IDiscountDeadlinePrice;
+    updateDiscountDeadlinePrice(discountDeadlinePrice: IDiscountDeadlinePrice): void;
+}
 
+const DiscountDeadlinePrice: React.FC<IDiscountDeadlinePriceProps> = ({ discountDeadlinePrice, updateDiscountDeadlinePrice }) => {
     return (
         <Container>
             <TextField
                 select
                 className="options"
-                value={selectedOption}
+                value={discountDeadlinePrice.selectedOption}
                 onChange={(e: any) => {
-                    setDescription('');
-                    setSelectedOption(e.target.value as EDiscountDeadlinePrice)
+                    updateDiscountDeadlinePrice({ selectedOption: e.target.value as EDiscountDeadlinePrice, description: '' });
                 }}
             >
                 {options.map((option) =>
@@ -40,22 +45,23 @@ const DiscountDeadlinePrice: React.FC = () => {
                     </MenuItem>
                 )}
             </TextField>
-
-            <TextField
-                className="description"
-                error={false}
-                value={description}
-                onChange={(e: any) => setDescription(e.target.value)}
-                disabled={selectedOption === EDiscountDeadlinePrice.FIXPRICE}
-                InputProps={{
-                    type:"number",
-                    endAdornment: selectedOption === EDiscountDeadlinePrice.DISCOUNT 
-                        ? '%'
-                        : selectedOption === EDiscountDeadlinePrice.DEADLINE
-                            ? 'dias'
-                            : '-'
-                }}
-            />
+            
+            {   discountDeadlinePrice.selectedOption !== EDiscountDeadlinePrice.FIXPRICE &&
+                <TextField
+                    className="description"
+                    error={false}
+                    value={discountDeadlinePrice.description}
+                    onChange={(e: any) => updateDiscountDeadlinePrice({ ...discountDeadlinePrice, description: e.target.value })}
+                    InputProps={{
+                        type:"number",
+                        endAdornment: discountDeadlinePrice.selectedOption === EDiscountDeadlinePrice.DISCOUNT 
+                            ? '%'
+                            : discountDeadlinePrice.selectedOption === EDiscountDeadlinePrice.DEADLINE
+                                ? 'dias'
+                                : '-'
+                    }}
+                />
+            }
         </Container>
     );
 }
