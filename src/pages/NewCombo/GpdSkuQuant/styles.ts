@@ -12,11 +12,12 @@ export const Container = styled.div`
         &:not(:last-child) {
             margin-right: 2rem;
         }
-
-        & input {
-            font-size: 1rem;
+        
+        & .MuiSelect-selectMenu {
             color: ${({ theme }) => theme.colors.blueDark};
+            font-size: 0.875rem;
         }
+
     }
 `;
 

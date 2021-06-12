@@ -44,5 +44,12 @@ export const NewComboForm = styled.form`
                 }
             }
         }
+
+        &.states {
+            & .MuiSelect-selectMenu {
+                color: ${({ theme }) => theme.colors.blueDark};
+                font-size: 0.875rem;
+            }
+        }
     }
 `;

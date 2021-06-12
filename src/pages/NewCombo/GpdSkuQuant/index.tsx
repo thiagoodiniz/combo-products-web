@@ -9,8 +9,8 @@ interface IGpd {
 }
 
 const gpds: IGpd[] = [
-    { id: '1', label: 'PREGO'},
-    { id: '2', label: 'VERGALHÃO'},
+    { id: '1', label: 'Prego'},
+    { id: '2', label: 'Vergalhão'},
 ];
 
 const GpdSkuQuant: React.FC = () => {
