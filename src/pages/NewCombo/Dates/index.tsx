@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { FormControl, FormControlLabel, FormGroup, FormLabel } from '@material-ui/core';
+import { FormControl, FormGroup, FormLabel } from '@material-ui/core';
 import DatePicker from '../../../ components/DatePicker';
 import moment from 'moment';
+import { DateFormControlLabel } from './styles';
 
 const Dates: React.FC = () => {
     const [startDate, setStartDate] = useState<moment.Moment | null>(null);
@@ -11,7 +12,7 @@ const Dates: React.FC = () => {
         <FormControl component="fieldset" className="form-input dates">
             <FormLabel component="legend">Data</FormLabel>
             <FormGroup aria-label="position" row>
-                <FormControlLabel
+                <DateFormControlLabel
                     control={
                         <DatePicker
                             placeholder="__/__/__" 
@@ -24,7 +25,7 @@ const Dates: React.FC = () => {
                     labelPlacement="start"
                 />
 
-                <FormControlLabel
+                <DateFormControlLabel
                     control={
                         <DatePicker
                             placeholder="__/__/__" 
