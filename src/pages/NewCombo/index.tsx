@@ -5,6 +5,7 @@ import GpdSkuQuant, { IGpdSkuQuantTag } from './GpdSkuQuant';
 import Dates from './Dates';
 import DiscountDeadlinePrice, { EDiscountDeadlinePrice, IDiscountDeadlinePrice } from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
+import ImgUploadField from './ImgUploadField';
 
 interface IState {
     name: string;
@@ -50,6 +51,7 @@ const NewCombo: React.FC = () => {
     const [startDate, setStartDate] = useState<moment.Moment | null>(null);
     const [endDate, setEndDate] = useState<moment.Moment | null>(null);
     const [salesPlatform, setsalesPlatform] = useState<string[]>([]);
+    const [fileImg, setFileImg] = useState<File>();
     const [discountDeadlinePrice, setDiscountDeadlinePrice] = useState<IDiscountDeadlinePrice>({ selectedOption: EDiscountDeadlinePrice.DISCOUNT, description: '' });
 
     const onSave = () => {
@@ -62,6 +64,7 @@ const NewCombo: React.FC = () => {
             startDate,
             endDate,
             salesPlatform,
+            fileImg,
             discountDeadlinePrice,
         });
     }
@@ -125,6 +128,11 @@ const NewCombo: React.FC = () => {
                 <DiscountDeadlinePrice 
                     discountDeadlinePrice={discountDeadlinePrice}
                     updateDiscountDeadlinePrice={setDiscountDeadlinePrice}
+                />
+
+                <ImgUploadField 
+                    file={fileImg}
+                    setFile={setFileImg}
                 />
 
                 <MultipleCheckboxSelect
