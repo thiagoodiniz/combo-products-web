@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { IProductComboData } from '..';
 import { StyledTableCell } from '../styles';
 import { StyledTableRow, ActionButton, EditButton, DuplicateButton, RemoveButton } from './styles';
 import activeCombo from '../../../../../assets/images/icons/active-combo.svg';
@@ -7,6 +6,7 @@ import inactiveCombo from '../../../../../assets/images/icons/inactive-combo.svg
 import expandTableRowIcon from '../../../../../assets/images/icons/expand-table-row.svg';
 import retractTableRowIcon from '../../../../../assets/images/icons/retract-table-row.svg';
 import ExpandedRow from './ExpandedRow';
+import { IProductComboData } from '../../../../../services/ProductCombo/types';
 
 interface IProductComboTableRowProps {
     rowData: IProductComboData;
