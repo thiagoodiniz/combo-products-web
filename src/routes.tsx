@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, useLocation, matchPath } from 'react-router-dom';
 import Login from './pages/Login';
 import Home from './pages/Home';
@@ -14,16 +14,15 @@ export enum ERoutes {
 }
 
 const Routes: React.FC = () => {
-    const location = useLocation();
+    const { pathname } = useLocation();
 
     const [combos, setCombos] = useState<IProductComboData[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
-    useState(() => {
+    useEffect(() => {
         const fetchCombos = () => {
             const comboSvc = new ProductComboService();
-
             setLoading(true);
             setError(false);
 
@@ -41,14 +40,14 @@ const Routes: React.FC = () => {
                 });
         }
 
-        if(!loading && !error && combos.length === 0) {
+        if(!matchPath(pathname , ERoutes.LOGIN) && !loading && !error && combos.length === 0) {
             fetchCombos();
         }
     });
 
     return (
         <>
-            {   !matchPath(location.pathname , ERoutes.LOGIN) &&
+            {   !matchPath(pathname , ERoutes.LOGIN) &&
                 <Header />
             }
 
