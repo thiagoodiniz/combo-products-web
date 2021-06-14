@@ -3,7 +3,7 @@ export interface IProductComboData {
     name: string;
     salesOffice: number;
     uf: string;
-    segmentation: string;
+    channel: string;
     dateRange: string;
     discountDeadlinePrice: string;
 }

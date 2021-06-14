@@ -37,7 +37,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                 <StyledTableCell className="body" align="left">{rowData.name}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.salesOffice}</StyledTableCell>
                 <StyledTableCell className="body" align="center">{rowData.uf}</StyledTableCell>
-                <StyledTableCell className="body" align="left">{rowData.segmentation}</StyledTableCell>
+                <StyledTableCell className="body" align="left">{rowData.channel}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.dateRange}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.discountDeadlinePrice}</StyledTableCell>
 

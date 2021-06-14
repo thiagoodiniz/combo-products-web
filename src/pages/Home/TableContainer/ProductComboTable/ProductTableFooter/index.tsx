@@ -40,13 +40,10 @@ const ProductTableFooter: React.FC<IProductTableFooterProps> = ({ totalRows, row
             <TablePagination 
                 showFirstButton 
                 showLastButton
-                // style={{ marginLeft: '50%', transform: 'translateX(-50%)' }}
                 count={pagesCount}
                 renderItem={(params) => {
-                    console.log(params);
                     switch(params.type){
                         case 'first':
-                            console.log(params.type, params.page, params.selected);
                             return <PaginationButton handleActionClick={(e: any) => { setSelectedPage(params.page); params.onClick(e); }} disabled={params.disabled} icon={<img src={params.disabled ? firstPage : firstPageFilled} alt="first page"/>} />;
                         case 'previous':
                             return <PaginationButton handleActionClick={(e: any) => { setSelectedPage(params.page); params.onClick(e); }} disabled={params.disabled} icon={<img src={params.disabled ? previousPage : previousPageFilled} alt="previous page"/>} />;
