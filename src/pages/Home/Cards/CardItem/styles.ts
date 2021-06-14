@@ -47,3 +47,16 @@ export const Container = styled.div`
         padding-left: 1rem;
     }
 `;
+
+export const SkeletonContainer = styled.div`
+    width: 100%;
+    
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+    
+    &:not(:last-child) {
+        margin-right: 1rem;
+        margin-bottom: unset;
+    }
+`;

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { ProductComboService } from '../../services/ProductCombo';
+import React from 'react';
 import { IProductComboData } from '../../services/ProductCombo/types';
 import Cards from './Cards';
 import { Container } from './styles';
@@ -14,7 +13,13 @@ interface IHomeProps {
 const Home: React.FC<IHomeProps> = ({ combos, loading, error }) => {
     return (
         <Container>
-            <Cards />
+            
+            <Cards 
+                combos={combos}
+                loading={loading}
+                error={error}
+            />
+
             <TableContainer 
                 combos={combos}
                 loading={loading}
