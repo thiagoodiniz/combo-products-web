@@ -34,20 +34,6 @@ export const NewComboForm = styled.div`
             color: ${({ theme }) => theme.colors.blueDark};
         }
 
-
-        &.dates {
-            border-bottom: 1px solid ${({ theme }) => theme.colors.gray5};
-            & > div { 
-                display: flex;
-                justify-content: space-between;
-                margin-top: 0.5rem;
-
-                & > label {
-                    margin-left: 0;
-                }
-            }
-        }
-
         &.states {
             & .MuiSelect-selectMenu {
                 color: ${({ theme }) => theme.colors.blueDark};

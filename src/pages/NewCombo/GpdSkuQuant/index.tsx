@@ -22,9 +22,10 @@ export interface IGpdSkuQuantTag {
 interface IGpdSkuQuantProps {
     tagList: IGpdSkuQuantTag[];
     updateTagList(newTagList: IGpdSkuQuantTag[]): void;
+    disabled: boolean;
 }
 
-const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList }) => {
+const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList, disabled }) => {
 
     const [gpd, setGpd] = useState<IGpd>();
     const [sku, setSku] = useState('');
@@ -60,6 +61,7 @@ const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList }) =>
                         const selectedGPD = gpds.find(item => item.id === e.target.value) as IGpd;
                         setGpd(selectedGPD)
                     }}
+                    disabled={disabled}
                 >
                     {gpds.map((gpd, idx) =>
                         <MenuItem key={idx} value={gpd.id}>
@@ -73,15 +75,21 @@ const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList }) =>
                     label="SKU"
                     value={sku}
                     onChange={(e: any) => setSku(e.target.value)}
+                    disabled={disabled}
+
                 />
                 <TextField
                     className="gpd-item-field"
                     label="Quantidade"
                     value={quantity}
                     onChange={(e: any) => setQuantity(e.target.value)}
+                    disabled={disabled}
                 />
 
-                <AddGPDButton onClick={onAddTag} disabled={!gpd || !sku || !quantity}>
+                <AddGPDButton 
+                    onClick={onAddTag} 
+                    disabled={!gpd || !sku || !quantity || disabled}
+                    >
                     <img src={plusIcon} className="plus" alt="plus button"/>
                 </AddGPDButton>
             </Container>
@@ -91,7 +99,10 @@ const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList }) =>
                     {   tagList.map((tag, idx) => 
                         <div className={`tag tag-${idx}`} key={idx}>
                             <span>{ `${tag.gpd.label} - ${tag.sku} - ${tag.quantity}` }</span>
-                            <Button title="remover" onClick={() => onRemoveTag(idx)}>x</Button>    
+                            
+                            {   !disabled &&
+                                <Button title="remover" onClick={() => onRemoveTag(idx)}>x</Button>    
+                            }
                         </div>
                     )}
                 </TagsContainer>

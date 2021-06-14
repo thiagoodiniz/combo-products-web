@@ -17,9 +17,10 @@ const options: IOption[] = [
 interface IDiscountDeadlinePriceProps {
     discountDeadlinePrice: IDiscountDeadlinePrice;
     updateDiscountDeadlinePrice(discountDeadlinePrice: IDiscountDeadlinePrice): void;
+    disabled: boolean;
 }
 
-const DiscountDeadlinePrice: React.FC<IDiscountDeadlinePriceProps> = ({ discountDeadlinePrice, updateDiscountDeadlinePrice }) => {
+const DiscountDeadlinePrice: React.FC<IDiscountDeadlinePriceProps> = ({ discountDeadlinePrice, updateDiscountDeadlinePrice, disabled }) => {
     return (
         <Container>
             <TextField
@@ -29,6 +30,7 @@ const DiscountDeadlinePrice: React.FC<IDiscountDeadlinePriceProps> = ({ discount
                 onChange={(e: any) => {
                     updateDiscountDeadlinePrice({ type: e.target.value as EDiscountDeadlinePrice, description: '' });
                 }}
+                disabled={disabled}
             >
                 {options.map((option) =>
                     <MenuItem key={option.option} value={option.option}>
@@ -51,6 +53,7 @@ const DiscountDeadlinePrice: React.FC<IDiscountDeadlinePriceProps> = ({ discount
                                 ? 'dias'
                                 : '-'
                     }}
+                    disabled={disabled}
                 />
             }
         </Container>

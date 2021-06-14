@@ -5,7 +5,9 @@ import GpdSkuQuant, { IGpdSkuQuantTag } from './GpdSkuQuant';
 import Dates from './Dates';
 import DiscountDeadlinePrice from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
-import { EDiscountDeadlinePrice, IDiscountDeadlinePrice } from '../../services/ProductCombo/types';
+import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } from '../../services/ProductCombo/types';
+import { ProductComboService } from '../../services/ProductCombo';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 interface IState {
     name: string;
@@ -42,7 +44,13 @@ const states: IState[] = [
     {name: "Tocantins", uf: "TO"}
 ];
 
-const NewCombo: React.FC = () => {
+interface INewComboProps {
+    onAddCombo(): void;
+}
+
+const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
+    const [loading, setLoading] = useState(false);
+
     const [comboName, setComboName] = useState('');
     const [salesOffice, setSalesOffice] = useState('');
     const [tagList, setTagList] = useState<IGpdSkuQuantTag[]>([]);
@@ -65,6 +73,30 @@ const NewCombo: React.FC = () => {
             salesPlatform,
             discountDeadlinePrice,
         });
+
+        const combo: IProductComboData = {
+            active: true,
+            name: comboName,
+            salesOffice,
+            uf: selectedState,
+            channels: selectedChannels,
+            startDate: startDate?.format('DD/MM/YYYY') || '',
+            endDate: endDate?.format('DD/MM/YYYY') || '',
+            discountDeadlinePrice: discountDeadlinePrice,
+        }
+
+        setLoading(true);
+
+        setTimeout(() => {
+            const comboSvc = new ProductComboService();
+            comboSvc.saveCombo(combo)
+                .then(() => {
+                    onAddCombo();
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }, 1500);
     }
 
     return (
@@ -78,6 +110,7 @@ const NewCombo: React.FC = () => {
                     label="Nome do combo"
                     value={comboName}
                     onChange={(e: any) => setComboName(e.target.value)}
+                    disabled={loading}
                     // helperText="Incorrect entry."
                 />
 
@@ -87,11 +120,13 @@ const NewCombo: React.FC = () => {
                     label="Escritório de vendas"
                     value={salesOffice}
                     onChange={(e: any) => setSalesOffice(e.target.value)}
+                    disabled={loading}
                 />
 
                 <GpdSkuQuant 
                     tagList={tagList}
                     updateTagList={setTagList}
+                    disabled={loading}
                 />
 
                 <TextField
@@ -100,6 +135,7 @@ const NewCombo: React.FC = () => {
                     label="Estado"
                     value={selectedState}
                     onChange={(e) => setSelectedState(e.target.value)}
+                    disabled={loading}
                 >
                     {states.map((state, idx) =>
                         <MenuItem key={idx} value={state.uf}>
@@ -114,6 +150,7 @@ const NewCombo: React.FC = () => {
                     options={['Varejo']}
                     selectedValues={selectedChannels}
                     setSelectedValues={setSelectedChannels}
+                    disabled={loading}
                 />
 
                 <Dates 
@@ -121,11 +158,13 @@ const NewCombo: React.FC = () => {
                     setStartDate={setStartDate}
                     endDate={endDate}
                     setEndDate={setEndDate}
+                    disabled={loading}
                 />
 
                 <DiscountDeadlinePrice 
                     discountDeadlinePrice={discountDeadlinePrice}
                     updateDiscountDeadlinePrice={setDiscountDeadlinePrice}
+                    disabled={loading}
                 />
 
                 <MultipleCheckboxSelect
@@ -133,11 +172,22 @@ const NewCombo: React.FC = () => {
                     options={['Juntos somos mais', 'MC1', 'Smartchain']}
                     selectedValues={salesPlatform}
                     setSelectedValues={setsalesPlatform}
+                    disabled={loading}
                 />
             </NewComboForm>
 
-            <SaveFormButton onClick={onSave}>
-                Salvar
+            <SaveFormButton 
+                onClick={onSave}
+                disabled={loading}
+                variant="contained"
+            >
+                {   loading &&
+                    <CircularProgress size={24} />
+                }
+
+                {   !loading &&
+                    <>Salvar</>
+                }
             </SaveFormButton>
         </Container>
     );

@@ -1,10 +1,11 @@
 export interface IProductComboData {
     active: boolean;
     name: string;
-    salesOffice: number;
+    salesOffice: string;
     uf: string;
-    channel: string;
-    dateRange: string;
+    channels: string[];
+    startDate: string;
+    endDate: string;
     discountDeadlinePrice: IDiscountDeadlinePrice;
 }
 

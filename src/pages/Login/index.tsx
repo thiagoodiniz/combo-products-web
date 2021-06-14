@@ -9,6 +9,7 @@ import theme from '../../assets/styles/theme/theme';
 import { UserService } from '../../services/User';
 import { useHistory } from 'react-router-dom';
 import { ERoutes } from '../../routes';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Login: React.FC = () => {
     const history = useHistory();
@@ -99,7 +100,13 @@ const Login: React.FC = () => {
                             variant="contained"
                             disabled={loading}
                         >
-                            Entrar
+                            {   loading &&
+                                <CircularProgress size={24} />
+                            }
+
+                            {   !loading &&
+                                <>Entrar</>
+                            }
                         </LoginButton>
                     </div>
 

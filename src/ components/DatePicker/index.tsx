@@ -12,9 +12,10 @@ interface DatePickerProps {
     setDate(date: moment.Moment | null): void;
     placeholder?: string;
     hideBorder?: boolean;
+    disabled?: boolean;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setDate, placeholder='', hideBorder=false}) => {
+const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setDate, placeholder='', hideBorder=false, disabled=false}) => {
 
     return (
         <MuiPickersUtilsProvider
@@ -31,6 +32,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, setDate, placehol
                 value={selectedDate}
                 onChange={setDate}
                 placeholder={placeholder}
+                disabled={disabled}
             />
         </MuiPickersUtilsProvider>
     );

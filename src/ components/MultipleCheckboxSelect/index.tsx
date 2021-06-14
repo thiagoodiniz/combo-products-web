@@ -7,9 +7,10 @@ interface IMultipleCheckboxSelectProps {
     options: string[];
     selectedValues: string[];
     setSelectedValues(newValues: string[]): void;
+    disabled: boolean;
 }
 
-const MultipleCheckboxSelect: React.FC<IMultipleCheckboxSelectProps> = ({ title, options, selectedValues, setSelectedValues }) => {
+const MultipleCheckboxSelect: React.FC<IMultipleCheckboxSelectProps> = ({ title, options, selectedValues, setSelectedValues, disabled }) => {
     return (
         <Container>
             <FormControl component="fieldset" className="form-input channel">
@@ -25,6 +26,7 @@ const MultipleCheckboxSelect: React.FC<IMultipleCheckboxSelectProps> = ({ title,
                             label={option}
                             labelPlacement="end"
                             checked={selectedValues.includes(option)}
+                            disabled={disabled}
                             onChange={(e: any) => {
                                 if(e.target.checked){
                                     setSelectedValues([...selectedValues, option]);

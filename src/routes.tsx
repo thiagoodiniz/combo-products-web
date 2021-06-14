@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, Redirect, useLocation, matchPath } from 'react-router-dom';
+import { Route, Switch, Redirect, useLocation, matchPath, useHistory } from 'react-router-dom';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Header from './pages/Header';
@@ -15,6 +15,7 @@ export enum ERoutes {
 
 const Routes: React.FC = () => {
     const { pathname } = useLocation();
+    const history = useHistory();
 
     const [combos, setCombos] = useState<IProductComboData[]>([]);
     const [loading, setLoading] = useState(false);
@@ -62,7 +63,14 @@ const Routes: React.FC = () => {
                     />} 
                 />
                 
-                <Route path={ERoutes.NEW_COMBO} component={NewCombo} />
+                <Route path={ERoutes.NEW_COMBO} render={() =>
+                    <NewCombo 
+                        onAddCombo={() => {
+                            history.push(ERoutes.HOME);
+                            setCombos([]);
+                        }}
+                    />
+                } />
 
                 <Route path="/">
                     <Redirect to={ERoutes.LOGIN} />
