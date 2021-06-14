@@ -1,12 +1,7 @@
 import React from 'react';
 import { MenuItem, TextField } from '@material-ui/core';
 import { Container } from './styles';
-
-export enum EDiscountDeadlinePrice {
-    DISCOUNT = "DISCOUNT",
-    DEADLINE = "DEADLINE",
-    FIXPRICE = "FIXPRICE"
-}
+import { EDiscountDeadlinePrice, IDiscountDeadlinePrice } from '../../../services/ProductCombo/types';
 
 interface IOption {
     label: string;
@@ -19,10 +14,6 @@ const options: IOption[] = [
     { option: EDiscountDeadlinePrice.FIXPRICE, label: 'Preço fixo' },
 ];
 
-export interface IDiscountDeadlinePrice {
-    selectedOption: EDiscountDeadlinePrice;
-    description: string;
-}
 interface IDiscountDeadlinePriceProps {
     discountDeadlinePrice: IDiscountDeadlinePrice;
     updateDiscountDeadlinePrice(discountDeadlinePrice: IDiscountDeadlinePrice): void;
@@ -34,9 +25,9 @@ const DiscountDeadlinePrice: React.FC<IDiscountDeadlinePriceProps> = ({ discount
             <TextField
                 select
                 className="options"
-                value={discountDeadlinePrice.selectedOption}
+                value={discountDeadlinePrice.type}
                 onChange={(e: any) => {
-                    updateDiscountDeadlinePrice({ selectedOption: e.target.value as EDiscountDeadlinePrice, description: '' });
+                    updateDiscountDeadlinePrice({ type: e.target.value as EDiscountDeadlinePrice, description: '' });
                 }}
             >
                 {options.map((option) =>
@@ -46,7 +37,7 @@ const DiscountDeadlinePrice: React.FC<IDiscountDeadlinePriceProps> = ({ discount
                 )}
             </TextField>
             
-            {   discountDeadlinePrice.selectedOption !== EDiscountDeadlinePrice.FIXPRICE &&
+            {   discountDeadlinePrice.type !== EDiscountDeadlinePrice.FIXPRICE &&
                 <TextField
                     className="description"
                     error={false}
@@ -54,9 +45,9 @@ const DiscountDeadlinePrice: React.FC<IDiscountDeadlinePriceProps> = ({ discount
                     onChange={(e: any) => updateDiscountDeadlinePrice({ ...discountDeadlinePrice, description: e.target.value })}
                     InputProps={{
                         type:"number",
-                        endAdornment: discountDeadlinePrice.selectedOption === EDiscountDeadlinePrice.DISCOUNT 
+                        endAdornment: discountDeadlinePrice.type === EDiscountDeadlinePrice.DISCOUNT 
                             ? '%'
-                            : discountDeadlinePrice.selectedOption === EDiscountDeadlinePrice.DEADLINE
+                            : discountDeadlinePrice.type === EDiscountDeadlinePrice.DEADLINE
                                 ? 'dias'
                                 : '-'
                     }}

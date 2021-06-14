@@ -5,5 +5,16 @@ export interface IProductComboData {
     uf: string;
     channel: string;
     dateRange: string;
-    discountDeadlinePrice: string;
+    discountDeadlinePrice: IDiscountDeadlinePrice;
+}
+
+export enum EDiscountDeadlinePrice {
+    DISCOUNT = "DISCOUNT",
+    DEADLINE = "DEADLINE",
+    FIXPRICE = "FIXPRICE"
+}
+
+export interface IDiscountDeadlinePrice {
+    type: EDiscountDeadlinePrice;
+    description: string;
 }

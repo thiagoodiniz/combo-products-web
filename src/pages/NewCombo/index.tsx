@@ -3,8 +3,9 @@ import { MenuItem, TextField } from '@material-ui/core';
 import { Container, NewComboForm, SaveFormButton } from './styles';
 import GpdSkuQuant, { IGpdSkuQuantTag } from './GpdSkuQuant';
 import Dates from './Dates';
-import DiscountDeadlinePrice, { EDiscountDeadlinePrice, IDiscountDeadlinePrice } from './DiscountDeadlinePrice';
+import DiscountDeadlinePrice from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
+import { EDiscountDeadlinePrice, IDiscountDeadlinePrice } from '../../services/ProductCombo/types';
 
 interface IState {
     name: string;
@@ -50,7 +51,7 @@ const NewCombo: React.FC = () => {
     const [startDate, setStartDate] = useState<moment.Moment | null>(null);
     const [endDate, setEndDate] = useState<moment.Moment | null>(null);
     const [salesPlatform, setsalesPlatform] = useState<string[]>([]);
-    const [discountDeadlinePrice, setDiscountDeadlinePrice] = useState<IDiscountDeadlinePrice>({ selectedOption: EDiscountDeadlinePrice.DISCOUNT, description: '' });
+    const [discountDeadlinePrice, setDiscountDeadlinePrice] = useState<IDiscountDeadlinePrice>({ type: EDiscountDeadlinePrice.DISCOUNT, description: '' });
 
     const onSave = () => {
         console.log({

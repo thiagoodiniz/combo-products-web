@@ -6,11 +6,21 @@ import inactiveCombo from '../../../../../assets/images/icons/inactive-combo.svg
 import expandTableRowIcon from '../../../../../assets/images/icons/expand-table-row.svg';
 import retractTableRowIcon from '../../../../../assets/images/icons/retract-table-row.svg';
 import ExpandedRow from './ExpandedRow';
-import { IProductComboData } from '../../../../../services/ProductCombo/types';
+import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } from '../../../../../services/ProductCombo/types';
 
 interface IProductComboTableRowProps {
     rowData: IProductComboData;
     isOddRow: boolean;
+}
+
+const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
+    const type = data.type === EDiscountDeadlinePrice.DISCOUNT 
+        ? 'Disconto / '
+        : data.type === EDiscountDeadlinePrice.DEADLINE
+            ? 'Prazo / '
+            : 'Preço fixo';
+    
+    return `${type}${data.description}`;
 }
 
 const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow }) => {
@@ -39,7 +49,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                 <StyledTableCell className="body" align="center">{rowData.uf}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.channel}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.dateRange}</StyledTableCell>
-                <StyledTableCell className="body" align="left">{rowData.discountDeadlinePrice}</StyledTableCell>
+                <StyledTableCell className="body" align="left">{getDiscountDeadlinePriceText(rowData.discountDeadlinePrice)}</StyledTableCell>
 
                 <StyledTableCell className="body actions" align="left">
                     <EditButton 
