@@ -72,9 +72,9 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
             selectedChannels,
             startDate,
             endDate,
-            salesPlatform,
-            fileImg,
             discountDeadlinePrice,
+            fileImg,
+            salesPlatform,
         });
 
         const combo: IProductComboData = {
@@ -87,6 +87,7 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
             startDate: startDate?.format('DD/MM/YYYY') || '',
             endDate: endDate?.format('DD/MM/YYYY') || '',
             discountDeadlinePrice: discountDeadlinePrice,
+            salesPlatform,
         }
 
         setLoading(true);

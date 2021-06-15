@@ -5,6 +5,7 @@ import { ExpandedTableRow, TableCellContainer, ExpandedItemContainer, ExpandedIt
 
 interface IExpandedRowProps {
     gpdSkuQuantItems: IGpdSkuQuantItem[];
+    salesPlatform: string[];
     isOddRow: boolean;
 }
 
@@ -23,7 +24,7 @@ const getSelectedGPDs = (gpdSkuQuantItems: IGpdSkuQuantItem[]): string[] => {
     return noRepeatIds.map(item => getGPDLabel(item));
 }
 
-const ExpandedRow: React.FC<IExpandedRowProps> = ({ gpdSkuQuantItems, isOddRow }) => {
+const ExpandedRow: React.FC<IExpandedRowProps> = ({ gpdSkuQuantItems, salesPlatform, isOddRow }) => {
     const selectedGPDs = getSelectedGPDs(gpdSkuQuantItems);
 
     return (
@@ -64,14 +65,16 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ gpdSkuQuantItems, isOddRow }
                         </ExpandedItemContent>
                     </ExpandedItemContainer>
 
-                    <ExpandedItemContainer className="ecommerce-container">
-                        <ExpandedItemTitle>E-commerce</ExpandedItemTitle>
-                        <ExpandedItemContent>
-                            <span>- MC1</span>
-                            <span>- Smartchain</span>
-                            <span>- Juntos somos mais</span>
-                        </ExpandedItemContent>
-                    </ExpandedItemContainer>
+                    {   salesPlatform.length > 0 &&
+                        <ExpandedItemContainer className="ecommerce-container">
+                            <ExpandedItemTitle>E-commerce</ExpandedItemTitle>
+                            <ExpandedItemContent>
+                                {   salesPlatform.map((platform, idx) => 
+                                    <span key={idx}>{`- ${platform}`}</span>
+                                )}
+                            </ExpandedItemContent>
+                        </ExpandedItemContainer>
+                    }
                 </TableCellContainer>
             </TableCell>
 

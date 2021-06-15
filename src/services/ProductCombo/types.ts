@@ -8,6 +8,7 @@ export interface IProductComboData {
     startDate: string;
     endDate: string;
     discountDeadlinePrice: IDiscountDeadlinePrice;
+    salesPlatform: string[];
 }
 
 export enum EDiscountDeadlinePrice {

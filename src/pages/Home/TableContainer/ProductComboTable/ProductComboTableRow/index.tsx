@@ -69,6 +69,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                 <ExpandedRow 
                     isOddRow={isOddRow}
                     gpdSkuQuantItems={rowData.gpdSkuQuantList}
+                    salesPlatform={rowData.salesPlatform}
                 />
             }
         </>
