@@ -55,7 +55,7 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ gpdSkuQuantItems, isOddRow }
 
                     </ExpandedItemContainer>
 
-                    <ExpandedItemContainer>
+                    <ExpandedItemContainer className="sku-quant">
                         <ExpandedItemTitle>SKU / Quant</ExpandedItemTitle>
                         <ExpandedItemContent>
                             {   gpdSkuQuantItems.map((item, idx) =>
@@ -64,7 +64,7 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ gpdSkuQuantItems, isOddRow }
                         </ExpandedItemContent>
                     </ExpandedItemContainer>
 
-                    <ExpandedItemContainer>
+                    <ExpandedItemContainer className="ecommerce-container">
                         <ExpandedItemTitle>E-commerce</ExpandedItemTitle>
                         <ExpandedItemContent>
                             <span>- MC1</span>

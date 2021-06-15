@@ -25,7 +25,7 @@ export const ExpandedTableRow = styled(TableRow)`
 
 export const TableCellContainer = styled.div`
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
 `;
 
 export const ExpandedItemContainer = styled.div`
@@ -33,6 +33,15 @@ export const ExpandedItemContainer = styled.div`
     flex-direction: column;
     min-height: 6rem;
     margin: 0 2rem 0 0.25rem;
+
+
+    &.ecommerce-container {
+        flex-grow: 1;
+    }
+
+    &.sku-quant {
+        flex-grow: 4;
+    }
 `;
 
 export const ExpandedItemTitle = styled.h5`
