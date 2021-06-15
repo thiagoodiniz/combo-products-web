@@ -1,19 +1,38 @@
 import { TableCell } from '@material-ui/core';
 import React from 'react';
-import { ExpandedTableRow, TableCellContainer, ExpandedItemContainer, ExpandedItemTitle, ExpandedItemContent, SkuQtdContainer } from './styles';
+import { gpds, IGpdSkuQuantItem } from '../../../../../../services/ProductCombo/types';
+import { ExpandedTableRow, TableCellContainer, ExpandedItemContainer, ExpandedItemTitle, ExpandedItemContent } from './styles';
 
 interface IExpandedRowProps {
+    gpdSkuQuantItems: IGpdSkuQuantItem[];
     isOddRow: boolean;
 }
 
-const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
+const getGPDLabel = (id: string): string => {
+    return gpds.find(gpd => gpd.id === id)?.label || '';
+}
+
+const getSelectedGPDs = (gpdSkuQuantItems: IGpdSkuQuantItem[]): string[] => {
+    const noRepeatIds: string[] = [];
+    gpdSkuQuantItems.forEach(item => {
+        if(!noRepeatIds.includes(item.gpd)){
+            noRepeatIds.push(item.gpd);
+        }
+    });
+
+    return noRepeatIds.map(item => getGPDLabel(item));
+}
+
+const ExpandedRow: React.FC<IExpandedRowProps> = ({ gpdSkuQuantItems, isOddRow }) => {
+    const selectedGPDs = getSelectedGPDs(gpdSkuQuantItems);
+
     return (
         <ExpandedTableRow 
             className={isOddRow ? 'odd' : 'even'}
         >
             <TableCell />
 
-            <TableCell colSpan={7}>
+            <TableCell colSpan={8}>
                 <TableCellContainer>
                     <ExpandedItemContainer>
                         <ExpandedItemTitle>Imagem</ExpandedItemTitle>
@@ -24,64 +43,26 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
                             />
                         </ExpandedItemContent>
 
-                        {/* <VerticalDivisor /> */}
                     </ExpandedItemContainer>
 
                     <ExpandedItemContainer>
                         <ExpandedItemTitle>GPD</ExpandedItemTitle>
                         <ExpandedItemContent>
-                            <span>- PREGO</span>
-                            <span>- VERGALHÃO</span>
+                            {   selectedGPDs.map((item, idx) =>
+                                <span key={idx}>{`- ${item}`}</span>
+                            )}
                         </ExpandedItemContent>
 
-                        {/* <VerticalDivisor /> */}
                     </ExpandedItemContainer>
 
-                    <SkuQtdContainer>
-                        <ExpandedItemContainer className="sku-item">
-                            <ExpandedItemTitle>SKU / Quant</ExpandedItemTitle>
-                            <ExpandedItemContent>
-                                <span>- 3263215 / 180un.</span>
-                                <span>- 965463 / 250un.</span>
-                                <span>- 998989 / 20un.</span>
-                            </ExpandedItemContent>
-
-                            {/* <HalfVerticalDivisor /> */}
-                        </ExpandedItemContainer>
-
-                        <ExpandedItemContainer className="sku-item">
-                            <ExpandedItemTitle>&nbsp;</ExpandedItemTitle>
-                            <ExpandedItemContent>
-                                <span>- 669224 / 10un.</span>
-                                <span>- 998922 / 20un.</span>
-                                <span>- 36674 / 260un.</span>
-                            </ExpandedItemContent>
-
-                            {/* <HalfVerticalDivisor /> */}
-                        </ExpandedItemContainer>
-
-                        <ExpandedItemContainer className="sku-item">
-                            <ExpandedItemTitle>&nbsp;</ExpandedItemTitle>
-                            <ExpandedItemContent>
-                                <span>- 326315 / 180un.</span>
-                                <span>- 965463 / 250un.</span>
-                                <span>- 998989 / 20 un.</span>
-                            </ExpandedItemContent>
-                            
-                            {/* <HalfVerticalDivisor /> */}
-                        </ExpandedItemContainer>
-
-                        <ExpandedItemContainer className="sku-item">
-                            <ExpandedItemTitle>&nbsp;</ExpandedItemTitle>
-                            <ExpandedItemContent>
-                                <span>- 669224 / 10un.</span>
-                                <span>- 998922 / 20un.</span>
-                                <span>- 366974 / 260un.</span>
-                            </ExpandedItemContent>
-
-                            {/* <VerticalDivisor /> */}
-                        </ExpandedItemContainer>
-                    </SkuQtdContainer>
+                    <ExpandedItemContainer>
+                        <ExpandedItemTitle>SKU / Quant</ExpandedItemTitle>
+                        <ExpandedItemContent>
+                            {   gpdSkuQuantItems.map((item, idx) =>
+                                <span key={idx}>{`- ${item.sku} / ${item.quantity}`}</span>
+                            )}
+                        </ExpandedItemContent>
+                    </ExpandedItemContainer>
 
                     <ExpandedItemContainer>
                         <ExpandedItemTitle>E-commerce</ExpandedItemTitle>
@@ -94,7 +75,7 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ isOddRow }) => {
                 </TableCellContainer>
             </TableCell>
 
-            <TableCell />
+            {/* <TableCell /> */}
 
         </ExpandedTableRow>
     );

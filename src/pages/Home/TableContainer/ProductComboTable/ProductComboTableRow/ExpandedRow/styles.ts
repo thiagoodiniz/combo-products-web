@@ -25,19 +25,14 @@ export const ExpandedTableRow = styled(TableRow)`
 
 export const TableCellContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 `;
 
 export const ExpandedItemContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 6rem;
-    position: relative;
-    margin: 0 0.25rem;
-
-    &.sku-item {
-        margin: 0 0.75rem;
-    }
+    margin: 0 2rem 0 0.25rem;
 `;
 
 export const ExpandedItemTitle = styled.h5`
@@ -50,9 +45,13 @@ export const ExpandedItemTitle = styled.h5`
 export const ExpandedItemContent = styled.div`
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    margin-right: 2rem;
+    max-height: 5rem;
 
     & > span {
         color: ${({ theme }) => theme.colors.blueGray};
+        margin-right: 2rem;
     }
 
     & > img {
@@ -61,28 +60,3 @@ export const ExpandedItemContent = styled.div`
         border: 1px solid ${({ theme }) => theme.colors.gray6};
     }
 `;
-
-export const SkuQtdContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-
-    & > div {
-        margin-right: 1rem;
-    }
-`;
-
-// export const VerticalDivisor = styled.hr`
-//     position: absolute;
-//     right: -2.125rem;
-//     height: 95%;  
-//     top: 50%;
-//     transform: translateY(-50%);
-//     border-right: 1px solid ${({ theme }) => theme.colors.gray6};
-//     opacity: 0.4;
-// `;
-
-// export const HalfVerticalDivisor = styled(VerticalDivisor)`
-//     height: 40%;
-//     top: 60%;
-//     margin: 0 0.5rem;
-// `;

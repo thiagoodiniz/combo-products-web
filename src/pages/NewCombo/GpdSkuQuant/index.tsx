@@ -2,27 +2,16 @@ import React, { useState } from 'react';
 import { Button, MenuItem, TextField } from '@material-ui/core';
 import { Container, AddGPDButton, TagsContainer } from './styles';
 import plusIcon from '../../../assets/images/icons/plus-small.svg';
-
-interface IGpd {
-    id: string;
-    label: string;
-}
-
-const gpds: IGpd[] = [
-    { id: '1', label: 'Prego'},
-    { id: '2', label: 'Vergalhão'},
-];
-
-export interface IGpdSkuQuantTag {
-    gpd: IGpd;
-    sku: string;
-    quantity: string;
-}
+import { gpds, IGpd, IGpdSkuQuantItem } from '../../../services/ProductCombo/types';
 
 interface IGpdSkuQuantProps {
-    tagList: IGpdSkuQuantTag[];
-    updateTagList(newTagList: IGpdSkuQuantTag[]): void;
+    tagList: IGpdSkuQuantItem[];
+    updateTagList(newTagList: IGpdSkuQuantItem[]): void;
     disabled: boolean;
+}
+
+const getGPDLabel = (id: string): string => {
+    return gpds.find(gpd => gpd.id === id)?.label || '';
 }
 
 const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList, disabled }) => {
@@ -33,7 +22,7 @@ const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList, disa
 
     const onAddTag = () => {
         if(gpd && sku && quantity){
-            const newTag: IGpdSkuQuantTag = { gpd, sku, quantity };
+            const newTag: IGpdSkuQuantItem = { gpd: gpd.id, sku, quantity };
             updateTagList([...tagList, newTag]);
             setGpd(undefined);
             setSku('');
@@ -98,7 +87,7 @@ const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList, disa
                 <TagsContainer>
                     {   tagList.map((tag, idx) => 
                         <div className={`tag tag-${idx}`} key={idx}>
-                            <span>{ `${tag.gpd.label} - ${tag.sku} - ${tag.quantity}` }</span>
+                            <span>{ `${getGPDLabel(tag.gpd)} - ${tag.sku} - ${tag.quantity}` }</span>
                             
                             {   !disabled &&
                                 <Button title="remover" onClick={() => onRemoveTag(idx)}>x</Button>    

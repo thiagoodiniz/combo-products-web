@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { MenuItem, TextField } from '@material-ui/core';
 import { Container, NewComboForm, SaveFormButton } from './styles';
-import GpdSkuQuant, { IGpdSkuQuantTag } from './GpdSkuQuant';
+import GpdSkuQuant from './GpdSkuQuant';
 import Dates from './Dates';
 import DiscountDeadlinePrice from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
-import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } from '../../services/ProductCombo/types';
+import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IGpdSkuQuantItem, IProductComboData } from '../../services/ProductCombo/types';
 import { ProductComboService } from '../../services/ProductCombo';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ImgUploadField from './ImgUploadField';
@@ -54,7 +54,7 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
 
     const [comboName, setComboName] = useState('');
     const [salesOffice, setSalesOffice] = useState('');
-    const [tagList, setTagList] = useState<IGpdSkuQuantTag[]>([]);
+    const [gpdSkuQuantList, setGpdSkuQuantList] = useState<IGpdSkuQuantItem[]>([]);
     const [selectedState, setSelectedState] = useState('');
     const [selectedChannels, setSelectedChannels] = useState<string[]>([]);
     const [startDate, setStartDate] = useState<moment.Moment | null>(null);
@@ -67,7 +67,7 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
         console.log({
             comboName,
             salesOffice,
-            tagList,
+            gpdSkuQuantList,
             selectedState,
             selectedChannels,
             startDate,
@@ -81,6 +81,7 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
             active: true,
             name: comboName,
             salesOffice,
+            gpdSkuQuantList,
             uf: selectedState,
             channels: selectedChannels,
             startDate: startDate?.format('DD/MM/YYYY') || '',
@@ -127,8 +128,8 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
                 />
 
                 <GpdSkuQuant 
-                    tagList={tagList}
-                    updateTagList={setTagList}
+                    tagList={gpdSkuQuantList}
+                    updateTagList={setGpdSkuQuantList}
                     disabled={loading}
                 />
 
