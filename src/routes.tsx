@@ -79,7 +79,7 @@ const Routes: React.FC = () => {
                     <NewCombo 
                         onAddCombo={() => {
                             history.push(ERoutes.HOME);
-                            setCombos([]);
+                            setCombos(undefined);
                         }}
                     />
                 } />

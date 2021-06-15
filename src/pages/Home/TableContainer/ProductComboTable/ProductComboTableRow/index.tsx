@@ -7,6 +7,7 @@ import expandTableRowIcon from '../../../../../assets/images/icons/expand-table-
 import retractTableRowIcon from '../../../../../assets/images/icons/retract-table-row.svg';
 import ExpandedRow from './ExpandedRow';
 import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } from '../../../../../services/ProductCombo/types';
+import { Button, Dialog, DialogActions, DialogContent } from '@material-ui/core';
 
 interface IProductComboTableRowProps {
     rowData: IProductComboData;
@@ -26,15 +27,18 @@ const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
 
 const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow, removeCombo }) => {
     const [isExpanded, setIsExpanded] = useState(false);
+
+    const [canShowRemoveConfirmationModal, setCanShowRemoveConfirmationModal] = useState(false);
     
     const onRemoveCombo = () => {
+        setCanShowRemoveConfirmationModal(false);
         const row = document.getElementById(`combo-${rowData.id}`) as HTMLElement;
         row.classList.add('remove-combo');
 
         setTimeout(() => {
             row.classList.remove('remove-combo');
             removeCombo(rowData.id);
-        }, 400);
+        }, 600);
     } 
 
     return (
@@ -72,7 +76,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                     />
                     <RemoveButton
                         title="Remover"
-                        onClick={onRemoveCombo}
+                        onClick={() => setCanShowRemoveConfirmationModal(true)}
                     />
                 </StyledTableCell>
 
@@ -85,6 +89,34 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                     salesPlatform={rowData.salesPlatform}
                 />
             }
+
+            <Dialog
+                open={canShowRemoveConfirmationModal}
+                onClose={() => setCanShowRemoveConfirmationModal(false)}
+            >
+                <DialogContent style={{margin: '1rem 0'}}>
+                        Tem certeza que deseja remover o combo <strong>{ rowData.name }</strong>?
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        style={{textTransform: 'none'}}
+                        autoFocus 
+                        onClick={() => setCanShowRemoveConfirmationModal(false)} 
+                        color="secondary"
+                        variant="contained"
+                    >
+                        Não
+                    </Button>
+                    <Button 
+                        style={{textTransform: 'none'}}
+                        onClick={onRemoveCombo} 
+                        color="primary"
+                        variant="contained"
+                    >
+                        Sim
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     );
 }

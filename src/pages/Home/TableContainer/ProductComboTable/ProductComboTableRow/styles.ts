@@ -18,7 +18,7 @@ export const StyledTableRow = styled(TableRow)`
         }
 
         &.remove-combo {
-            animation: removeOpacity 0.5s ease-out;
+            animation: removeOpacity 0.75s ease-out;
             @keyframes removeOpacity {
                 0% {
                     opacity: 1;
