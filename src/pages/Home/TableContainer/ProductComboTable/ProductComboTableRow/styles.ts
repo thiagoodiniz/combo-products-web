@@ -16,6 +16,18 @@ export const StyledTableRow = styled(TableRow)`
         &:last-child {
             border-bottom: 1px solid ${({ theme }) => theme.colors.gray6};
         }
+
+        &.remove-combo {
+            animation: removeOpacity 0.5s ease-out;
+            @keyframes removeOpacity {
+                0% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+        }
     }
 `;
 

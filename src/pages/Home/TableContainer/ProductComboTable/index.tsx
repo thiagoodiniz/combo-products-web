@@ -20,9 +20,10 @@ interface IProductComboTableProps {
     combos: IProductComboData[];
     loading: boolean;
     error: boolean;
+    removeCombo(comboId: string): void;
 }
 
-const ProductComboTable: React.FC<IProductComboTableProps> = ({ combos, loading, error }) => {
+const ProductComboTable: React.FC<IProductComboTableProps> = ({ combos, loading, error, removeCombo }) => {
     const classes = useStyles();
     const [selectedPage, setSelectedPage] = useState(1);
     const [rowsPerPage] = React.useState(8);
@@ -55,6 +56,7 @@ const ProductComboTable: React.FC<IProductComboTableProps> = ({ combos, loading,
                                         key={idx}
                                         rowData={row}
                                         isOddRow={(idx % 2 === 1)}
+                                        removeCombo={removeCombo}
                                     />
                                 ))}
                             </TableBody>

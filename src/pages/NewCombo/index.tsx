@@ -5,7 +5,7 @@ import GpdSkuQuant from './GpdSkuQuant';
 import Dates from './Dates';
 import DiscountDeadlinePrice from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
-import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IGpdSkuQuantItem, IProductComboData } from '../../services/ProductCombo/types';
+import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IGpdSkuQuantItem } from '../../services/ProductCombo/types';
 import { ProductComboService } from '../../services/ProductCombo';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ImgUploadField from './ImgUploadField';
@@ -77,24 +77,11 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
             salesPlatform,
         });
 
-        const combo: IProductComboData = {
-            active: true,
-            name: comboName,
-            salesOffice,
-            gpdSkuQuantList,
-            uf: selectedState,
-            channels: selectedChannels,
-            startDate: startDate?.format('DD/MM/YYYY') || '',
-            endDate: endDate?.format('DD/MM/YYYY') || '',
-            discountDeadlinePrice: discountDeadlinePrice,
-            salesPlatform,
-        }
-
         setLoading(true);
 
         setTimeout(() => {
             const comboSvc = new ProductComboService();
-            comboSvc.saveCombo(combo)
+            comboSvc.saveCombo(comboName, salesOffice, gpdSkuQuantList, selectedState, selectedChannels, startDate?.format('DD/MM/YYYY') || '', endDate?.format('DD/MM/YYYY') || '', discountDeadlinePrice, salesPlatform)
                 .then(() => {
                     onAddCombo();
                 })

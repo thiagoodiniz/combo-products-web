@@ -46,6 +46,17 @@ const Routes: React.FC = () => {
         }
     });
 
+    const removeCombo = (comboId: string) => {
+        const comboSvc = new ProductComboService();
+        comboSvc.removeCombo(comboId)
+            .then((combos) => {
+                setCombos(combos);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }
+
     return (
         <>
             {   !matchPath(pathname , ERoutes.LOGIN) &&
@@ -60,6 +71,7 @@ const Routes: React.FC = () => {
                         combos={combos}
                         loading={loading}
                         error={error}
+                        removeCombo={removeCombo}
                     />} 
                 />
                 

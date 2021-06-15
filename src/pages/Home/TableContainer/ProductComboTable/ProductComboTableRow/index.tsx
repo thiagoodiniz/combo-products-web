@@ -11,6 +11,7 @@ import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } fro
 interface IProductComboTableRowProps {
     rowData: IProductComboData;
     isOddRow: boolean;
+    removeCombo(comboId: string): void;
 }
 
 const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
@@ -23,12 +24,23 @@ const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
     return `${type}${data.description}`;
 }
 
-const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow }) => {
+const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow, removeCombo }) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    
+    const onRemoveCombo = () => {
+        const row = document.getElementById(`combo-${rowData.id}`) as HTMLElement;
+        row.classList.add('remove-combo');
+
+        setTimeout(() => {
+            row.classList.remove('remove-combo');
+            removeCombo(rowData.id);
+        }, 400);
+    } 
 
     return (
         <>
             <StyledTableRow
+                id={`combo-${rowData.id}`}
                 className={isOddRow ? 'odd' : 'even'}
             >
                 <StyledTableCell className="body expand" align="center">
@@ -58,8 +70,9 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                     <DuplicateButton 
                         title="Duplicar"
                     />
-                    <RemoveButton 
+                    <RemoveButton
                         title="Remover"
+                        onClick={onRemoveCombo}
                     />
                 </StyledTableCell>
 
