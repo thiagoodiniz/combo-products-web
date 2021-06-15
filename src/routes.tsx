@@ -17,7 +17,7 @@ const Routes: React.FC = () => {
     const { pathname } = useLocation();
     const history = useHistory();
 
-    const [combos, setCombos] = useState<IProductComboData[]>([]);
+    const [combos, setCombos] = useState<IProductComboData[]>();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
@@ -41,7 +41,7 @@ const Routes: React.FC = () => {
                 });
         }
 
-        if(!matchPath(pathname , ERoutes.LOGIN) && !loading && !error && combos.length === 0) {
+        if(!matchPath(pathname , ERoutes.LOGIN) && !loading && !error && combos === undefined) {
             fetchCombos();
         }
     });
@@ -68,7 +68,7 @@ const Routes: React.FC = () => {
 
                 <Route path={ERoutes.HOME} render={() => 
                     <Home 
-                        combos={combos}
+                        combos={combos || []}
                         loading={loading}
                         error={error}
                         removeCombo={removeCombo}

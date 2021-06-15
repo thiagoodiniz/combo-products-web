@@ -91,6 +91,10 @@ const ProductComboTable: React.FC<IProductComboTableProps> = ({ combos, loading,
                 <span className="error">Falha ao carregar os combos. <br/>Por favor, tente novamente mais tarde. </span>
             }
 
+            {   !loading && combos.length === 0 &&
+                <span className="no-combos">Não há combos cadastrados</span>
+            }
+
         </Container>
     );
 }

@@ -18,6 +18,15 @@ export const Container = styled.div`
         margin: auto;
         text-align: center;
     }
+
+    & > span.no-combos {
+        display: block;
+        font-size: 1.125rem;
+        padding: 1rem;
+        color: ${({ theme }) => theme.colors.blueDark};
+        margin: auto;
+        text-align: center;
+    }
 `;
 
 export const TableContainer = styled.div`
