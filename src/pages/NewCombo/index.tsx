@@ -8,6 +8,7 @@ import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
 import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } from '../../services/ProductCombo/types';
 import { ProductComboService } from '../../services/ProductCombo';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ImgUploadField from './ImgUploadField';
 
 interface IState {
     name: string;
@@ -59,6 +60,7 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
     const [startDate, setStartDate] = useState<moment.Moment | null>(null);
     const [endDate, setEndDate] = useState<moment.Moment | null>(null);
     const [salesPlatform, setsalesPlatform] = useState<string[]>([]);
+    const [fileImg, setFileImg] = useState<File>();
     const [discountDeadlinePrice, setDiscountDeadlinePrice] = useState<IDiscountDeadlinePrice>({ type: EDiscountDeadlinePrice.DISCOUNT, description: '' });
 
     const onSave = () => {
@@ -71,6 +73,7 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
             startDate,
             endDate,
             salesPlatform,
+            fileImg,
             discountDeadlinePrice,
         });
 
@@ -164,6 +167,12 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
                 <DiscountDeadlinePrice 
                     discountDeadlinePrice={discountDeadlinePrice}
                     updateDiscountDeadlinePrice={setDiscountDeadlinePrice}
+                    disabled={loading}
+                />
+
+                <ImgUploadField 
+                    file={fileImg}
+                    setFile={setFileImg}
                     disabled={loading}
                 />
 
