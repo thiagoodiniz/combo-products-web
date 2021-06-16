@@ -87,6 +87,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                     isOddRow={isOddRow}
                     gpdSkuQuantItems={rowData.gpdSkuQuantList}
                     salesPlatform={rowData.salesPlatform}
+                    base64FileImage={rowData.base64FileImg}
                 />
             }
 

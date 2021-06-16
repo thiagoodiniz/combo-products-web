@@ -4,6 +4,7 @@ import { gpds, IGpdSkuQuantItem } from '../../../../../../services/ProductCombo/
 import { ExpandedTableRow, TableCellContainer, ExpandedItemContainer, ExpandedItemTitle, ExpandedItemContent } from './styles';
 
 interface IExpandedRowProps {
+    base64FileImage: string;
     gpdSkuQuantItems: IGpdSkuQuantItem[];
     salesPlatform: string[];
     isOddRow: boolean;
@@ -24,7 +25,7 @@ const getSelectedGPDs = (gpdSkuQuantItems: IGpdSkuQuantItem[]): string[] => {
     return noRepeatIds.map(item => getGPDLabel(item));
 }
 
-const ExpandedRow: React.FC<IExpandedRowProps> = ({ gpdSkuQuantItems, salesPlatform, isOddRow }) => {
+const ExpandedRow: React.FC<IExpandedRowProps> = ({ base64FileImage, gpdSkuQuantItems, salesPlatform, isOddRow }) => {
     const selectedGPDs = getSelectedGPDs(gpdSkuQuantItems);
 
     return (
@@ -39,7 +40,7 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ gpdSkuQuantItems, salesPlatf
                         <ExpandedItemTitle>Imagem</ExpandedItemTitle>
                         <ExpandedItemContent>
                             <img 
-                                src="https://coresvivashomecenter.fbitsstatic.net/img/p/prego-com-cabeca-19x30-1kg-gerdau-90275/276841.jpg" 
+                                src={base64FileImage}
                                 alt="product"
                             />
                         </ExpandedItemContent>

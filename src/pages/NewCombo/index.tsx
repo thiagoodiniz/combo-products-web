@@ -60,7 +60,7 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
     const [startDate, setStartDate] = useState<moment.Moment | null>(null);
     const [endDate, setEndDate] = useState<moment.Moment | null>(null);
     const [salesPlatform, setsalesPlatform] = useState<string[]>([]);
-    const [fileImg, setFileImg] = useState<File>();
+    const [base64FileImg, setBase64FileImg] = useState<string>('');
     const [discountDeadlinePrice, setDiscountDeadlinePrice] = useState<IDiscountDeadlinePrice>({ type: EDiscountDeadlinePrice.DISCOUNT, description: '' });
 
     const onSave = () => {
@@ -73,7 +73,7 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
             startDate,
             endDate,
             discountDeadlinePrice,
-            fileImg,
+            base64FileImg,
             salesPlatform,
         });
 
@@ -81,7 +81,7 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
 
         setTimeout(() => {
             const comboSvc = new ProductComboService();
-            comboSvc.saveCombo(comboName, salesOffice, gpdSkuQuantList, selectedState, selectedChannels, startDate?.format('DD/MM/YYYY') || '', endDate?.format('DD/MM/YYYY') || '', discountDeadlinePrice, salesPlatform)
+            comboSvc.saveCombo(comboName, salesOffice, gpdSkuQuantList, selectedState, selectedChannels, startDate?.format('DD/MM/YYYY') || '', endDate?.format('DD/MM/YYYY') || '', discountDeadlinePrice, base64FileImg, salesPlatform)
                 .then(() => {
                     onAddCombo();
                 })
@@ -160,8 +160,8 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
                 />
 
                 <ImgUploadField 
-                    file={fileImg}
-                    setFile={setFileImg}
+                    base64File={base64FileImg}
+                    setBase64File={setBase64FileImg}
                     disabled={loading}
                 />
 

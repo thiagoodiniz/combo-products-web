@@ -9,6 +9,7 @@ export interface IProductComboData {
     startDate: string;
     endDate: string;
     discountDeadlinePrice: IDiscountDeadlinePrice;
+    base64FileImg: string;
     salesPlatform: string[];
 }
 
