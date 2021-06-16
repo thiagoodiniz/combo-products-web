@@ -35,7 +35,7 @@ export const Container = styled.div`
     }
 `;
 
-export const NewComboForm = styled.div`
+export const NewComboForm = styled.form`
     display: flex;
     flex-direction: column;
 

@@ -91,19 +91,6 @@ const NewCombo: React.FC<INewComboProps> = ({ saveCombo, comboToEdit, editCombo 
     });
 
     const onSave = () => {
-        console.log({
-            comboName,
-            salesOffice,
-            gpdSkuQuantList,
-            selectedState,
-            selectedChannels,
-            startDate,
-            endDate,
-            discountDeadlinePrice,
-            base64FileImg,
-            salesPlatform,
-        });
-
         setLoading(true);
 
         setTimeout(() => {
@@ -140,6 +127,10 @@ const NewCombo: React.FC<INewComboProps> = ({ saveCombo, comboToEdit, editCombo 
         }, 1000);
     }
 
+    const canSave = (): boolean => {
+        return comboName !== '';
+    }
+
     return (
         <Container>
             <h2>{isEditing ? 'Editar combo' : 'Criar novo combo'}</h2>
@@ -148,11 +139,12 @@ const NewCombo: React.FC<INewComboProps> = ({ saveCombo, comboToEdit, editCombo 
                 <TextField
                     className="form-input name"
                     error={false}
+                    required
                     label="Nome do combo"
                     value={comboName}
                     onChange={(e: any) => setComboName(e.target.value)}
                     disabled={loading}
-                    // helperText="Incorrect entry."
+                    // helperText="Campo obrigatório"
                 />
 
                 <TextField
@@ -239,7 +231,7 @@ const NewCombo: React.FC<INewComboProps> = ({ saveCombo, comboToEdit, editCombo 
 
                 <SaveFormButton 
                     onClick={onSave}
-                    disabled={loading}
+                    disabled={loading || !canSave()}
                     variant="contained"
                 >
                     {   loading &&
