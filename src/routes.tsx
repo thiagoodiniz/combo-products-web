@@ -7,6 +7,8 @@ import NewCombo from './pages/NewCombo';
 import { IDiscountDeadlinePrice, IGpdSkuQuantItem, IProductComboData } from './services/ProductCombo/types';
 import { ProductComboService } from './services/ProductCombo';
 import EditCombo from './pages/EditCombo';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export enum ERoutes {
     LOGIN = '/login',
@@ -51,7 +53,17 @@ const Routes: React.FC = () => {
     const saveCombo = (name: string, salesOffice: string, gpdSkuQuantList: IGpdSkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]) => {
         const comboSvc = new ProductComboService();
         comboSvc.saveCombo(name, salesOffice, gpdSkuQuantList, uf, channels, startDate, endDate, discountDeadlinePrice, base64FileImg, salesPlatform)
-            .then(combos => setCombos(combos))
+            .then(combos => {
+                toast.success('Combo salvo com sucesso.', {
+                    position: "top-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                setCombos(combos);
+            })
             .catch(err => console.log(err));
 
         history.push(ERoutes.HOME);
@@ -62,6 +74,14 @@ const Routes: React.FC = () => {
         const comboSvc = new ProductComboService();
         comboSvc.removeCombo(comboId)
             .then((combos) => {
+                toast.success('Combo removido com sucesso.', {
+                    position: "top-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
                 setCombos(combos);
             })
             .catch((err) => {
@@ -72,7 +92,17 @@ const Routes: React.FC = () => {
     const editCombo = (combo: IProductComboData): void => {
         const comboSvc = new ProductComboService();
         comboSvc.editCombo(combo)
-            .then(combos => setCombos(combos))
+            .then(combos => {
+                toast.success('Combo editado com sucesso.', {
+                    position: "top-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                setCombos(combos);
+            })
             .catch(err => console.log(err));
             
         history.push(ERoutes.HOME);
@@ -90,14 +120,27 @@ const Routes: React.FC = () => {
     const duplicateCombo = (combo: IProductComboData) => {
         const comboSvc = new ProductComboService();
         comboSvc.duplicateCombo(combo)
-            .then(combos => setCombos(combos))
+            .then(combos => { 
+                toast.success('Combo duplicado com sucesso.', {
+                    position: "top-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                setCombos(combos);
+            })
             .catch(err => console.log(err));
     }
 
     return (
         <>
             {   !matchPath(pathname, ERoutes.LOGIN) &&
-                <Header />
+                <>
+                    <Header />
+                    <ToastContainer />
+                </>
             }
 
             <Switch>
