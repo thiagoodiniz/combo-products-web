@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IconButton } from '@material-ui/core';
 import firstPage from '../../../../../assets/images/icons/table-pagination/first-page.svg';
 import previousPage from '../../../../../assets/images/icons/table-pagination/previous-page.svg';
@@ -33,7 +33,11 @@ interface IProductTableFooterProps {
 }
 
 const ProductTableFooter: React.FC<IProductTableFooterProps> = ({ totalRows, rowsPerPage, setSelectedPage }) => {
-    const [pagesCount] = useState((totalRows % rowsPerPage === 0 ? totalRows/rowsPerPage : (Math.floor(totalRows / rowsPerPage) + 1) ));
+
+    const [pagesCount, setPagesCount] = useState(0);
+    useEffect(() => {
+        setPagesCount((totalRows % rowsPerPage === 0 ? totalRows/rowsPerPage : (Math.floor(totalRows / rowsPerPage) + 1) ));
+    },[totalRows, rowsPerPage]);
 
     return (
         <Container>
