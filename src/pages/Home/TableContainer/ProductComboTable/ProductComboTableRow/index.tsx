@@ -8,6 +8,8 @@ import retractTableRowIcon from '../../../../../assets/images/icons/retract-tabl
 import ExpandedRow from './ExpandedRow';
 import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } from '../../../../../services/ProductCombo/types';
 import { Button, Dialog, DialogActions, DialogContent } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { ERoutes } from '../../../../../routes';
 
 interface IProductComboTableRowProps {
     rowData: IProductComboData;
@@ -16,16 +18,29 @@ interface IProductComboTableRowProps {
 }
 
 const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
+
+    const getDiscountDeadlinePriceFinalText = (type: EDiscountDeadlinePrice): string => {
+        switch(type) {
+            case EDiscountDeadlinePrice.DISCOUNT:
+                return '%';
+            case EDiscountDeadlinePrice.DEADLINE:
+                return ' dias';
+            default:
+                return '';
+        }
+    }
+
     const type = data.type === EDiscountDeadlinePrice.DISCOUNT 
         ? 'Desconto / '
         : data.type === EDiscountDeadlinePrice.DEADLINE
             ? 'Prazo / '
             : 'Preço fixo';
     
-    return `${type}${data.description}`;
+    return `${type}${data.description}${getDiscountDeadlinePriceFinalText(data.type)}`;
 }
 
 const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow, removeCombo }) => {
+    const history = useHistory();
     const [isExpanded, setIsExpanded] = useState(false);
 
     const [canShowRemoveConfirmationModal, setCanShowRemoveConfirmationModal] = useState(false);
@@ -70,6 +85,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                 <StyledTableCell className="body actions" align="left">
                     <EditButton 
                         title="Editar"
+                        onClick={() => history.push(`${ERoutes.EDIT_COMBO}/${rowData.id}`)}
                     />
                     <DuplicateButton 
                         title="Duplicar"
