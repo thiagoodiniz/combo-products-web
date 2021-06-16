@@ -87,6 +87,13 @@ const Routes: React.FC = () => {
         }
     }
 
+    const duplicateCombo = (combo: IProductComboData) => {
+        const comboSvc = new ProductComboService();
+        comboSvc.duplicateCombo(combo)
+            .then(combos => setCombos(combos))
+            .catch(err => console.log(err));
+    }
+
     return (
         <>
             {   !matchPath(pathname, ERoutes.LOGIN) &&
@@ -102,6 +109,7 @@ const Routes: React.FC = () => {
                         loading={loading}
                         error={error}
                         removeCombo={removeCombo}
+                        duplicateCombo={duplicateCombo}
                     />} 
                 />
                 

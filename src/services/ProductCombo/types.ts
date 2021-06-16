@@ -11,6 +11,8 @@ export interface IProductComboData {
     discountDeadlinePrice: IDiscountDeadlinePrice;
     base64FileImg: string;
     salesPlatform: string[];
+
+    recentlyAdded?: boolean;
 }
 
 export enum EDiscountDeadlinePrice {

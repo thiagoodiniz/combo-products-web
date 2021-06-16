@@ -28,6 +28,12 @@ export const StyledTableRow = styled(TableRow)`
                 }
             }
         }
+
+        transition: all 0.25s ease-in-out;
+        &.duplicated-combo {
+            border: 2px solid ${({ theme }) => theme.colors.blue3};
+            background: ${({ theme }) => theme.colors.gray} 0% 0% no-repeat padding-box;
+        }
     }
 `;
 

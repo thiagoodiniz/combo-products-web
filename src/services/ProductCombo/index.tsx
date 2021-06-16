@@ -52,4 +52,27 @@ export class ProductComboService {
         combos[comboIdx] = combo;
         return combos;
     }
+
+    async duplicateCombo(combo: IProductComboData): Promise<IProductComboData[]> {
+        const newCombo: IProductComboData = {
+            ...combo,
+            id: (combos.length + 1).toString(),
+            recentlyAdded: true,
+        }
+        
+        const originComboIdx = combos.findIndex(cb => cb.id === combo.id);
+        
+        const newCombosList: IProductComboData[] = [];
+
+        combos.forEach((cb, idx) => {
+            newCombosList.push(cb);
+            if(idx === originComboIdx){
+                newCombosList.push(newCombo);
+            }
+        });
+
+        combos = newCombosList;
+        
+        return combos;
+    }
 }

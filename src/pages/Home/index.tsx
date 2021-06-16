@@ -9,9 +9,10 @@ interface IHomeProps {
     loading: boolean;
     error: boolean;
     removeCombo(comboId: string): void;
+    duplicateCombo(combo: IProductComboData): void;
 }
 
-const Home: React.FC<IHomeProps> = ({ combos, loading, error, removeCombo }) => {
+const Home: React.FC<IHomeProps> = ({ combos, loading, error, removeCombo, duplicateCombo }) => {
     return (
         <Container>
             
@@ -26,6 +27,7 @@ const Home: React.FC<IHomeProps> = ({ combos, loading, error, removeCombo }) => 
                 loading={loading}
                 error={error}
                 removeCombo={removeCombo}
+                duplicateCombo={duplicateCombo}
             />
         </Container>
     );

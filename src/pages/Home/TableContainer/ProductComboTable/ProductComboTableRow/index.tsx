@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyledTableCell } from '../styles';
 import { StyledTableRow, ActionButton, EditButton, DuplicateButton, RemoveButton } from './styles';
 import activeCombo from '../../../../../assets/images/icons/active-combo.svg';
@@ -7,14 +7,15 @@ import expandTableRowIcon from '../../../../../assets/images/icons/expand-table-
 import retractTableRowIcon from '../../../../../assets/images/icons/retract-table-row.svg';
 import ExpandedRow from './ExpandedRow';
 import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } from '../../../../../services/ProductCombo/types';
-import { Button, Dialog, DialogActions, DialogContent } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { ERoutes } from '../../../../../routes';
+import ConfirmDialog from '../../../../../ components/ConfirmDialog';
 
 interface IProductComboTableRowProps {
     rowData: IProductComboData;
     isOddRow: boolean;
     removeCombo(comboId: string): void;
+    duplicateCombo(combo: IProductComboData): void;
 }
 
 const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
@@ -39,11 +40,12 @@ const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
     return `${type}${data.description}${getDiscountDeadlinePriceFinalText(data.type)}`;
 }
 
-const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow, removeCombo }) => {
+const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow, removeCombo, duplicateCombo }) => {
     const history = useHistory();
     const [isExpanded, setIsExpanded] = useState(false);
 
     const [canShowRemoveConfirmationModal, setCanShowRemoveConfirmationModal] = useState(false);
+    const [canShowDuplicateConfirmationModal, setCanShowDuplicateConfirmationModal] = useState(false);
     
     const onRemoveCombo = () => {
         setCanShowRemoveConfirmationModal(false);
@@ -55,6 +57,19 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
             removeCombo(rowData.id);
         }, 600);
     } 
+
+    useEffect(() => {
+        if(rowData.recentlyAdded === true){
+            rowData.recentlyAdded = false;
+            const row = document.getElementById(`combo-${rowData.id}`);
+            if(row){
+                row.classList.add('duplicated-combo');
+                setTimeout(() => {
+                    row.classList.remove('duplicated-combo');
+                }, 1500);
+            }
+        }
+    });
 
     return (
         <>
@@ -89,6 +104,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                     />
                     <DuplicateButton 
                         title="Duplicar"
+                        onClick={() => setCanShowDuplicateConfirmationModal(true)}
                     />
                     <RemoveButton
                         title="Remover"
@@ -107,33 +123,23 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                 />
             }
 
-            <Dialog
-                open={canShowRemoveConfirmationModal}
-                onClose={() => setCanShowRemoveConfirmationModal(false)}
-            >
-                <DialogContent style={{margin: '1rem 0'}}>
-                        Tem certeza que deseja remover o combo <strong>{ rowData.name }</strong>?
-                </DialogContent>
-                <DialogActions>
-                    <Button
-                        style={{textTransform: 'none'}}
-                        autoFocus 
-                        onClick={() => setCanShowRemoveConfirmationModal(false)} 
-                        color="secondary"
-                        variant="contained"
-                    >
-                        Não
-                    </Button>
-                    <Button 
-                        style={{textTransform: 'none'}}
-                        onClick={onRemoveCombo} 
-                        color="primary"
-                        variant="contained"
-                    >
-                        Sim
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            <ConfirmDialog 
+                title={<span>Tem certeza que deseja remover o combo <strong>{ rowData.name }</strong>?</span>}
+                canShowDialog={canShowRemoveConfirmationModal}
+                onCancel={() => setCanShowRemoveConfirmationModal(false)}
+                onConfirm={onRemoveCombo}
+            />
+
+            <ConfirmDialog 
+                title={<span>Tem certeza que deseja duplicar o combo <strong>{ rowData.name }</strong>?</span>}
+                canShowDialog={canShowDuplicateConfirmationModal}
+                onCancel={() => setCanShowDuplicateConfirmationModal(false)}
+                onConfirm={() => { 
+                    duplicateCombo(rowData);
+                    setCanShowDuplicateConfirmationModal(false);
+                }}
+            />
+
         </>
     );
 }

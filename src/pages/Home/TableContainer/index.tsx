@@ -9,9 +9,10 @@ interface ITableContainerProps {
     loading: boolean;
     error: boolean;
     removeCombo(comboId: string): void;
+    duplicateCombo(combo: IProductComboData): void;
 }
 
-const TableContainer: React.FC<ITableContainerProps> = ({ combos, loading, error, removeCombo }) => {
+const TableContainer: React.FC<ITableContainerProps> = ({ combos, loading, error, removeCombo, duplicateCombo }) => {
     return (
         <Container>
             <TableFilter />
@@ -20,6 +21,7 @@ const TableContainer: React.FC<ITableContainerProps> = ({ combos, loading, error
                 loading={loading}
                 error={error}
                 removeCombo={removeCombo}
+                duplicateCombo={duplicateCombo}
             />
         </Container>
     );
