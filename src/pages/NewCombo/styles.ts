@@ -19,6 +19,20 @@ export const Container = styled.div`
         font-size: 1.25rem;
         margin-bottom: 0.5rem;
     }
+
+    & > div.actions {
+        /* display: flex; */
+        /* align-items: center; */
+        align-self: flex-end;
+
+        & > a {
+            text-decoration: none;
+            & > button {
+                font-weight: 600;
+                margin-right: 1rem;
+            }
+        }
+    }
 `;
 
 export const NewComboForm = styled.div`
@@ -50,7 +64,6 @@ export const SaveFormButton = styled(Button)`
         font-weight: 600;
         text-transform: none;
         width: 6rem;
-        align-self: flex-end;
         
         &:hover {
             background-color: ${({ theme }) => theme.colors.blue};

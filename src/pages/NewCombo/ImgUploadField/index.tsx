@@ -3,15 +3,13 @@ import Dropzone from 'react-dropzone';
 import { Container, ImgUploadedPreviewContainer, SelectFileButton } from './styles';
 import plusGrayIcon from '../../../assets/images/icons/plus-gray.svg';
 interface IImgUploadFieldProps {
-    base64File: string | undefined;
+    base64File: string;
     setBase64File(base64File: string): void;
     disabled: boolean;
 }
 
 const ImgUploadField: React.FC<IImgUploadFieldProps> = ({ base64File, setBase64File, disabled }) => {
     const accepetdFileTypes = ['image/jpeg', 'image/png'];
-
-    const [uploadedFile, setUploadedFile] = useState<File>();
 
     const [errorMessage, seterrorMessage] = useState('');
 
@@ -30,22 +28,19 @@ const ImgUploadField: React.FC<IImgUploadFieldProps> = ({ base64File, setBase64F
     const onDrop = (files: File[]) => {
         (document.getElementById('file-upload-container') as HTMLElement).style.opacity = '1'
         const uploadedFile = files[0];
-
         if(accepetdFileTypes.includes(uploadedFile.type)) {
             seterrorMessage('');
             
-            setUploadedFile(Object.assign(uploadedFile, {
-                preview: URL.createObjectURL(uploadedFile)
-            }));
+            setBase64File(URL.createObjectURL(uploadedFile));
 
             getBase64FromFile(uploadedFile).then((base64UploadedFile: unknown) => setBase64File(base64UploadedFile as string));
         } else {
-            setUploadedFile(undefined);
+            setBase64File('');
             seterrorMessage('Tipos de arquivos permitidos: .png e .jpeg');
         }
     }
 
-    return (       
+    return (      
         <Dropzone
             onDrop={onDrop}
             onDragEnter={() => (document.getElementById('file-upload-container') as HTMLElement).style.opacity = '0.5'}
@@ -56,7 +51,7 @@ const ImgUploadField: React.FC<IImgUploadFieldProps> = ({ base64File, setBase64F
                 <Container {...getRootProps()} id="file-upload-container">
                     <input {...getInputProps()} />
                     
-                    {   !uploadedFile &&
+                    {   base64File === '' &&
                         <>
                             <img src={plusGrayIcon} alt="plus" />
                             <SelectFileButton>Selecione um arquivo</SelectFileButton>
@@ -69,19 +64,18 @@ const ImgUploadField: React.FC<IImgUploadFieldProps> = ({ base64File, setBase64F
                         </>
                     }
 
-                    {   uploadedFile !== undefined &&
+                    {   base64File !== '' &&
                         <>
                             <ImgUploadedPreviewContainer>
                                 <div className="img-preview">
-                                    <img src={(uploadedFile as any).preview} alt="img uploaded"/>
+                                    <img src={base64File} alt="img uploaded"/>
                                 </div>
 
                                 <p>Arraste e solte, ou clique para substituir</p>
                             </ImgUploadedPreviewContainer>
-                            <span className="filename">{uploadedFile.name}</span>
+                            {/* <span className="filename">{uploadedFile.name}</span> */}
                         </>
                     }
-    
                 </Container>
             )}
         </Dropzone>

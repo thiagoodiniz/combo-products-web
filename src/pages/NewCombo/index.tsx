@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { MenuItem, TextField } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { Button, MenuItem, TextField } from '@material-ui/core';
 import { Container, NewComboForm, SaveFormButton } from './styles';
 import GpdSkuQuant from './GpdSkuQuant';
 import Dates from './Dates';
 import DiscountDeadlinePrice from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
-import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IGpdSkuQuantItem } from '../../services/ProductCombo/types';
-import { ProductComboService } from '../../services/ProductCombo';
+import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IGpdSkuQuantItem, IProductComboData } from '../../services/ProductCombo/types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ImgUploadField from './ImgUploadField';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+import { ERoutes } from '../../routes';
 
 interface IState {
     name: string;
@@ -46,10 +48,12 @@ const states: IState[] = [
 ];
 
 interface INewComboProps {
-    onAddCombo(): void;
+    saveCombo(name: string, salesOffice: string, gpdSkuQuantList: IGpdSkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]): void;
+    comboToEdit?: IProductComboData;
+    editCombo?(combo: IProductComboData): void;
 }
 
-const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
+const NewCombo: React.FC<INewComboProps> = ({ saveCombo, comboToEdit, editCombo }) => {
     const [loading, setLoading] = useState(false);
 
     const [comboName, setComboName] = useState('');
@@ -62,6 +66,29 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
     const [salesPlatform, setsalesPlatform] = useState<string[]>([]);
     const [base64FileImg, setBase64FileImg] = useState<string>('');
     const [discountDeadlinePrice, setDiscountDeadlinePrice] = useState<IDiscountDeadlinePrice>({ type: EDiscountDeadlinePrice.DISCOUNT, description: '' });
+
+    const [initialized, setInitialized] = useState(false);
+    const [isEditing] = useState(comboToEdit !== undefined);
+
+    const initEditCombo = (combo: IProductComboData) => {
+        setInitialized(true);
+        setComboName(combo.name);
+        setSalesOffice(combo.salesOffice);
+        setGpdSkuQuantList(combo.gpdSkuQuantList);
+        setSelectedState(combo.uf);
+        setSelectedChannels(combo.channels);
+        setStartDate(moment(combo.startDate, 'DD/MM/YYYY'));
+        setEndDate(moment(combo.endDate, 'DD/MM/YYYY'));
+        setsalesPlatform(combo.salesPlatform);
+        setBase64FileImg(combo.base64FileImg);
+        setDiscountDeadlinePrice(combo.discountDeadlinePrice);
+    }
+
+    useEffect(() => {
+        if(comboToEdit !== undefined && !initialized){
+            initEditCombo(comboToEdit);
+        }
+    });
 
     const onSave = () => {
         console.log({
@@ -80,20 +107,42 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
         setLoading(true);
 
         setTimeout(() => {
-            const comboSvc = new ProductComboService();
-            comboSvc.saveCombo(comboName, salesOffice, gpdSkuQuantList, selectedState, selectedChannels, startDate?.format('DD/MM/YYYY') || '', endDate?.format('DD/MM/YYYY') || '', discountDeadlinePrice, base64FileImg, salesPlatform)
-                .then(() => {
-                    onAddCombo();
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }, 1500);
+            if(isEditing && editCombo) {
+                editCombo(
+                    {   
+                        ...(comboToEdit as IProductComboData),
+                        name: comboName, 
+                        salesOffice, 
+                        gpdSkuQuantList, 
+                        uf: selectedState, 
+                        channels: selectedChannels, 
+                        startDate: startDate?.format('DD/MM/YYYY') || '', 
+                        endDate: endDate?.format('DD/MM/YYYY') || '', 
+                        discountDeadlinePrice, 
+                        base64FileImg, 
+                        salesPlatform
+                    }
+                );
+            } else {
+                saveCombo(
+                    comboName, 
+                    salesOffice, 
+                    gpdSkuQuantList, 
+                    selectedState, 
+                    selectedChannels, 
+                    startDate?.format('DD/MM/YYYY') || '', 
+                    endDate?.format('DD/MM/YYYY') || '', 
+                    discountDeadlinePrice, 
+                    base64FileImg, 
+                    salesPlatform
+                );
+            }
+        }, 1000);
     }
 
     return (
         <Container>
-            <h2>Criar novo combo</h2>
+            <h2>{isEditing ? 'Editar combo' : 'Criar novo combo'}</h2>
 
             <NewComboForm className="new-combo-form">
                 <TextField
@@ -174,19 +223,36 @@ const NewCombo: React.FC<INewComboProps> = ({ onAddCombo }) => {
                 />
             </NewComboForm>
 
-            <SaveFormButton 
-                onClick={onSave}
-                disabled={loading}
-                variant="contained"
-            >
-                {   loading &&
-                    <CircularProgress size={24} />
+            <div className="actions">
+                {   isEditing &&
+                    <Link to={ERoutes.HOME}>
+                        <Button
+                            style={{textTransform: 'none'}}
+                            color="secondary"
+                            variant="contained"
+                            disabled={loading}
+                        >
+                            Cancelar
+                        </Button>
+                    </Link>
                 }
 
-                {   !loading &&
-                    <>Salvar</>
-                }
-            </SaveFormButton>
+                <SaveFormButton 
+                    onClick={onSave}
+                    disabled={loading}
+                    variant="contained"
+                >
+                    {   loading &&
+                        <CircularProgress size={24} />
+                    }
+
+                    {   !loading &&
+                        <>Salvar</>
+                    }
+                </SaveFormButton>
+
+            </div>
+
         </Container>
     );
 }
