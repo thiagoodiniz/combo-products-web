@@ -36,16 +36,18 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ base64FileImage, gpdSkuQuant
 
             <TableCell colSpan={8}>
                 <TableCellContainer>
-                    <ExpandedItemContainer>
-                        <ExpandedItemTitle>Imagem</ExpandedItemTitle>
-                        <ExpandedItemContent>
-                            <img 
-                                src={base64FileImage}
-                                alt="product"
-                            />
-                        </ExpandedItemContent>
+                    {   base64FileImage &&
+                        <ExpandedItemContainer>
+                            <ExpandedItemTitle>Imagem</ExpandedItemTitle>
+                            <ExpandedItemContent>
+                                <img 
+                                    src={base64FileImage}
+                                    alt="product"
+                                />
+                            </ExpandedItemContent>
 
-                    </ExpandedItemContainer>
+                        </ExpandedItemContainer>
+                    }
 
                     <ExpandedItemContainer>
                         <ExpandedItemTitle>GPD</ExpandedItemTitle>
