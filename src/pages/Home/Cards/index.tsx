@@ -13,12 +13,15 @@ interface ICardsProps {
     combos: IProductComboData[];
     loading: boolean;
     error: boolean;
+
+    filterByActiveCombos(): void;
+    isFilteredByActiveCombos: boolean;
 }
 
-const Cards: React.FC<ICardsProps> = ({ combos, loading, error }) => {
+const Cards: React.FC<ICardsProps> = ({ combos, loading, error, filterByActiveCombos, isFilteredByActiveCombos }) => {
     const history = useHistory();
     const [activeCombos, setActiveCombos] = useState(0);
-
+    
     const iniActiveCombos = () => {
         let count = 0;
         combos.forEach(combo => {   
@@ -53,6 +56,9 @@ const Cards: React.FC<ICardsProps> = ({ combos, loading, error }) => {
                 contentTitle={`${activeCombos} combos ativos`} 
                 icon={<img src={trophy} alt="Active combos" />} 
                 loading={loading}
+                onClickIconAction={filterByActiveCombos}
+                title={isFilteredByActiveCombos ? 'Clique para remover o filtro' : 'Clique para filtrar por combos ativos'}
+                cardSelected={isFilteredByActiveCombos}
             />
         </Container>
     );

@@ -45,6 +45,15 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         padding-left: 1rem;
+        transition: all 0.25s ease-in-out;
+    }
+
+    &.cardSelected {
+        & > .card-content {
+            background-color: ${({ theme }) => theme.colors.blue};
+            color: ${({ theme }) => theme.colors.white};
+        }
+
     }
 `;
 

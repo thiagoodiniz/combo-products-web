@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IProductComboData } from '../../../services/ProductCombo/types';
 import ProductComboTable from './ProductComboTable';
 import { Container } from './styles';
@@ -10,24 +10,15 @@ interface ITableContainerProps {
     error: boolean;
     removeCombo(comboId: string): void;
     duplicateCombo(combo: IProductComboData): void;
+
+    filteredCombos: IProductComboData[];
+    setFilteredCombos(combos:IProductComboData[]): void;
+    onCleanFilters(): void
 }
 
-const TableContainer: React.FC<ITableContainerProps> = ({ combos, loading, error, removeCombo, duplicateCombo }) => {
-    const [filteredCombos, setFilteredCombos] = useState(combos);
-
-    useEffect(() => {
-        if(combos) {
-            setFilteredCombos(combos);
-        }
-    }, [combos, setFilteredCombos]);
-
-    const onCleanFilters = () => {
-        setFilteredCombos(combos);
-    }
-   
+const TableContainer: React.FC<ITableContainerProps> = ({ combos, loading, error, removeCombo, duplicateCombo, filteredCombos, setFilteredCombos, onCleanFilters }) => {
     return (
         <Container>
-            
             <TableFilter 
                 onCleanFilters={onCleanFilters}
                 combos={combos || []}

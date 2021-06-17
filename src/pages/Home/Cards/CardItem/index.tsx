@@ -7,15 +7,19 @@ interface ICardItemProps {
     icon: JSX.Element;
     onClickIconAction?(): void
     loading: boolean;
+    title?: string;
+    cardSelected?: boolean;
 }
 
-const CardItem: React.FC<ICardItemProps> = ({ contentTitle, icon, onClickIconAction, loading }) => {
+const CardItem: React.FC<ICardItemProps> = ({ contentTitle, icon, onClickIconAction, loading, title, cardSelected }) => {
     return (
         <>
             {   !loading &&
-                <Container 
+                <Container
+                    title={title ? title : ''}
                     style={{cursor: onClickIconAction ? 'pointer' : 'unset'}}
                     onClick={() => onClickIconAction ? onClickIconAction() : undefined}
+                    className={cardSelected ? 'cardSelected' : ''}
                 >
                             <div className="icon-box">
                                 <>{ icon }</>
