@@ -10,6 +10,7 @@ import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } fro
 import { useHistory } from 'react-router-dom';
 import { ERoutes } from '../../../../../routes';
 import ConfirmDialog from '../../../../../ components/ConfirmDialog';
+import { isComboActive } from '../../../../../utils';
 
 interface IProductComboTableRowProps {
     rowData: IProductComboData;
@@ -76,7 +77,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
         <>
             <StyledTableRow
                 id={`combo-${rowData.id}`}
-                className={`${isOddRow ? 'odd' : 'even'} ${!rowData.active ? 'inactive-combo' : ''}`}
+                className={`${isOddRow ? 'odd' : 'even'} ${!isComboActive(rowData) ? 'inactive-combo' : ''}`}
             >
                 <StyledTableCell className="body expand" align="center">
                     <ActionButton
@@ -86,7 +87,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                     </ActionButton>
                 </StyledTableCell>
                 <StyledTableCell className="body" scope="row" align="center">
-                    {   rowData.active 
+                    {   isComboActive(rowData)
                         ? <img src={activeCombo} alt="Active" />
                         : <img src={inactiveCombo} alt="Inactive" />
                     }

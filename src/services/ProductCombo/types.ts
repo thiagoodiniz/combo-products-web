@@ -1,6 +1,5 @@
 export interface IProductComboData {
     id: string;
-    active: boolean;
     name: string;
     salesOffice: string;
     gpdSkuQuantList: IGpdSkuQuantItem[];
