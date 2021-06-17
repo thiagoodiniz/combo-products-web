@@ -76,7 +76,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
         <>
             <StyledTableRow
                 id={`combo-${rowData.id}`}
-                className={isOddRow ? 'odd' : 'even'}
+                className={`${isOddRow ? 'odd' : 'even'} ${!rowData.active ? 'inactive-combo' : ''}`}
             >
                 <StyledTableCell className="body expand" align="center">
                     <ActionButton

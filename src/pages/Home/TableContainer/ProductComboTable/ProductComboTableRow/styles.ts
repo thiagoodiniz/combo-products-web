@@ -34,6 +34,12 @@ export const StyledTableRow = styled(TableRow)`
             border: 2px solid ${({ theme }) => theme.colors.blue3};
             background: ${({ theme }) => theme.colors.gray} 0% 0% no-repeat padding-box;
         }
+
+        &.inactive-combo {
+            & > td:nth-child(n+3):not(:last-child) {
+                opacity: 0.4;
+            }
+        }
     }
 `;
 
