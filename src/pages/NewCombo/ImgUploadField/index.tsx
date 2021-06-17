@@ -18,8 +18,7 @@ const ImgUploadField: React.FC<IImgUploadFieldProps> = ({ base64File, setBase64F
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => {
-                console.log(reader.result)
-                resolve(reader.result)
+                resolve(reader.result);
             };
             reader.onerror = error => reject(error);
         });

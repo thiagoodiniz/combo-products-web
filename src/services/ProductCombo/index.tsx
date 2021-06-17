@@ -34,7 +34,8 @@ export class ProductComboService {
             endDate,
             discountDeadlinePrice,
             base64FileImg,
-            salesPlatform
+            salesPlatform,
+            recentlyAdded: true,
         }
         
         combos.push(combo);
