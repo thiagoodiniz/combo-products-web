@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Container, UserButton, BottomArrow } from './styles';
 import person from '../../../assets/images/icons/person.svg';
-import { Fade, Menu, MenuItem } from '@material-ui/core';
+import { Menu, MenuItem } from '@material-ui/core';
 import leftArrow from '../../../assets/images/icons/white-arrow-left.svg';
+import { useHistory } from 'react-router-dom';
+import { ERoutes } from '../../../routes';
 
 const LoggedUser: React.FC = () => {
+    const history = useHistory();
+
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
   
@@ -15,6 +19,11 @@ const LoggedUser: React.FC = () => {
     const handleClose = () => {
       setAnchorEl(null);
     };
+
+    const logout = () => {
+        handleClose();
+        history.push(ERoutes.LOGIN);
+    }
 
     return (
         <Container>
@@ -29,13 +38,12 @@ const LoggedUser: React.FC = () => {
                     keepMounted
                     open={open}
                     onClose={handleClose}
-                    TransitionComponent={Fade}
                     PaperProps={{
                         style:{ marginLeft: '-0.5rem', marginTop: '2.5rem', width: '6rem' },
                     }}
                 >
                     <MenuItem onClick={handleClose}>Perfil</MenuItem>
-                    <MenuItem onClick={handleClose}>Sair</MenuItem>
+                    <MenuItem onClick={logout}>Sair</MenuItem>
                 </Menu>
             </div>
         </Container>
