@@ -16,6 +16,8 @@ interface IProductComboTableRowProps {
     isOddRow: boolean;
     removeCombo(comboId: string): void;
     duplicateCombo(combo: IProductComboData): void;
+    isExpanded: boolean;
+    setIsExpanded(): void;
 }
 
 const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
@@ -40,9 +42,8 @@ const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
     return `${type}${data.description}${getDiscountDeadlinePriceFinalText(data.type)}`;
 }
 
-const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow, removeCombo, duplicateCombo }) => {
+const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow, removeCombo, duplicateCombo, isExpanded, setIsExpanded }) => {
     const history = useHistory();
-    const [isExpanded, setIsExpanded] = useState(false);
 
     const [canShowRemoveConfirmationModal, setCanShowRemoveConfirmationModal] = useState(false);
     const [canShowDuplicateConfirmationModal, setCanShowDuplicateConfirmationModal] = useState(false);
@@ -79,7 +80,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
             >
                 <StyledTableCell className="body expand" align="center">
                     <ActionButton
-                        onClick={() => setIsExpanded(!isExpanded)}
+                        onClick={() => setIsExpanded()}
                     >
                         <img src={isExpanded ? retractTableRowIcon : expandTableRowIcon} alt="Expand Retract" />
                     </ActionButton>

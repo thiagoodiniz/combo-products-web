@@ -29,6 +29,21 @@ const ProductComboTable: React.FC<IProductComboTableProps> = ({ combos, loading,
     const [selectedPage, setSelectedPage] = useState(1);
     const [rowsPerPage] = React.useState(8);
 
+    const [expandedRow, setExpandedRow] = useState('');
+
+    const onExpandRow = (comboId: string) => {
+        if(comboId === expandedRow) {
+            setExpandedRow('');
+        } else {
+            setExpandedRow(comboId);
+        }
+    }
+
+    const onChangeSelectedPage = (pageNumber: number) => {
+        setSelectedPage(pageNumber);
+        setExpandedRow('');
+    }
+
     return (
         <Container>
 
@@ -59,6 +74,8 @@ const ProductComboTable: React.FC<IProductComboTableProps> = ({ combos, loading,
                                         isOddRow={(idx % 2 === 1)}
                                         removeCombo={removeCombo}
                                         duplicateCombo={duplicateCombo}
+                                        isExpanded={expandedRow === row.id}
+                                        setIsExpanded={() => onExpandRow(row.id)}
                                     />
                                 ))}
                             </TableBody>
@@ -69,7 +86,7 @@ const ProductComboTable: React.FC<IProductComboTableProps> = ({ combos, loading,
                         <ProductTableFooter 
                             totalRows={combos.length}
                             rowsPerPage={rowsPerPage}
-                            setSelectedPage={setSelectedPage}
+                            setSelectedPage={onChangeSelectedPage}
                         />
                     }
                 </>
