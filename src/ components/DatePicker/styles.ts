@@ -46,5 +46,11 @@ export const CustomDatePicker = styled(MaterialDatePicker)`
                 }
             }
         }
+
+        &.error {
+            & > div {
+                border: 1px solid ${({ theme }) => theme.colors.red};
+            }
+        }
     }
 `;

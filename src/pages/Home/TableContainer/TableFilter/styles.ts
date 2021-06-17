@@ -54,7 +54,7 @@ export const Container = styled.div`
 export const SearchButton = styled(Button)`
     && {
         background-color: ${({ theme }) => theme.colors.blue};
-        min-width: 1.75rem;
+        min-width: 2.75rem;
         height: 1.5rem;
         background-image: url(${searchIcon});
         background-repeat: no-repeat;
@@ -63,6 +63,10 @@ export const SearchButton = styled(Button)`
         &:hover {
             background-color: ${({ theme }) => theme.colors.blue};
             opacity: 0.9;
+        }
+
+        &:disabled {
+            opacity: 0.45;
         }
     }
 `;
