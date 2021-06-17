@@ -7,10 +7,22 @@ export const isComboActive = (combo: IProductComboData): boolean => {
     }
     
     const dateFormat = 'DD/MM/YYYY';
-    const today = moment();
+    const today = moment().startOf('day');
     const startDate = moment(combo.startDate, dateFormat);
     const endDate = moment(combo.endDate, dateFormat);
 
-    return today.isSameOrAfter(startDate)
-        && today.isSameOrBefore(endDate);
+    return today.isSame(startDate) 
+        || today.isSame(endDate) 
+        || today.isBetween(startDate, endDate);
+}
+
+export const makeid = (length: number) => {
+    let result           = '';
+    const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * 
+        charactersLength));
+    }
+   return result;
 }

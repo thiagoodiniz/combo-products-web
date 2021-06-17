@@ -1,4 +1,4 @@
-import { isComboActive } from "../../utils";
+import { isComboActive, makeid } from "../../utils";
 import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IGpdSkuQuantItem, IProductComboData } from "./types";
 
 let combos: IProductComboData[] = [
@@ -17,6 +17,10 @@ let combos: IProductComboData[] = [
 
 export class ProductComboService {
 
+    private sortCombosByActive(combos: IProductComboData[]): IProductComboData[] {
+        return combos.sort((a,b) => isComboActive(a) && !isComboActive(b) ? -1 : !isComboActive(a) && isComboActive(b) ? 1 : 0);
+    }
+
     async loadCombos(): Promise<IProductComboData[]> {
         return combos;
     }
@@ -24,7 +28,7 @@ export class ProductComboService {
     async saveCombo(name: string, salesOffice: string, gpdSkuQuantList: IGpdSkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]): Promise<IProductComboData[]> {
 
         const combo: IProductComboData = {
-            id: (combos.length + 1).toString(),
+            id: makeid(8),
             name,
             salesOffice,
             gpdSkuQuantList,
@@ -39,25 +43,27 @@ export class ProductComboService {
         }
         
         combos.push(combo);
-        combos.sort((a,b) => isComboActive(a) && !isComboActive(b) ? -1 : !isComboActive(a) && isComboActive(b) ? 1 : 0);
+        combos = this.sortCombosByActive(combos);
         return combos;
     }
 
     async removeCombo(comboId: string): Promise<IProductComboData[]>  {
         combos = combos.filter(combo => combo.id !== comboId);
+        combos = this.sortCombosByActive(combos);
         return combos;
     }
 
     async editCombo(combo: IProductComboData): Promise<IProductComboData[]> {
         const comboIdx = combos.findIndex(cb => cb.id === combo.id);
         combos[comboIdx] = combo;
+        combos = this.sortCombosByActive(combos);
         return combos;
     }
 
     async duplicateCombo(combo: IProductComboData): Promise<IProductComboData[]> {
         const newCombo: IProductComboData = {
             ...combo,
-            id: (combos.length + 1).toString(),
+            id: makeid(8),
             recentlyAdded: true,
         }
         
@@ -73,7 +79,7 @@ export class ProductComboService {
         });
 
         combos = newCombosList;
-        
+        combos = this.sortCombosByActive(combos);
         return combos;
     }
 }
