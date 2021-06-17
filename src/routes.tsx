@@ -36,7 +36,7 @@ const Routes: React.FC = () => {
                     setTimeout(() => {
                         setCombos(combos);
                         setLoading(false);
-                    }, 2500);
+                    }, 2000);
                 })
                 .catch(err => {
                     console.log(err);
@@ -56,7 +56,7 @@ const Routes: React.FC = () => {
             .then(combos => {
                 toast.success('Combo salvo com sucesso.', {
                     position: "top-right",
-                    autoClose: 2500,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -76,7 +76,7 @@ const Routes: React.FC = () => {
             .then((combos) => {
                 toast.success('Combo removido com sucesso.', {
                     position: "top-right",
-                    autoClose: 2500,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -95,7 +95,7 @@ const Routes: React.FC = () => {
             .then(combos => {
                 toast.success('Combo editado com sucesso.', {
                     position: "top-right",
-                    autoClose: 2500,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -123,7 +123,7 @@ const Routes: React.FC = () => {
             .then(combos => { 
                 toast.success('Combo duplicado com sucesso.', {
                     position: "top-right",
-                    autoClose: 2500,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,

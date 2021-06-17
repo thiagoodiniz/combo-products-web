@@ -67,7 +67,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                 row.classList.add('duplicated-combo');
                 setTimeout(() => {
                     row.classList.remove('duplicated-combo');
-                }, 1500);
+                }, 2000);
             }
         }
     });
