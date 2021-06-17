@@ -1,5 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent } from '@material-ui/core';
 import React from 'react';
+import { ConfirmButton } from './styles';
 
 interface IConfirmDialogProps {
     title: JSX.Element;
@@ -27,14 +28,14 @@ const ConfirmDialog: React.FC<IConfirmDialogProps> = ({ title, onCancel, onConfi
                 >
                     Não
                 </Button>
-                <Button
+                <ConfirmButton
                     style={{textTransform: 'none'}}
                     onClick={onConfirm} 
                     color="primary"
                     variant="contained"
                 >
                     Sim
-                </Button>
+                </ConfirmButton>
             </DialogActions>
     </Dialog>
     );
