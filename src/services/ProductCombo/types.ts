@@ -15,9 +15,9 @@ export interface IProductComboData {
 }
 
 export enum EDiscountDeadlinePrice {
-    DISCOUNT = "DISCOUNT",
-    DEADLINE = "DEADLINE",
-    FIXPRICE = "FIXPRICE"
+    DISCOUNT = "Desconto",
+    DEADLINE = "Prazo",
+    FIXPRICE = "Preço fixo"
 }
 
 export interface IDiscountDeadlinePrice {

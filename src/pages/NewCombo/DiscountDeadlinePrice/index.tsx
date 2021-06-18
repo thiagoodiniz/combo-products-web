@@ -3,17 +3,6 @@ import { MenuItem, TextField } from '@material-ui/core';
 import { Container } from './styles';
 import { EDiscountDeadlinePrice, IDiscountDeadlinePrice } from '../../../services/ProductCombo/types';
 
-interface IOption {
-    label: string;
-    option: EDiscountDeadlinePrice;
-}
-
-const options: IOption[] = [
-    { option: EDiscountDeadlinePrice.DISCOUNT, label: 'Desconto' },
-    { option: EDiscountDeadlinePrice.DEADLINE, label: 'Prazo' },
-    { option: EDiscountDeadlinePrice.FIXPRICE, label: 'Preço fixo' },
-];
-
 interface IDiscountDeadlinePriceProps {
     discountDeadlinePrice: IDiscountDeadlinePrice;
     updateDiscountDeadlinePrice(discountDeadlinePrice: IDiscountDeadlinePrice): void;
@@ -32,9 +21,9 @@ const DiscountDeadlinePrice: React.FC<IDiscountDeadlinePriceProps> = ({ discount
                 }}
                 disabled={disabled}
             >
-                {options.map((option) =>
-                    <MenuItem key={option.option} value={option.option}>
-                        {option.label}
+                {Object.values(EDiscountDeadlinePrice).map((option) =>
+                    <MenuItem key={option} value={option}>
+                        {option}
                     </MenuItem>
                 )}
             </TextField>

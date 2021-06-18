@@ -35,7 +35,9 @@ const TableFilter: React.FC<ITableFilterProps> = ({ combos, setFilteredCombos, o
                 return combo.name.toUpperCase().includes(searchTerm)
                     || combo.salesOffice.toUpperCase().includes(searchTerm)
                     || combo.uf.toUpperCase().includes(searchTerm)
-                    || combo.channels.some(channel => channel.includes(searchTerm));
+                    || combo.channels.some(channel => channel.toUpperCase().includes(searchTerm))
+                    || combo.discountDeadlinePrice.type.toUpperCase().includes(searchTerm)
+                    || combo.discountDeadlinePrice.description.toUpperCase().includes(searchTerm);
             });
         }
         

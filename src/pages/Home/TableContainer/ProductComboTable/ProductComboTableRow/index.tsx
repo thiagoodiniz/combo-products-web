@@ -33,14 +33,11 @@ const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
                 return '';
         }
     }
-
-    const type = data.type === EDiscountDeadlinePrice.DISCOUNT 
-        ? 'Desconto / '
-        : data.type === EDiscountDeadlinePrice.DEADLINE
-            ? 'Prazo / '
-            : 'Preço fixo';
-    
-    return `${type}${data.description}${getDiscountDeadlinePriceFinalText(data.type)}`;
+    if(data.description !== '') {
+        return `${data.type} / ${data.description}${getDiscountDeadlinePriceFinalText(data.type)}`;
+    } else {
+        return data.type as string;
+    }
 }
 
 const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, isOddRow, removeCombo, duplicateCombo, isExpanded, setIsExpanded }) => {
