@@ -26,3 +26,10 @@ export const makeid = (length: number) => {
     }
    return result;
 }
+
+export function formatCurrency(textNumber: string): string {
+    if(!textNumber){
+        textNumber = '0';
+    }
+    return Number(textNumber).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+}

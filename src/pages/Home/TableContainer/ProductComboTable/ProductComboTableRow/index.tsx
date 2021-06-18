@@ -10,7 +10,7 @@ import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } fro
 import { useHistory } from 'react-router-dom';
 import { ERoutes } from '../../../../../routes';
 import ConfirmDialog from '../../../../../ components/ConfirmDialog';
-import { isComboActive } from '../../../../../utils';
+import { formatCurrency, isComboActive } from '../../../../../utils';
 
 interface IProductComboTableRowProps {
     rowData: IProductComboData;
@@ -23,18 +23,17 @@ interface IProductComboTableRowProps {
 
 const getDiscountDeadlinePriceText = (data: IDiscountDeadlinePrice): string => {
 
-    const getDiscountDeadlinePriceFinalText = (type: EDiscountDeadlinePrice): string => {
-        switch(type) {
+    if(data.description !== '') {
+        switch(data.type) {
             case EDiscountDeadlinePrice.DISCOUNT:
-                return '%';
+                return `${data.type} / ${data.description}%`;
             case EDiscountDeadlinePrice.DEADLINE:
-                return ' dias';
+                return `${data.type} / ${data.description} dias`;
+            case EDiscountDeadlinePrice.FIXPRICE:
+                return `${data.type} / R$ ${formatCurrency(data.description)}`;
             default:
                 return '';
         }
-    }
-    if(data.description !== '') {
-        return `${data.type} / ${data.description}${getDiscountDeadlinePriceFinalText(data.type)}`;
     } else {
         return data.type as string;
     }
