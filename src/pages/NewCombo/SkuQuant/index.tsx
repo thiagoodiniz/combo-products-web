@@ -1,30 +1,24 @@
 import React, { useState } from 'react';
-import { Button, MenuItem, TextField } from '@material-ui/core';
-import { Container, AddGPDButton, TagsContainer } from './styles';
+import { Button, TextField } from '@material-ui/core';
+import { Container, AddItemButton, TagsContainer } from './styles';
 import plusIcon from '../../../assets/images/icons/plus-small.svg';
-import { gpds, IGpd, IGpdSkuQuantItem } from '../../../services/ProductCombo/types';
+import { ISkuQuantItem } from '../../../services/ProductCombo/types';
 
-interface IGpdSkuQuantProps {
-    tagList: IGpdSkuQuantItem[];
-    updateTagList(newTagList: IGpdSkuQuantItem[]): void;
+interface ISkuQuantProps {
+    tagList: ISkuQuantItem[];
+    updateTagList(newTagList: ISkuQuantItem[]): void;
     disabled: boolean;
 }
 
-const getGPDLabel = (id: string): string => {
-    return gpds.find(gpd => gpd.id === id)?.label || '';
-}
+const SkuQuant: React.FC<ISkuQuantProps> = ({ tagList, updateTagList, disabled }) => {
 
-const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList, disabled }) => {
-
-    const [gpd, setGpd] = useState<IGpd>();
     const [sku, setSku] = useState('');
     const [quantity, setQuantity] = useState('');
 
     const onAddTag = () => {
-        if(gpd && sku && quantity){
-            const newTag: IGpdSkuQuantItem = { gpd: gpd.id, sku, quantity };
+        if(sku && quantity){
+            const newTag: ISkuQuantItem = { sku, quantity };
             updateTagList([...tagList, newTag]);
-            setGpd(undefined);
             setSku('');
             setQuantity('');
         }
@@ -42,24 +36,6 @@ const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList, disa
         <>
             <Container>
                 <TextField
-                    select
-                    className="gpd-item-field"
-                    label="GPD"
-                    value={gpd ? gpd.id : ''}
-                    onChange={(e: any) => {
-                        const selectedGPD = gpds.find(item => item.id === e.target.value) as IGpd;
-                        setGpd(selectedGPD)
-                    }}
-                    disabled={disabled}
-                >
-                    {gpds.map((gpd, idx) =>
-                        <MenuItem key={idx} value={gpd.id}>
-                            {gpd.label}
-                        </MenuItem>
-                    )}
-                </TextField>
-
-                <TextField
                     className="gpd-item-field"
                     label="SKU"
                     value={sku}
@@ -75,19 +51,19 @@ const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList, disa
                     disabled={disabled}
                 />
 
-                <AddGPDButton 
+                <AddItemButton 
                     onClick={onAddTag} 
-                    disabled={!gpd || !sku || !quantity || disabled}
+                    disabled={!sku || !quantity || disabled}
                     >
                     <img src={plusIcon} className="plus" alt="plus button"/>
-                </AddGPDButton>
+                </AddItemButton>
             </Container>
 
             {   tagList.length > 0 &&
                 <TagsContainer>
                     {   tagList.map((tag, idx) => 
                         <div className={`tag tag-${idx}`} key={idx}>
-                            <span>{ `${getGPDLabel(tag.gpd)} - ${tag.sku} - ${tag.quantity}` }</span>
+                            <span>{ `${tag.sku} - ${tag.quantity}` }</span>
                             
                             {   !disabled &&
                                 <Button title="remover" onClick={() => onRemoveTag(idx)}>x</Button>    
@@ -100,4 +76,4 @@ const GpdSkuQuant: React.FC<IGpdSkuQuantProps> = ({ tagList, updateTagList, disa
     );
 }
 
-export default GpdSkuQuant;
+export default SkuQuant;

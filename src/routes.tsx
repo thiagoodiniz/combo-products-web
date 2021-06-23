@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Header from './pages/Header';
 import NewCombo from './pages/NewCombo';
-import { IDiscountDeadlinePrice, IGpdSkuQuantItem, IProductComboData } from './services/ProductCombo/types';
+import { IDiscountDeadlinePrice, ISkuQuantItem, IProductComboData } from './services/ProductCombo/types';
 import { ProductComboService } from './services/ProductCombo';
 import EditCombo from './pages/EditCombo';
 import { toast, ToastContainer } from 'react-toastify';
@@ -50,7 +50,7 @@ const Routes: React.FC = () => {
         }
     });
 
-    const saveCombo = (name: string, salesOffice: string, gpdSkuQuantList: IGpdSkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]) => {
+    const saveCombo = (name: string, salesOffice: string, gpdSkuQuantList: ISkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]) => {
         const comboSvc = new ProductComboService();
         comboSvc.saveCombo(name, salesOffice, gpdSkuQuantList, uf, channels, startDate, endDate, discountDeadlinePrice, base64FileImg, salesPlatform)
             .then(combos => {

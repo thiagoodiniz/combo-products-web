@@ -2,7 +2,7 @@ export interface IProductComboData {
     id: string;
     name: string;
     salesOffice: string;
-    gpdSkuQuantList: IGpdSkuQuantItem[];
+    gpdSkuQuantList: ISkuQuantItem[];
     uf: string;
     channels: string[];
     startDate: string;
@@ -24,18 +24,7 @@ export interface IDiscountDeadlinePrice {
     type: EDiscountDeadlinePrice;
     description: string;
 }
-export interface IGpdSkuQuantItem {
-    gpd: string;
+export interface ISkuQuantItem {
     sku: string;
     quantity: string;
 }
-
-export interface IGpd {
-    id: string;
-    label: string;
-}
-
-export const gpds: IGpd[] = [
-    { id: '1', label: 'Prego'},
-    { id: '2', label: 'Vergalhão'},
-];

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button, MenuItem, TextField } from '@material-ui/core';
 import { Container, NewComboForm, SaveFormButton } from './styles';
-import GpdSkuQuant from './GpdSkuQuant';
+import GpdSkuQuant from './SkuQuant';
 import Dates from './Dates';
 import DiscountDeadlinePrice from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
-import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IGpdSkuQuantItem, IProductComboData } from '../../services/ProductCombo/types';
+import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, ISkuQuantItem, IProductComboData } from '../../services/ProductCombo/types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ImgUploadField from './ImgUploadField';
 import moment from 'moment';
@@ -48,7 +48,7 @@ const states: IState[] = [
 ];
 
 interface INewComboProps {
-    saveCombo(name: string, salesOffice: string, gpdSkuQuantList: IGpdSkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]): void;
+    saveCombo(name: string, salesOffice: string, gpdSkuQuantList: ISkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]): void;
     comboToEdit?: IProductComboData;
     editCombo?(combo: IProductComboData): void;
 }
@@ -58,7 +58,7 @@ const NewCombo: React.FC<INewComboProps> = ({ saveCombo, comboToEdit, editCombo 
 
     const [comboName, setComboName] = useState('');
     const [salesOffice, setSalesOffice] = useState('');
-    const [gpdSkuQuantList, setGpdSkuQuantList] = useState<IGpdSkuQuantItem[]>([]);
+    const [gpdSkuQuantList, setGpdSkuQuantList] = useState<ISkuQuantItem[]>([]);
     const [selectedState, setSelectedState] = useState('');
     const [selectedChannels, setSelectedChannels] = useState<string[]>([]);
     const [startDate, setStartDate] = useState<moment.Moment | null>(null);

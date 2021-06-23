@@ -21,7 +21,7 @@ export const Container = styled.div`
     }
 `;
 
-export const AddGPDButton = styled(Button)`
+export const AddItemButton = styled(Button)`
     && {
         background-color: ${({ theme }) => theme.colors.blue};
         border-radius: 50%;
