@@ -8,20 +8,19 @@ import { useHistory } from 'react-router-dom';
 import { ERoutes } from '../../../routes';
 import { IProductComboData } from '../../../services/ProductCombo/types';
 import { isComboActive } from '../../../utils';
+import { useCombosState } from '../../../context/Combos';
 
 interface ICardsProps {
     combos: IProductComboData[];
-    loading: boolean;
-    error: boolean;
-
     filterByActiveCombos(): void;
     isFilteredByActiveCombos: boolean;
 }
 
-const Cards: React.FC<ICardsProps> = ({ combos, loading, error, filterByActiveCombos, isFilteredByActiveCombos }) => {
+const Cards: React.FC<ICardsProps> = ({ combos, filterByActiveCombos, isFilteredByActiveCombos }) => {
     const history = useHistory();
     const [activeCombos, setActiveCombos] = useState(0);
-    
+    const { combosState } = useCombosState();
+
     const iniActiveCombos = () => {
         let count = 0;
         combos.forEach(combo => {   
@@ -50,12 +49,12 @@ const Cards: React.FC<ICardsProps> = ({ combos, loading, error, filterByActiveCo
             <CardItem 
                 contentTitle={`${combos.length} combos cadastrados`} 
                 icon={<img src={registerCombos} alt="Registered combos" />}
-                loading={loading}
+                loading={combosState.loading}
             />
             <CardItem 
                 contentTitle={`${activeCombos} combos ativos`} 
                 icon={<img src={trophy} alt="Active combos" />} 
-                loading={loading}
+                loading={combosState.loading}
                 onClickIconAction={filterByActiveCombos}
                 title={isFilteredByActiveCombos ? 'Clique para remover o filtro' : 'Clique para filtrar por combos ativos'}
                 cardSelected={isFilteredByActiveCombos}

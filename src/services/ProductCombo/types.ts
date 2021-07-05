@@ -1,3 +1,10 @@
+export interface ICombosState {
+    combos: IProductComboData[] | undefined;
+    loading: boolean;
+    error: boolean;
+    toastMessage?: string;
+}
+
 export interface IProductComboData {
     id: string;
     name: string;

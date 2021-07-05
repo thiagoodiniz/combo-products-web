@@ -53,7 +53,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
         setTimeout(() => {
             row.classList.remove('remove-combo');
             removeCombo(rowData.id);
-        }, 600);
+        }, 400);
     } 
 
     useEffect(() => {

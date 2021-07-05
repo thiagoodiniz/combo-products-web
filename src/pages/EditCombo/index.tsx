@@ -1,15 +1,25 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { useCombosState } from '../../context/Combos';
+import { ERoutes } from '../../routes';
 import { IProductComboData } from '../../services/ProductCombo/types';
 import NewCombo from '../NewCombo';
 
-interface IEditComboProps {
-    getComboToEdit(comboId: string): IProductComboData | undefined;
-    editCombo(combo: IProductComboData): void;
-}
-
-const EditCombo: React.FC<IEditComboProps> = ({ getComboToEdit, editCombo }) => {
+const EditCombo: React.FC = () => {
+    const history = useHistory();
+    
     let { comboId } = useParams<{ comboId: string }>();
+    const { combosState } = useCombosState();
+
+
+    const getComboToEdit = (comboId: string): IProductComboData | undefined => {
+        const combo = combosState.combos && combosState.combos.find(c => c.id === comboId);
+        if(combo === undefined) {
+            history.push(ERoutes.HOME);
+        }  else {
+            return combo;
+        }
+    }
 
     const comboToEdit = getComboToEdit(comboId);
 
@@ -17,9 +27,7 @@ const EditCombo: React.FC<IEditComboProps> = ({ getComboToEdit, editCombo }) => 
         <>
             {   comboToEdit !== undefined &&
                 <NewCombo 
-                    saveCombo={() => undefined}
                     comboToEdit={comboToEdit}
-                    editCombo={editCombo}
                 />
             }
         </>

@@ -1,37 +1,32 @@
 import React from 'react';
+import { useCombosState } from '../../../context/Combos';
 import { IProductComboData } from '../../../services/ProductCombo/types';
 import ProductComboTable from './ProductComboTable';
 import { Container } from './styles';
 import TableFilter from './TableFilter';
 
 interface ITableContainerProps {
-    combos: IProductComboData[];
-    loading: boolean;
-    error: boolean;
-    removeCombo(comboId: string): void;
-    duplicateCombo(combo: IProductComboData): void;
-
     filteredCombos: IProductComboData[];
     setFilteredCombos(combos:IProductComboData[]): void;
     onCleanFilters(): void
 }
 
-const TableContainer: React.FC<ITableContainerProps> = ({ combos, loading, error, removeCombo, duplicateCombo, filteredCombos, setFilteredCombos, onCleanFilters }) => {
+const TableContainer: React.FC<ITableContainerProps> = ({ filteredCombos, setFilteredCombos, onCleanFilters }) => {
+    const { combosState } = useCombosState();
+    
     return (
         <Container>
             <TableFilter 
                 onCleanFilters={onCleanFilters}
-                combos={combos || []}
+                combos={combosState.combos || []}
                 setFilteredCombos={setFilteredCombos}
-                isFiltered={filteredCombos?.length !== combos.length}
+                isFiltered={filteredCombos?.length !== combosState.combos?.length}
             />
 
             <ProductComboTable
                 combos={filteredCombos || []}
-                loading={loading}
-                error={error}
-                removeCombo={removeCombo}
-                duplicateCombo={duplicateCombo}
+                loading={combosState.loading}
+                error={combosState.error}
             />
         </Container>
     );

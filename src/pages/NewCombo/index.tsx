@@ -11,6 +11,7 @@ import ImgUploadField from './ImgUploadField';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { ERoutes } from '../../routes';
+import { useCombosState } from '../../context/Combos';
 
 interface IState {
     name: string;
@@ -48,12 +49,12 @@ const states: IState[] = [
 ];
 
 interface INewComboProps {
-    saveCombo(name: string, salesOffice: string, gpdSkuQuantList: ISkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]): void;
     comboToEdit?: IProductComboData;
-    editCombo?(combo: IProductComboData): void;
 }
 
-const NewCombo: React.FC<INewComboProps> = ({ saveCombo, comboToEdit, editCombo }) => {
+const NewCombo: React.FC<INewComboProps> = ({ comboToEdit }) => {
+    const { saveCombo, editCombo } = useCombosState();
+
     const [loading, setLoading] = useState(false);
 
     const [comboName, setComboName] = useState('');

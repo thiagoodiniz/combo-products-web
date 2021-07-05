@@ -1,32 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { IProductComboData } from '../../services/ProductCombo/types';
+import { useCombosState } from '../../context/Combos';
 import { isComboActive } from '../../utils';
 import Cards from './Cards';
 import { Container } from './styles';
 import TableContainer from './TableContainer';
 
-interface IHomeProps {
-    combos: IProductComboData[];
-    loading: boolean;
-    error: boolean;
-    removeCombo(comboId: string): void;
-    duplicateCombo(combo: IProductComboData): void;
-}
+const Home: React.FC = () => {
+    const { combosState } = useCombosState();
 
-const Home: React.FC<IHomeProps> = ({ combos, loading, error, removeCombo, duplicateCombo }) => {
-    const [filteredCombos, setFilteredCombos] = useState(combos);
+    const [filteredCombos, setFilteredCombos] = useState(combosState.combos || []);
     const [isFilteredByActiveCombos, setIsfilteredByActiveCombos] = useState(false);
 
     useEffect(() => {
-        if(combos) {
-            setFilteredCombos(combos);
+        if(combosState.combos) {
+            setFilteredCombos(combosState.combos);
         }
-    }, [combos, setFilteredCombos]);
+    }, [combosState.combos, setFilteredCombos]);
 
     const filterByActiveCombos = () => {
         if(!isFilteredByActiveCombos) {
             setIsfilteredByActiveCombos(true);
-            setFilteredCombos(combos.filter(combo => isComboActive(combo)));
+            setFilteredCombos(combosState.combos?.filter(combo => isComboActive(combo)) || []);
         } else {
             onCleanFilters();
         }
@@ -34,29 +28,21 @@ const Home: React.FC<IHomeProps> = ({ combos, loading, error, removeCombo, dupli
 
     const onCleanFilters = () => {
         setIsfilteredByActiveCombos(false);
-        setFilteredCombos(combos);
+        setFilteredCombos(combosState.combos || []);
     }
    
     return (
         <Container>
-            
             <Cards 
-                combos={combos}
-                loading={loading}
-                error={error}
+                combos={combosState.combos || []}
                 isFilteredByActiveCombos={isFilteredByActiveCombos}
-                filterByActiveCombos={combos.length > 0 ? filterByActiveCombos : ()=>undefined}
+                filterByActiveCombos={combosState.combos && combosState.combos.length > 0 ? filterByActiveCombos : () => undefined}
             />
 
             <TableContainer 
-                combos={combos}
                 filteredCombos={filteredCombos}
                 setFilteredCombos={setFilteredCombos}
                 onCleanFilters={onCleanFilters}
-                loading={loading}
-                error={error}
-                removeCombo={removeCombo}
-                duplicateCombo={duplicateCombo}
             />
         </Container>
     );

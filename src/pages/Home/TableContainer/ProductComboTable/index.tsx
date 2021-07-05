@@ -5,6 +5,7 @@ import ProductComboTableRow from './ProductComboTableRow';
 import ProductTableFooter from './ProductTableFooter';
 import { IProductComboData } from '../../../../services/ProductCombo/types';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { useCombosState } from '../../../../context/Combos';
 
 const useStyles = makeStyles({
     table: {
@@ -20,14 +21,14 @@ interface IProductComboTableProps {
     combos: IProductComboData[];
     loading: boolean;
     error: boolean;
-    removeCombo(comboId: string): void;
-    duplicateCombo(combo: IProductComboData): void;
 }
 
-const ProductComboTable: React.FC<IProductComboTableProps> = ({ combos, loading, error, removeCombo, duplicateCombo }) => {
+const ProductComboTable: React.FC<IProductComboTableProps> = ({ combos, loading, error }) => {
     const classes = useStyles();
     const [selectedPage, setSelectedPage] = useState(1);
     const [rowsPerPage] = React.useState(8);
+
+    const { removeCombo, duplicateCombo } = useCombosState();
 
     const [expandedRow, setExpandedRow] = useState('');
 
