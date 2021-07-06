@@ -6,11 +6,11 @@ import inactiveCombo from '../../../../../assets/images/icons/inactive-combo.svg
 import expandTableRowIcon from '../../../../../assets/images/icons/expand-table-row.svg';
 import retractTableRowIcon from '../../../../../assets/images/icons/retract-table-row.svg';
 import ExpandedRow from './ExpandedRow';
-import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, IProductComboData } from '../../../../../services/ProductCombo/types';
 import { useHistory } from 'react-router-dom';
 import { ERoutes } from '../../../../../routes';
 import ConfirmDialog from '../../../../../ components/ConfirmDialog';
 import { formatCurrency, isComboActive } from '../../../../../utils';
+import { IProductComboData, IDiscountDeadlinePrice, EDiscountDeadlinePrice } from '../../../../../context/Combos/types';
 
 interface IProductComboTableRowProps {
     rowData: IProductComboData;

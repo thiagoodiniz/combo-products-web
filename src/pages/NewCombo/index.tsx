@@ -5,13 +5,13 @@ import GpdSkuQuant from './SkuQuant';
 import Dates from './Dates';
 import DiscountDeadlinePrice from './DiscountDeadlinePrice';
 import MultipleCheckboxSelect from '../../ components/MultipleCheckboxSelect';
-import { EDiscountDeadlinePrice, IDiscountDeadlinePrice, ISkuQuantItem, IProductComboData } from '../../services/ProductCombo/types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ImgUploadField from './ImgUploadField';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { ERoutes } from '../../routes';
 import { useCombosState } from '../../context/Combos';
+import { IProductComboData, ISkuQuantItem, IDiscountDeadlinePrice, EDiscountDeadlinePrice } from '../../context/Combos/types';
 
 interface IState {
     name: string;

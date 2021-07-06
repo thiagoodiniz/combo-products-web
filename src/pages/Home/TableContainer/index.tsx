@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCombosState } from '../../../context/Combos';
-import { IProductComboData } from '../../../services/ProductCombo/types';
+import { IProductComboData } from '../../../context/Combos/types';
 import ProductComboTable from './ProductComboTable';
 import { Container } from './styles';
 import TableFilter from './TableFilter';

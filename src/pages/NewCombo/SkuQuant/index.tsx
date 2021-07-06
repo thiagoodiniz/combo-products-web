@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { Container, AddItemButton, TagsContainer } from './styles';
 import plusIcon from '../../../assets/images/icons/plus-small.svg';
-import { ISkuQuantItem } from '../../../services/ProductCombo/types';
+import { ISkuQuantItem } from '../../../context/Combos/types';
 
 interface ISkuQuantProps {
     tagList: ISkuQuantItem[];

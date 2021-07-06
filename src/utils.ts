@@ -1,5 +1,5 @@
-import { IProductComboData } from "./services/ProductCombo/types";
 import moment from 'moment';
+import { IProductComboData } from './context/Combos/types';
 
 export const isComboActive = (combo: IProductComboData): boolean => {
     if(combo.startDate === '' || combo.endDate === '') {

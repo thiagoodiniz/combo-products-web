@@ -3,9 +3,9 @@ import { makeStyles, Table, TableBody, TableHead, TableRow } from '@material-ui/
 import { Container, TableContainer, StyledTableCell } from './styles';
 import ProductComboTableRow from './ProductComboTableRow';
 import ProductTableFooter from './ProductTableFooter';
-import { IProductComboData } from '../../../../services/ProductCombo/types';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { useCombosState } from '../../../../context/Combos';
+import { IProductComboData } from '../../../../context/Combos/types';
 
 const useStyles = makeStyles({
     table: {

@@ -7,6 +7,7 @@ import theme from "./assets/styles/theme/theme";
 import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core';
 import { ComboProvider } from './context/Combos';
+import { ChannelsProvider } from './context/Channels';
 
 const materialUiTheme = createMuiTheme({
 	typography: {
@@ -21,7 +22,9 @@ const App: React.FC = () => {
 			<MuiThemeProvider theme={materialUiTheme}>
 				<BrowserRouter>
 					<ComboProvider>
-						<Routes />
+						<ChannelsProvider>
+							<Routes />
+						</ChannelsProvider>
 					</ComboProvider>
 				</BrowserRouter>
 			</MuiThemeProvider>

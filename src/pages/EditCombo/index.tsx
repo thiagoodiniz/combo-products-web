@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useCombosState } from '../../context/Combos';
+import { IProductComboData } from '../../context/Combos/types';
 import { ERoutes } from '../../routes';
-import { IProductComboData } from '../../services/ProductCombo/types';
 import NewCombo from '../NewCombo';
 
 const EditCombo: React.FC = () => {

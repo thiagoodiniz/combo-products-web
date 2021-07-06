@@ -1,16 +1,11 @@
 import React, { createContext, useState, useContext }  from 'react';
 import { useHistory } from 'react-router-dom';
-import { ERoutes } from '../routes';
-import { ProductComboService } from '../services/ProductCombo';
-import { ICombosState, IDiscountDeadlinePrice, IProductComboData, ISkuQuantItem } from '../services/ProductCombo/types';
+import { ERoutes } from '../../routes';
+import { ProductComboService } from '../../services/ProductCombo';
+import { ICombosState, ISkuQuantItem, IDiscountDeadlinePrice, IProductComboData } from './types';
 
 const INITIAL_VALUE: ICombosState = {
     combos: undefined,
-    channelsState: {
-        channels: undefined,
-        loading: false,
-        error: false
-    },
     loading: false,
     error: false,
 } 
@@ -63,39 +58,6 @@ export function useCombosState() {
                     error: true,
                 });
             });
-    }
-
-    const loadChannels = () => {
-        setCombosState({
-            ...combosState,
-            channelsState: {
-                ...combosState.channelsState,
-                loading: true,
-                error: false,
-            }
-        });
-
-        comboSvc.getChannels()
-        .then(channels => 
-            setCombosState({ 
-                ...combosState,
-                channelsState: {
-                    channels,
-                    loading: false,
-                    error: false
-                }
-            }))
-        .catch(err => {
-            console.log('loadChannels', err)
-            setCombosState({
-                ...combosState,
-                channelsState: {
-                    ...combosState.channelsState,
-                    loading: false,
-                    error: true,
-                }
-            });
-        });
     }
 
     const saveCombo = (name: string, salesOffice: string, gpdSkuQuantList: ISkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]) => {
@@ -153,5 +115,5 @@ export function useCombosState() {
     }
 
 
-    return { combosState, setCombosState, loadCombos, loadChannels, saveCombo, editCombo, removeCombo, duplicateCombo };
+    return { combosState, setCombosState, loadCombos, saveCombo, editCombo, removeCombo, duplicateCombo };
 }

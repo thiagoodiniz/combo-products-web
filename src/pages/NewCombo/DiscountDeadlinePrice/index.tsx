@@ -2,7 +2,7 @@ import React from 'react';
 import NumberFormat from 'react-number-format';
 import { MenuItem, TextField } from '@material-ui/core';
 import { Container } from './styles';
-import { EDiscountDeadlinePrice, IDiscountDeadlinePrice } from '../../../services/ProductCombo/types';
+import { IDiscountDeadlinePrice, EDiscountDeadlinePrice } from '../../../context/Combos/types';
 
 interface IDiscountDeadlinePriceProps {
     discountDeadlinePrice: IDiscountDeadlinePrice;

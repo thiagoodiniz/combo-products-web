@@ -8,6 +8,7 @@ import EditCombo from './pages/EditCombo';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCombosState } from './context/Combos';
+import { useChannelsState } from './context/Channels';
 
 export enum ERoutes {
     LOGIN = '/login',
@@ -18,7 +19,8 @@ export enum ERoutes {
 
 const Routes: React.FC = () => {
     const { pathname } = useLocation();
-    const { combosState, setCombosState, loadCombos, loadChannels } = useCombosState();
+    const { combosState, setCombosState, loadCombos } = useCombosState();
+    const { channelsState, loadChannels } = useChannelsState();
 
     useEffect(() => {
         if(!matchPath(pathname , ERoutes.LOGIN) && !combosState.loading && !combosState.error && combosState.combos === undefined) {
@@ -27,7 +29,7 @@ const Routes: React.FC = () => {
     });
 
     useEffect(() => {
-        const { channels, loading, error } = combosState.channelsState;
+        const { channels, loading, error } = channelsState;
         if(!channels && !loading && !error ){
             loadChannels();
         }

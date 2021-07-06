@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, SearchButton, CleanSearchButton } from './styles';
 import DatePicker from '../../../../ components/DatePicker';
 import moment from 'moment';
-import { IProductComboData } from '../../../../services/ProductCombo/types';
+import { IProductComboData } from '../../../../context/Combos/types';
 
 interface ITableFilterProps {
     combos: IProductComboData[];

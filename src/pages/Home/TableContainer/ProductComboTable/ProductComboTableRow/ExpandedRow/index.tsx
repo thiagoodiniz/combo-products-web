@@ -1,6 +1,6 @@
 import { TableCell } from '@material-ui/core';
 import React from 'react';
-import { ISkuQuantItem } from '../../../../../../services/ProductCombo/types';
+import { ISkuQuantItem } from '../../../../../../context/Combos/types';
 import { ExpandedTableRow, TableCellContainer, ExpandedItemContainer, ExpandedItemTitle, ExpandedItemContent } from './styles';
 
 interface IExpandedRowProps {

@@ -6,9 +6,9 @@ import registerCombos from '../../../assets/images/icons/register-combos.svg';
 import trophy from '../../../assets/images/icons/trophy.svg';
 import { useHistory } from 'react-router-dom';
 import { ERoutes } from '../../../routes';
-import { IProductComboData } from '../../../services/ProductCombo/types';
 import { isComboActive } from '../../../utils';
 import { useCombosState } from '../../../context/Combos';
+import { IProductComboData } from '../../../context/Combos/types';
 
 interface ICardsProps {
     combos: IProductComboData[];
