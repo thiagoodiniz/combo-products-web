@@ -27,15 +27,18 @@ const ImgUploadField: React.FC<IImgUploadFieldProps> = ({ base64File, setBase64F
     const onDrop = (files: File[]) => {
         (document.getElementById('file-upload-container') as HTMLElement).style.opacity = '1'
         const uploadedFile = files[0];
-        if(accepetdFileTypes.includes(uploadedFile.type)) {
-            seterrorMessage('');
-            
-            setBase64File(URL.createObjectURL(uploadedFile));
 
-            getBase64FromFile(uploadedFile).then((base64UploadedFile: unknown) => setBase64File(base64UploadedFile as string));
-        } else {
+        if(!accepetdFileTypes.includes(uploadedFile.type)) {
             setBase64File('');
             seterrorMessage('Tipos de arquivos permitidos: .png e .jpeg');
+        } else if((uploadedFile.size/ 1024 / 1024) > 5) {
+            setBase64File('');
+            seterrorMessage('O arquivo não pode ser maior do que 5mb');
+        } else  {
+            seterrorMessage('');
+            setBase64File(URL.createObjectURL(uploadedFile));
+            getBase64FromFile(uploadedFile).then((base64UploadedFile: unknown) => setBase64File(base64UploadedFile as string));
+
         }
     }
 
