@@ -91,7 +91,6 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                 <StyledTableCell className="body" align="left">{rowData.name}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{rowData.salesOffice}</StyledTableCell>
                 <StyledTableCell className="body" align="center">{rowData.uf}</StyledTableCell>
-                <StyledTableCell className="body" align="left">{rowData.channels}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{`${rowData.startDate} - ${rowData.endDate}`}</StyledTableCell>
                 <StyledTableCell className="body" align="left">{getDiscountDeadlinePriceText(rowData.discountDeadlinePrice)}</StyledTableCell>
 
@@ -118,6 +117,7 @@ const ProductComboTableRow: React.FC<IProductComboTableRowProps> = ({ rowData, i
                     gpdSkuQuantItems={rowData.gpdSkuQuantList}
                     salesPlatform={rowData.salesPlatform}
                     base64FileImage={rowData.base64FileImg}
+                    channels={rowData.channels}
                 />
             }
 

@@ -7,10 +7,11 @@ interface IExpandedRowProps {
     base64FileImage: string;
     gpdSkuQuantItems: ISkuQuantItem[];
     salesPlatform: string[];
+    channels: string[];
     isOddRow: boolean;
 }
 
-const ExpandedRow: React.FC<IExpandedRowProps> = ({ base64FileImage, gpdSkuQuantItems, salesPlatform, isOddRow }) => {
+const ExpandedRow: React.FC<IExpandedRowProps> = ({ base64FileImage, gpdSkuQuantItems, salesPlatform, isOddRow, channels }) => {
     return (
         <ExpandedTableRow 
             className={isOddRow ? 'odd' : 'even'}
@@ -31,6 +32,18 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ base64FileImage, gpdSkuQuant
 
                         </ExpandedItemContainer>
                     }
+
+
+                    <ExpandedItemContainer>
+                        <ExpandedItemTitle>Canais</ExpandedItemTitle>
+                        <ExpandedItemContent>
+                            {   channels.map((channel, idx) =>
+                                <span key={idx}>{`- ${channel}`}</span>
+                            )}
+                        </ExpandedItemContent>
+
+                    </ExpandedItemContainer>
+
 
                     <ExpandedItemContainer className="sku-quant">
                         <ExpandedItemTitle>SKU / Quant</ExpandedItemTitle>
