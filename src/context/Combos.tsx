@@ -6,6 +6,11 @@ import { ICombosState, IDiscountDeadlinePrice, IProductComboData, ISkuQuantItem 
 
 const INITIAL_VALUE: ICombosState = {
     combos: undefined,
+    channelsState: {
+        channels: undefined,
+        loading: false,
+        error: false
+    },
     loading: false,
     error: false,
 } 
@@ -58,6 +63,39 @@ export function useCombosState() {
                     error: true,
                 });
             });
+    }
+
+    const loadChannels = () => {
+        setCombosState({
+            ...combosState,
+            channelsState: {
+                ...combosState.channelsState,
+                loading: true,
+                error: false,
+            }
+        });
+
+        comboSvc.getChannels()
+        .then(channels => 
+            setCombosState({ 
+                ...combosState,
+                channelsState: {
+                    channels,
+                    loading: false,
+                    error: false
+                }
+            }))
+        .catch(err => {
+            console.log('loadChannels', err)
+            setCombosState({
+                ...combosState,
+                channelsState: {
+                    ...combosState.channelsState,
+                    loading: false,
+                    error: true,
+                }
+            });
+        });
     }
 
     const saveCombo = (name: string, salesOffice: string, gpdSkuQuantList: ISkuQuantItem[], uf: string, channels: string[], startDate: string, endDate: string, discountDeadlinePrice: IDiscountDeadlinePrice, base64FileImg: string, salesPlatform: string[]) => {
@@ -115,5 +153,5 @@ export function useCombosState() {
     }
 
 
-    return { combosState, setCombosState, loadCombos, saveCombo, editCombo, removeCombo, duplicateCombo };
+    return { combosState, setCombosState, loadCombos, loadChannels, saveCombo, editCombo, removeCombo, duplicateCombo };
 }

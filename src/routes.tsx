@@ -18,13 +18,20 @@ export enum ERoutes {
 
 const Routes: React.FC = () => {
     const { pathname } = useLocation();
-    const { combosState, setCombosState, loadCombos } = useCombosState();
+    const { combosState, setCombosState, loadCombos, loadChannels } = useCombosState();
 
     useEffect(() => {
         if(!matchPath(pathname , ERoutes.LOGIN) && !combosState.loading && !combosState.error && combosState.combos === undefined) {
             loadCombos();
         }
     });
+
+    useEffect(() => {
+        const { channels, loading, error } = combosState.channelsState;
+        if(!channels && !loading && !error ){
+            loadChannels();
+        }
+    })
 
     useEffect(() => {
         if(combosState.toastMessage){

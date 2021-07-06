@@ -1,8 +1,15 @@
 export interface ICombosState {
     combos: IProductComboData[] | undefined;
+    channelsState: IChannelsState;
     loading: boolean;
     error: boolean;
     toastMessage?: string;
+}
+
+export interface IChannelsState {
+    channels: IChannel[] | undefined;
+    loading: boolean;
+    error: boolean;
 }
 
 export interface IProductComboData {
@@ -34,4 +41,9 @@ export interface IDiscountDeadlinePrice {
 export interface ISkuQuantItem {
     sku: string;
     quantity: string;
+}
+
+export interface IChannel {
+    name: string;
+    channel_id: string;
 }
