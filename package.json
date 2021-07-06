@@ -10,10 +10,7 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.23",
-    "@types/node": "^12.20.13",
-    "@types/react": "^17.0.8",
-    "@types/react-dom": "^17.0.5",
+    "axios": "^0.21.1",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -27,10 +24,12 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "env-cmd -e dev react-scripts start",
+    "build:develop": "env-cmd -e dev react-scripts build",
+    "qa": "env-cmd -e qa react-scripts start",
+    "build:qa": "env-cmd -e qa react-scripts build",
+    "prod": "env-cmd -e prod react-scripts start",
+    "build:tag": "env-cmd -e prod react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,7 +50,12 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^12.20.13",
+    "@types/react": "^17.0.8",
+    "@types/react-dom": "^17.0.5",
     "@types/react-router-dom": "^5.1.7",
-    "@types/styled-components": "^5.1.9"
+    "@types/styled-components": "^5.1.9",
+    "env-cmd": "^10.1.0"
   }
 }
