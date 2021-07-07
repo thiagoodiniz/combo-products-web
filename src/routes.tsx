@@ -30,7 +30,7 @@ const Routes: React.FC = () => {
 
     useEffect(() => {
         const { channels, loading, error } = channelsState;
-        if(!channels && !loading && !error ){
+        if(!matchPath(pathname , ERoutes.LOGIN) && !channels && !loading && !error ){
             loadChannels();
         }
     })
